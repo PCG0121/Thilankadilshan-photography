@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     :root {
-      --bg: #fdfcfb;
+      --bg: #fbf6ea;
       --ink: #171512;
       --muted: #6f675e;
       --gold: #c99b52;
@@ -56,8 +56,8 @@
     .top-nav-inner {
       width: min(1120px, 92vw);
       margin: 0 auto;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      background: linear-gradient(120deg, rgba(18, 17, 15, 0.55), rgba(18, 17, 15, 0.35));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #050505;
       backdrop-filter: blur(16px);
       border-radius: 999px;
       padding: 0.7rem 1.1rem;
@@ -76,6 +76,12 @@
       white-space: nowrap;
       font-weight: 600;
       position: relative;
+      color: #c99b52;
+      transition: color 0.3s ease;
+    }
+
+    .brand:hover {
+      color: #e6cfa6;
     }
 
     .brand::after {
@@ -91,6 +97,32 @@
 
     .brand:hover::after {
       width: 100%;
+    }
+
+    /* === Smooth Image Loading === */
+    img {
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    img.img-loading {
+      opacity: 0;
+      transform: scale(1.03);
+    }
+
+    img.img-loaded {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .card.reveal-pending {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s cubic-bezier(0.33, 1, 0.68, 1), transform 0.65s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .card.reveal-done {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .nav-links {
@@ -1601,6 +1633,493 @@
         line-height: 1.45;
       }
     }
+
+    /* Modern cinematic frames hero refresh */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      padding: 8.2rem 0 4.5rem;
+      overflow: hidden;
+      background:
+        linear-gradient(120deg, rgba(251, 246, 234, 0.98) 0%, rgba(241, 226, 194, 0.92) 48%, rgba(23, 21, 18, 0.98) 48.1%, rgba(12, 11, 10, 0.98) 100%);
+      color: var(--ink);
+      text-align: left;
+    }
+
+    .hero .container {
+      width: min(1180px, 92vw);
+      max-width: 1180px;
+    }
+
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+
+    .hero-main {
+      position: relative;
+      min-height: clamp(520px, 72vh, 720px);
+      border: 0;
+      border-radius: 6px;
+      overflow: visible;
+      box-shadow: none;
+      animation: none;
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(280px, 1.08fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+      grid-column: 1 / -1;
+    }
+
+    .hero-main:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .hero-main img {
+      position: relative;
+      inset: auto;
+      width: 100%;
+      height: min(72vh, 680px);
+      min-height: 520px;
+      object-fit: cover;
+      border-radius: 6px;
+      opacity: 1;
+      transform: none;
+      transition: transform 1.2s ease;
+      grid-column: 2;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
+    }
+
+    .hero-main:hover img {
+      transform: scale(1.025);
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      inset: auto;
+      right: min(34vw, 360px);
+      top: 8%;
+      width: clamp(120px, 18vw, 260px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(201, 155, 82, 0.48);
+      border-radius: 50%;
+      background: transparent;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-main::after {
+      content: "2K";
+      position: absolute;
+      right: clamp(0.5rem, 4vw, 3rem);
+      bottom: clamp(0.8rem, 4vw, 2.4rem);
+      z-index: 2;
+      color: rgba(255, 255, 255, 0.18);
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(5rem, 14vw, 11rem);
+      line-height: 0.8;
+      letter-spacing: -0.04em;
+      pointer-events: none;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      top: auto;
+      left: auto;
+      width: auto;
+      max-width: 560px;
+      padding: 0;
+      transform: none;
+      text-align: center;
+      grid-column: 1;
+      justify-self: center;
+    }
+
+    .hero-copy .eyebrow {
+      font-size: 0.66rem;
+      letter-spacing: 0.26em;
+      color: #af6a2a;
+      margin-bottom: 1.2rem;
+      text-shadow: none;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(3.1rem, 7.2vw, 7.2rem);
+      line-height: 0.82;
+      margin-bottom: 1.3rem;
+      color: #101826;
+      letter-spacing: -0.01em;
+      text-shadow: none;
+    }
+
+    .hero-copy p {
+      max-width: 54ch;
+      margin: 0 auto 2rem;
+      color: #5f5a54;
+      line-height: 1.8;
+      font-size: clamp(0.95rem, 1.4vw, 1.08rem);
+      text-shadow: none;
+    }
+
+    .hero-actions {
+      margin-top: 0;
+      gap: 0.8rem;
+      justify-content: center;
+    }
+
+    .hero-btn {
+      border-radius: 0;
+      padding: 0.95rem 1.5rem;
+      letter-spacing: 0.2em;
+      font-size: 0.72rem;
+      border: 1px solid rgba(23, 21, 18, 0.3);
+      background: transparent;
+      color: #171512;
+      backdrop-filter: none;
+    }
+
+    .hero-btn.primary {
+      background: #171512;
+      border-color: #171512;
+      color: #fff;
+    }
+
+    .hero-btn:hover,
+    .hero-btn.primary:hover {
+      transform: none;
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #171512;
+      box-shadow: none;
+    }
+
+    .hero-kicker {
+      position: absolute;
+      right: clamp(1rem, 4vw, 3rem);
+      top: clamp(1.2rem, 8vw, 5rem);
+      z-index: 3;
+      width: min(260px, 42vw);
+      padding: 1rem 1.1rem;
+      color: #fff;
+      border-left: 1px solid rgba(255, 255, 255, 0.34);
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.2), transparent);
+    }
+
+    .hero-kicker span {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: var(--gold-soft);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .hero-kicker p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .portfolio {
+      padding: 8.8rem 0 7rem;
+      background: linear-gradient(180deg, #fbf6ea 0%, #f2e5c7 100%);
+    }
+
+    .section-head {
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2.2rem;
+      text-align: center;
+    }
+
+    .section-head h2 {
+      color: #101826;
+      font-size: clamp(2.1rem, 5vw, 4.4rem);
+      line-height: 0.95;
+    }
+
+    .section-head h2::after {
+      display: none;
+    }
+
+    .section-head p {
+      color: #5f5a54;
+      margin-inline: auto;
+    }
+
+    .filters {
+      justify-content: center;
+      gap: 0.65rem;
+      margin-bottom: 2rem;
+    }
+
+    .filter-btn {
+      border: 1px solid rgba(23, 21, 18, 0.22);
+      border-radius: 0;
+      background: transparent;
+      color: #5f5a54;
+      box-shadow: none;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      border-color: #171512;
+      background: #171512;
+      color: #fff;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .filter-btn::before {
+      display: none;
+    }
+
+    .masonry {
+      gap: 1rem;
+    }
+
+    .card {
+      border-radius: 4px;
+      border: 0;
+      box-shadow: none;
+      background: #ddd7ce;
+    }
+
+    .card:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .card:hover img {
+      transform: scale(1.06);
+    }
+
+    .card::before {
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.66));
+    }
+
+    .meta small {
+      color: rgba(255, 255, 255, 0.84);
+      letter-spacing: 0.2em;
+      font-size: 0.63rem;
+    }
+
+    .meta h3 {
+      font-style: italic;
+      font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+    }
+
+    .cta-strip {
+      width: min(1180px, 92vw);
+      border-radius: 0;
+      background: #1a1a1a;
+      box-shadow: none;
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        min-height: auto;
+        padding: 7.5rem 0 4rem;
+        background:
+          linear-gradient(180deg, rgba(251, 246, 234, 0.99), rgba(242, 229, 199, 0.96)),
+          linear-gradient(135deg, rgba(201, 155, 82, 0.12), transparent 55%);
+      }
+
+      .hero-grid,
+      .hero-main {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .hero-copy,
+      .hero-main img {
+        grid-column: 1;
+      }
+
+      .hero-copy {
+        max-width: 720px;
+        order: 1;
+      }
+
+      .hero-main img {
+        order: 2;
+        height: auto;
+        min-height: 0;
+        max-height: 620px;
+        aspect-ratio: 4 / 5;
+        object-position: center;
+      }
+
+      .hero-kicker {
+        order: 3;
+      }
+
+      .section-head {
+        align-items: center;
+      }
+
+      .card.big,
+      .card.wide,
+      .card.mid,
+      .card.small {
+        grid-column: span 6;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .hero {
+        padding: 6.4rem 0 3.2rem;
+      }
+
+      .hero .container {
+        width: min(100% - 1.35rem, 1180px);
+      }
+
+      .hero-main {
+        gap: 1.15rem;
+        padding: 0;
+      }
+
+      .hero-copy {
+        width: 100%;
+        max-width: 100%;
+        padding: 1.05rem 0.15rem 0;
+        text-align: center;
+      }
+
+      .hero-copy .eyebrow {
+        font-size: 0.57rem;
+        letter-spacing: 0.2em;
+        margin-bottom: 0.75rem;
+      }
+
+      .hero-copy h1 {
+        max-width: 9ch;
+        margin-inline: auto;
+        font-size: clamp(2.75rem, 14.5vw, 4.05rem);
+        line-height: 0.86;
+        margin-bottom: 0.95rem;
+      }
+
+      .hero-copy p {
+        max-width: 36ch;
+        margin-inline: auto;
+        color: #5f5a54;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin-bottom: 1.25rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        margin-inline: auto;
+      }
+
+      .hero-btn {
+        width: 100%;
+        padding: 0.92rem 1rem;
+        text-align: center;
+      }
+
+      .portfolio {
+        padding: 7.2rem 0 4.5rem;
+      }
+
+      .hero-main img {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        max-height: none;
+        aspect-ratio: 4 / 5.15;
+        border-radius: 10px;
+        box-shadow: 0 18px 44px rgba(20, 18, 12, 0.2);
+      }
+
+      .hero-main::before {
+        right: auto;
+        left: -4.5rem;
+        top: 5.4rem;
+        width: 150px;
+        opacity: 0.65;
+      }
+
+      .hero-main::after {
+        display: none;
+      }
+
+      .hero-kicker {
+        right: 0.75rem;
+        top: auto;
+        bottom: 0.75rem;
+        width: min(285px, calc(100% - 1.5rem));
+        padding: 0.85rem 0.9rem;
+        border-left: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.32);
+        background: linear-gradient(180deg, rgba(18, 17, 15, 0.74), rgba(18, 17, 15, 0.5));
+        backdrop-filter: blur(10px);
+      }
+
+      .hero-kicker span {
+        margin-bottom: 0.25rem;
+        font-size: 0.56rem;
+        letter-spacing: 0.18em;
+      }
+
+      .hero-kicker p {
+        font-size: 0.78rem;
+        line-height: 1.45;
+      }
+
+      .masonry {
+        grid-template-columns: 1fr;
+      }
+
+      .card.big,
+      .card.wide,
+      .card.mid,
+      .card.small {
+        grid-column: auto;
+        min-height: 360px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .hero-copy h1 {
+        font-size: clamp(2.35rem, 14.5vw, 3.25rem);
+      }
+
+      .hero-copy p {
+        font-size: 0.88rem;
+      }
+
+      .hero-main {
+        gap: 1rem;
+      }
+
+      .hero-kicker {
+        width: calc(100% - 1.2rem);
+        right: 0.6rem;
+        bottom: 0.6rem;
+      }
+
+      .card.big,
+      .card.wide,
+      .card.mid,
+      .card.small {
+        min-height: 300px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1630,23 +2149,6 @@
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <article class="hero-main">
-          <img src="assets/images/real_photo_1.jpg" alt="Luxury wedding portrait by Thilanka Dilshan" />
-          <div class="hero-copy">
-            <span class="eyebrow">International Luxury Cinematic Frames</span>
-            <h1>Stories That Feel Like Cinema</h1>
-            <p>Every frame is crafted to hold emotion, atmosphere, and timeless detail. This is wedding storytelling for couples who want art, not just coverage.</p>
-            <div class="hero-actions">
-              <a class="hero-btn primary" href="#full-gallery">View Full Gallery</a>
-              <a class="hero-btn" href="booking.html">Book Your Date</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
     <section class="portfolio" id="full-gallery">
       <div class="container">
         <div class="section-head">
@@ -1700,9 +2202,55 @@
             <div class="meta"><small>Nuwara Eliya - Harini & Joel</small><h3>Golden Hour Letters</h3></div>
           </article>
 
-          <article class="card small" data-category="engagement" tabindex="0" role="button" aria-label="Open album: Whispered Promises">
-            <img src="assets/images/609026638_1364917278422660_2833140512891095027_n.jpg" alt="Engagement portrait" loading="lazy" />
-            <div class="meta"><small>Kurunegala - Diya & Shawn</small><h3>Whispered Promises</h3></div>
+          <article class="card small reveal-pending" data-category="engagement" tabindex="0" role="button" aria-label="Open album: Whispered Promises">
+            <img class="img-loading" src="assets/images/609026638_1364917278422660_2833140512891095027_n.jpg" alt="Engagement portrait" loading="lazy" />
+            <div class="meta"><small>Kurunegala - Diya &amp; Shawn</small><h3>Whispered Promises</h3></div>
+          </article>
+
+          <!-- New Images -->
+          <article class="card big reveal-pending" data-category="wedding" tabindex="0" role="button" aria-label="Open album: Eternal Vows">
+            <img class="img-loading" src="assets/images/DSCF0053.jpg" alt="Luxury wedding photography" loading="lazy" />
+            <div class="meta"><small>Sri Lanka - Premium Collection</small><h3>Eternal Vows</h3></div>
+          </article>
+
+          <article class="card mid reveal-pending" data-category="pre destination" tabindex="0" role="button" aria-label="Open album: Whispers of Light">
+            <img class="img-loading" src="assets/images/DSCF0058.jpg" alt="Pre-wedding session" loading="lazy" />
+            <div class="meta"><small>Location Story</small><h3>Whispers of Light</h3></div>
+          </article>
+
+          <article class="card small reveal-pending" data-category="wedding" tabindex="0" role="button" aria-label="Open album: Cinematic Bloom">
+            <img class="img-loading" src="assets/images/DSCF3071 copy.jpg" alt="Cinematic wedding frame" loading="lazy" />
+            <div class="meta"><small>Wedding Day Story</small><h3>Cinematic Bloom</h3></div>
+          </article>
+
+          <article class="card wide reveal-pending" data-category="destination" tabindex="0" role="button" aria-label="Open album: Golden Drift">
+            <img class="img-loading" src="assets/images/DSCF6858.jpg" alt="Destination wedding coverage" loading="lazy" />
+            <div class="meta"><small>Destination Story</small><h3>Golden Drift</h3></div>
+          </article>
+
+          <article class="card mid reveal-pending" data-category="engagement" tabindex="0" role="button" aria-label="Open album: Soft Focus">
+            <img class="img-loading" src="assets/images/DSCF8309 copy.jpg" alt="Engagement session" loading="lazy" />
+            <div class="meta"><small>Engagement Story</small><h3>Soft Focus</h3></div>
+          </article>
+
+          <article class="card small reveal-pending" data-category="wedding" tabindex="0" role="button" aria-label="Open album: Tender Moments">
+            <img class="img-loading" src="assets/images/image00002.jpeg" alt="Wedding moment" loading="lazy" />
+            <div class="meta"><small>Wedding Story</small><h3>Tender Moments</h3></div>
+          </article>
+
+          <article class="card big reveal-pending" data-category="pre" tabindex="0" role="button" aria-label="Open album: Love Unscripted">
+            <img class="img-loading" src="assets/images/IMGL6378 copy.jpg" alt="Pre-shoot session" loading="lazy" />
+            <div class="meta"><small>Pre-Shoot Story</small><h3>Love Unscripted</h3></div>
+          </article>
+
+          <article class="card mid reveal-pending" data-category="wedding destination" tabindex="0" role="button" aria-label="Open album: Timeless Frame">
+            <img class="img-loading" src="assets/images/IMGL9738 copy.jpg" alt="Timeless wedding portrait" loading="lazy" />
+            <div class="meta"><small>Luxury Story</small><h3>Timeless Frame</h3></div>
+          </article>
+
+          <article class="card small reveal-pending" data-category="wedding" tabindex="0" role="button" aria-label="Open album: Pure Elegance">
+            <img class="img-loading" src="assets/images/16.jpg" alt="Elegant wedding photography" loading="lazy" />
+            <div class="meta"><small>Signature Story</small><h3>Pure Elegance</h3></div>
           </article>
         </div>
       </div>
@@ -1745,6 +2293,51 @@
   </footer>
 
   <script>
+    // === Smooth Image Loading with Intersection Observer ===
+    function initSmoothImageLoading() {
+      const allImgs = document.querySelectorAll('img.img-loading');
+
+      allImgs.forEach((img) => {
+        if (img.complete && img.naturalWidth > 0) {
+          img.classList.remove('img-loading');
+          img.classList.add('img-loaded');
+        } else {
+          img.addEventListener('load', () => {
+            img.classList.remove('img-loading');
+            img.classList.add('img-loaded');
+          });
+          img.addEventListener('error', () => {
+            img.classList.remove('img-loading');
+            img.classList.add('img-loaded');
+          });
+        }
+      });
+    }
+
+    // Card reveal on scroll using IntersectionObserver
+    function initCardReveal() {
+      const revealCards = document.querySelectorAll('.card.reveal-pending');
+      if (!('IntersectionObserver' in window)) {
+        revealCards.forEach(c => { c.classList.remove('reveal-pending'); c.classList.add('reveal-done'); });
+        return;
+      }
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.remove('reveal-pending');
+              entry.target.classList.add('reveal-done');
+            }, i * 80);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealCards.forEach(c => obs.observe(c));
+    }
+
+    initSmoothImageLoading();
+    initCardReveal();
+
     // Mobile menu toggle functionality
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -1868,29 +2461,48 @@
       if (event.key === 'ArrowRight') showLightbox(activeIndex + 1);
     });
 
-    // Scroll-triggered animations using Intersection Observer
+    // Scroll-triggered album reveal animation
     const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      threshold: 0.16,
+      rootMargin: '0px 0px -80px 0px'
+    };
+
+    const prepareAlbumCard = (card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(54px) scale(0.96)';
+      card.style.filter = 'blur(10px)';
+      card.style.transition = [
+        `opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) ${(index % 6) * 0.08}s`,
+        `transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) ${(index % 6) * 0.08}s`,
+        `filter 0.85s cubic-bezier(0.16, 1, 0.3, 1) ${(index % 6) * 0.08}s`
+      ].join(', ');
+      card.style.willChange = 'opacity, transform, filter';
+    };
+
+    const revealAlbumCard = (card) => {
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0) scale(1)';
+      card.style.filter = 'blur(0)';
+      card.style.willChange = 'auto';
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+          revealAlbumCard(entry.target);
           observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    // Observe cards for lazy animation
-    cards.forEach((card, index) => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(20px)';
-      card.style.transition = `opacity 0.6s cubic-bezier(0.33, 1, 0.68, 1) ${index * 0.08}s, transform 0.6s cubic-bezier(0.33, 1, 0.68, 1) ${index * 0.08}s`;
-      observer.observe(card);
-    });
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      cards.forEach(revealAlbumCard);
+    } else {
+      cards.forEach((card, index) => {
+        prepareAlbumCard(card, index);
+        observer.observe(card);
+      });
+    }
 
     // Smooth scroll behavior enhancement
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -1924,6 +2536,3 @@
   </script>
 </body>
 </html>
-
-
-
