@@ -96,6 +96,79 @@
       color: #1a140e;
     }
 
+    .mobile-menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 999px;
+      background: transparent;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .mobile-menu-toggle span {
+      width: 16px;
+      height: 1.7px;
+      background: #fff;
+      border-radius: 999px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .mobile-menu-toggle.open span:nth-child(1) {
+      transform: translateY(5.7px) rotate(45deg);
+    }
+
+    .mobile-menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-menu-toggle.open span:nth-child(3) {
+      transform: translateY(-5.7px) rotate(-45deg);
+    }
+
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.55rem);
+      left: 0;
+      right: 0;
+      background: linear-gradient(160deg, rgba(18, 17, 15, 0.96), rgba(18, 17, 15, 0.88));
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 20px;
+      padding: 1rem;
+      color: #fff;
+      flex-direction: column;
+      gap: 0.35rem;
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22);
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      display: block;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      padding: 0.65rem 0.35rem;
+      color: rgba(255, 255, 255, 0.94);
+    }
+
+    .mobile-menu a.active { color: var(--gold-soft); }
+
+    .mobile-menu-book {
+      margin-top: 0.2rem;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 999px;
+      padding: 0.7rem 1rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
     .container {
       width: min(1180px, 92vw);
       margin-inline: auto;
@@ -928,6 +1001,7 @@
 
       .top-nav-inner {
         border-radius: 22px;
+        position: relative;
       }
 
       .brand {
@@ -936,14 +1010,15 @@
         line-height: 1.05;
       }
 
-      .nav-links {
+      .nav-links,
+      .nav-action {
         display: none;
       }
 
-      .nav-action {
-        padding: 0.42rem 0.8rem;
-        font-size: 0.74rem;
-      }
+      .mobile-menu-toggle { display: flex; }
+
+      .mobile-menu { display: none; }
+      .mobile-menu.open { display: flex; }
 
       .hero {
         padding-top: 6.2rem;
@@ -1024,7 +1099,20 @@
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
       </nav>
+      <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <a class="nav-action" href="booking.html">Book Now</a>
+      <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
+        <a href="index.html">Home</a>
+        <a class="active" href="portfolio.html">Portfolio</a>
+        <a href="index.html#services">Services</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a class="mobile-menu-book" href="booking.html">Book Now</a>
+      </nav>
     </div>
   </header>
 
@@ -1147,6 +1235,36 @@
   </footer>
 
   <script>
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const topNavInner = document.querySelector('.top-nav-inner');
+
+    if (menuToggle && mobileMenu && topNavInner) {
+      const setMenu = (open) => {
+        menuToggle.classList.toggle('open', open);
+        mobileMenu.classList.toggle('open', open);
+        menuToggle.setAttribute('aria-expanded', String(open));
+      };
+
+      menuToggle.addEventListener('click', () => {
+        setMenu(!mobileMenu.classList.contains('open'));
+      });
+
+      mobileMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setMenu(false));
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!topNavInner.contains(event.target)) {
+          setMenu(false);
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 620) setMenu(false);
+      });
+    }
+
     const filterButtons = Array.from(document.querySelectorAll('.filter-btn'));
     const cards = Array.from(document.querySelectorAll('.card'));
     const lightbox = document.getElementById('lightbox');
