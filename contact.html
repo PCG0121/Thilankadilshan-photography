@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Thilanka Dilshan Photography</title>
+  <meta name="description" content="Get in touch with Thilanka Dilshan Photography to discuss your wedding photography needs." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg: #fdfcfb;
+      --ink: #171512;
+      --muted: #6f675e;
+      --gold: #c99b52;
+      --gold-soft: #e6cfa6;
+      --line: rgba(23, 21, 18, 0.13);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .container { width: min(1180px, 92vw); margin-inline: auto; }
+
+    .top-nav {
+      position: fixed;
+      inset: 1.1rem 0 auto;
+      z-index: 50;
+    }
+
+    .top-nav-inner {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: linear-gradient(120deg, rgba(18, 17, 15, 0.4), rgba(18, 17, 15, 0.2));
+      backdrop-filter: blur(14px);
+      border-radius: 999px;
+      padding: 0.7rem 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #fff;
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", serif;
+      letter-spacing: 0.03em;
+      font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--gold-soft); }
+
+    .nav-action {
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 999px;
+      padding: 0.45rem 1rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    .nav-action:hover { background: var(--gold); border-color: var(--gold); color: #1a140e; }
+
+    .hero {
+      padding-top: 8rem;
+      padding-bottom: 3.5rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 0.95;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 720px;
+      margin-inline: auto;
+    }
+
+    .contact-section {
+      padding: 4rem 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 2rem;
+      color: var(--ink);
+      font-weight: 600;
+      line-height: 1.1;
+    }
+
+    .info-block {
+      margin-bottom: 2.5rem;
+    }
+
+    .info-block h3 {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+    }
+
+    .info-block p {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .info-block a {
+      color: var(--ink);
+      transition: color 0.3s ease;
+    }
+
+    .info-block a:hover {
+      color: var(--gold);
+    }
+
+    .contact-form {
+      background: #fff;
+      padding: 2.5rem;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(23, 21, 18, 0.09);
+    }
+
+    .form-group {
+      margin-bottom: 1.8rem;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.6rem;
+      color: var(--ink);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.9rem 1.1rem;
+      font-size: 1rem;
+      font-family: inherit;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fafaf8;
+      color: var(--ink);
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(201, 155, 82, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .submit-btn {
+      background: var(--ink);
+      color: #fff;
+      border: none;
+      padding: 1rem 2.2rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding: 2.2rem 0 2.8rem;
+      margin-top: 3rem;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.4rem;
+    }
+
+    .footer-content p {
+      margin: 0;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.4rem;
+      justify-content: center;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 2px solid var(--muted);
+      border-radius: 50%;
+      color: var(--ink);
+      transition: all 0.35s cubic-bezier(0.33, 1, 0.68, 1);
+      position: relative;
+    }
+
+    .social-links a::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0;
+      z-index: -1;
+      transition: opacity 0.35s ease;
+    }
+
+    .social-links a:hover {
+      border-color: var(--gold);
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    .social-links a:hover::before {
+      opacity: 1;
+    }
+
+    .social-links i {
+      font-size: 1.15rem;
+    }
+
+    @media (max-width: 980px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .top-nav { inset: 0.7rem 0 auto; }
+
+      .top-nav-inner { border-radius: 22px; }
+
+      .brand {
+        max-width: 170px;
+        white-space: normal;
+        line-height: 1.05;
+      }
+
+      .nav-links { display: none; }
+
+      .nav-action {
+        padding: 0.42rem 0.8rem;
+        font-size: 0.74rem;
+      }
+
+      .hero {
+        padding-top: 6.5rem;
+        padding-bottom: 2rem;
+      }
+
+      .contact-section {
+        padding: 2.5rem 0;
+      }
+
+      .contact-form {
+        padding: 1.8rem;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        padding: 0.8rem 1rem;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="top-nav" aria-label="Primary">
+    <div class="top-nav-inner">
+      <a class="brand" href="index.html">Thilanka Dilshan Photography</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="index.html#services">Services</a>
+        <a href="about.html">About</a>
+        <a class="active" href="contact.html">Contact</a>
+      </nav>
+      <a class="nav-action" href="booking.html">Book Now</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Get In Touch</h1>
+        <p>Have questions about our services or ready to book your wedding? We'd love to hear from you. Reach out and let's start creating your cinematic love story.</p>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <div class="container contact-grid">
+        <div class="contact-info">
+          <h2>Let's Connect</h2>
+          
+          <div class="info-block">
+            <h3>Email</h3>
+            <p><a href="mailto:hello@thilankadilshan.com">hello@thilankadilshan.com</a></p>
+          </div>
+
+          <div class="info-block">
+            <h3>Phone</h3>
+            <p><a href="tel:+94701234567">+94 70 123 4567</a></p>
+          </div>
+
+          <div class="info-block">
+            <h3>Location</h3>
+            <p>Colombo, Sri Lanka<br />Available for destination weddings worldwide</p>
+          </div>
+
+          <div class="info-block">
+            <h3>Follow Us</h3>
+            <div style="display: flex; gap: 1rem; margin-top: 0.9rem;">
+              <a href="https://www.facebook.com" target="_blank" rel="noopener" style="color: var(--ink); font-size: 1.3rem; transition: color 0.3s ease;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink)'">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://www.instagram.com" target="_blank" rel="noopener" style="color: var(--ink); font-size: 1.3rem; transition: color 0.3s ease;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink)'">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+
+          <div class="form-group">
+            <label for="wedding-date">Wedding Date</label>
+            <input type="date" id="wedding-date" name="wedding-date">
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="Tell us about your vision..."></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>(c) 2026 Thilanka Dilshan Photography. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

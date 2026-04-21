@@ -1,0 +1,566 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thilanka Dilshan Photography</title>
+  <meta name="description" content="Luxury cinematic wedding photography by Thilanka Dilshan Photography." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg: #fdfcfb;
+      --ink: #171512;
+      --muted: #6f675e;
+      --gold: #c99b52;
+      --gold-soft: #e6cfa6;
+      --line: rgba(23, 21, 18, 0.13);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .container { width: min(1180px, 92vw); margin-inline: auto; }
+
+    .top-nav {
+      position: fixed;
+      inset: 1.1rem 0 auto;
+      z-index: 50;
+    }
+
+    .top-nav-inner {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: linear-gradient(120deg, rgba(18, 17, 15, 0.4), rgba(18, 17, 15, 0.2));
+      backdrop-filter: blur(14px);
+      border-radius: 999px;
+      padding: 0.7rem 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #fff;
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", serif;
+      letter-spacing: 0.03em;
+      font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .nav-links a:hover { color: var(--gold-soft); }
+
+    .nav-action {
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 999px;
+      padding: 0.45rem 1rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    .nav-action:hover { background: var(--gold); border-color: var(--gold); color: #1a140e; }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #000;
+      color: #fff;
+      text-align: center;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: scale(1.05);
+      transition: opacity 1.4s ease, transform 6s linear;
+    }
+
+    .hero-slide.active {
+      opacity: 0.62;
+      transform: scale(1);
+    }
+
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.75), rgba(0,0,0,0.26), rgba(0,0,0,0.44));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 0 1rem;
+      max-width: 980px;
+    }
+
+    .hero-tag {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4em;
+      font-weight: 700;
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 1.6rem;
+    }
+
+    .hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.8rem, 8vw, 6.2rem);
+      line-height: 0.9;
+      margin-bottom: 1.4rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero h1 span {
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto 2.2rem;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.7;
+      font-size: clamp(0.95rem, 1.4vw, 1.08rem);
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      border: 1px solid rgba(255,255,255,0.52);
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      padding: 0.95rem 1.5rem;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      font-weight: 700;
+      transition: all 0.35s ease;
+    }
+
+    .hero-cta:hover { background: #fff; color: #0f0f0f; }
+
+    .philosophy {
+      padding: 7rem 0;
+      background: #fdfcfb;
+    }
+
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.2rem;
+      align-items: center;
+    }
+
+    .philo-image {
+      position: relative;
+      aspect-ratio: 3/4;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(26, 20, 12, 0.15);
+    }
+
+    .philo-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    .philo-copy .label,
+    .featured .label,
+    .testimonial .label {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.26em;
+      color: #af6a2a;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .philo-copy h2,
+    .featured h2,
+    .connect h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.1rem, 5vw, 4.4rem);
+      line-height: 0.95;
+      color: #101826;
+      margin-bottom: 1.2rem;
+    }
+
+    .philo-copy h2 span,
+    .featured h2 span,
+    .connect h2 span { font-style: italic; color: #5f6677; font-weight: 400; }
+
+    .philo-copy p {
+      color: #5f5a54;
+      max-width: 56ch;
+      line-height: 1.8;
+      margin-bottom: 1.8rem;
+      font-size: 1.04rem;
+    }
+
+    .inline-link,
+    .view-link {
+      border-bottom: 1px solid #171512;
+      padding-bottom: 0.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.66rem;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .inline-link:hover,
+    .view-link:hover { color: #af6a2a; border-color: #af6a2a; }
+
+    .featured {
+      padding: 7rem 0;
+      background: #f0f0f0;
+    }
+
+    .featured-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .stories {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .story {
+      display: block;
+    }
+
+    .story-media {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+
+    .story-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.4s ease;
+    }
+
+    .story-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.2);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .story:hover .story-media img { transform: scale(1.06); }
+    .story:hover .story-media::after { opacity: 1; }
+
+    .story h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.9rem;
+      font-style: italic;
+      margin-bottom: 0.3rem;
+    }
+
+    .story p {
+      font-size: 0.63rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-weight: 700;
+      color: #7f7569;
+    }
+
+    .testimonial {
+      padding: 7rem 1rem;
+      background: #1a1a1a;
+      color: #fff;
+      text-align: center;
+    }
+
+    .testimonial .label { color: #d69a53; }
+
+    .testimonial blockquote {
+      max-width: 980px;
+      margin: 0 auto 1.7rem;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 4.3vw, 3.7rem);
+      line-height: 1.15;
+      font-style: italic;
+      color: #c7c7c7;
+    }
+
+    .testimonial .author {
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.84);
+    }
+
+    .connect {
+      padding: 7rem 1rem;
+      text-align: center;
+      border-top: 1px solid #ece6de;
+    }
+
+    .connect p {
+      color: #5f5a54;
+      font-size: 1.05rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .connect-btn {
+      display: inline-block;
+      background: #000;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.63rem;
+      font-weight: 700;
+      padding: 1.2rem 1.8rem;
+    }
+
+    .connect-btn:hover { background: #272727; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      text-align: center;
+      color: #7f7569;
+      font-size: 0.9rem;
+      padding: 1.5rem 0 2rem;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .footer-content p {
+      margin: 0;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #7f7569;
+      border-radius: 50%;
+      color: #171512;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: #af6a2a;
+      border-color: #af6a2a;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .social-links i {
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 980px) {
+      .philosophy-grid { grid-template-columns: 1fr; }
+      .featured-head { flex-direction: column; align-items: flex-start; }
+      .stories { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 620px) {
+      .top-nav { inset: 0.7rem 0 auto; }
+
+      .top-nav-inner { border-radius: 22px; }
+
+      .brand {
+        max-width: 170px;
+        white-space: normal;
+        line-height: 1.05;
+      }
+
+      .nav-links { display: none; }
+
+      .nav-action {
+        padding: 0.42rem 0.8rem;
+        font-size: 0.74rem;
+      }
+
+      .philosophy,
+      .featured,
+      .testimonial,
+      .connect { padding-top: 4.8rem; padding-bottom: 4.8rem; }
+
+      .stories { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top-nav" aria-label="Primary">
+    <div class="top-nav-inner">
+      <a class="brand" href="index.html">Thilanka Dilshan Photography</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="#services">Services</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <a class="nav-action" href="booking.html">Book Now</a>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-slide active"><img src="assets/images/real_photo_2.jpg" alt="Luxury Wedding Photography 1" /></div>
+      <div class="hero-slide"><img src="assets/images/real_photo_5.jpg" alt="Luxury Wedding Photography 2" /></div>
+      <div class="hero-slide"><img src="assets/images/real_photo_6.jpg" alt="Luxury Wedding Photography 3" /></div>
+
+      <div class="hero-content">
+        <span class="hero-tag">Thilanka Dilshan Photography</span>
+        <h1>
+          Your Greatest Story,<br />
+          <span>Cinematically Told.</span>
+        </h1>
+        <p>
+          More than just photographs. We craft luxurious, emotional heirlooms capturing the unseen moments
+          and raw elegance of your most cherished day.
+        </p>
+        <a class="hero-cta" href="booking.html">Book Your Dream Wedding -></a>
+      </div>
+    </section>
+
+    <section class="philosophy" id="services">
+      <div class="container philosophy-grid">
+        <div class="philo-image">
+          <img src="assets/images/real_photo_1.jpg" alt="Elegant details" loading="lazy" />
+        </div>
+        <div class="philo-copy">
+          <span class="label">Our Philosophy</span>
+          <h2>Timeless Elegance,<br /><span>Unscripted Emotion.</span></h2>
+          <p>
+            We believe your wedding day should be captured exactly as it feels. No forced poses, no artificial
+            moments. Just the raw, beautiful reality of your love story, elevated through a cinematic lens into
+            art you will cherish forever.
+          </p>
+          <a class="inline-link" href="portfolio.html">Explore The Gallery</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured" id="portfolio">
+      <div class="container">
+        <div class="featured-head">
+          <div>
+            <span class="label">Portfolio</span>
+            <h2>Featured <span>Stories.</span></h2>
+          </div>
+          <a class="view-link" href="portfolio.html">View Full Gallery</a>
+        </div>
+
+        <div class="stories">
+          <a class="story" href="portfolio.html">
+            <div class="story-media"><img src="assets/images/637139243_1402427718004949_6666201034993238005_n.jpg" alt="Kandy Grand Wedding" loading="lazy" /></div>
+            <h3>Kandy Grand Wedding</h3>
+            <p>View Story</p>
+          </a>
+
+          <a class="story" href="portfolio.html">
+            <div class="story-media"><img src="assets/images/648436374_1417814523132935_8874425884483654297_n.jpg" alt="Galle Fort Engagement" loading="lazy" /></div>
+            <h3>Galle Fort Engagement</h3>
+            <p>View Story</p>
+          </a>
+
+          <a class="story" href="portfolio.html">
+            <div class="story-media"><img src="assets/images/609026638_1364917278422660_2833140512891095027_n.jpg" alt="Colombo Intimate Elopement" loading="lazy" /></div>
+            <h3>Colombo Intimate Elopement</h3>
+            <p>View Story</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="connect" id="contact">
+      <div class="container">
+        <h2>Let's create something <span>beautiful.</span></h2>
+        <p>We are currently accepting bookings for the upcoming wedding season. Reach out to secure your dates.</p>
+        <a class="connect-btn" href="booking.html">Inquire Now</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>(c) 2026 Thilanka Dilshan Photography. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('.hero-slide'));
+    let current = 0;
+
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 6000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study — 2K Studio</title>
+  <meta name="description" content="Deep dive into a 2K Studio creative production project. Explore our process, challenges, and results." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+
+  <link rel="stylesheet" href="css/case-study.css" />
+</head>
+<body>
+
+  <!-- CURSOR -->
+  <div id="cursor">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-logo">
+      <a href="index.html" class="logo-link">
+        <span class="logo-2k">2K</span><span class="logo-dot">.</span>
+      </a>
+    </div>
+    <a href="index.html#case-studies" class="nav-back" id="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="19" y1="12" x2="5" y2="12"/>
+        <polyline points="12,19 5,12 12,5"/>
+      </svg>
+      <span>All Work</span>
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="cs-hero" id="cs-hero">
+    <div class="cs-hero-img">
+      <img src="" alt="" id="cs-hero-img" />
+    </div>
+    <div class="cs-hero-overlay"></div>
+    <div class="cs-hero-content">
+      <div class="cs-hero-meta">
+        <span class="cs-hero-tag" id="cs-tag">—</span>
+        <span class="cs-hero-year" id="cs-year">—</span>
+      </div>
+      <h1 class="cs-hero-title" id="cs-title">—</h1>
+      <p class="cs-hero-subtitle" id="cs-subtitle">—</p>
+    </div>
+  </section>
+
+  <!-- INFO BAR -->
+  <div class="cs-info-bar">
+    <div class="cs-info-item">
+      <span class="cs-info-label">Client</span>
+      <span class="cs-info-value" id="cs-client">—</span>
+    </div>
+    <div class="cs-info-item">
+      <span class="cs-info-label">Services</span>
+      <span class="cs-info-value" id="cs-services">—</span>
+    </div>
+    <div class="cs-info-item">
+      <span class="cs-info-label">Duration</span>
+      <span class="cs-info-value" id="cs-duration">—</span>
+    </div>
+    <div class="cs-info-item">
+      <span class="cs-info-label">Year</span>
+      <span class="cs-info-value" id="cs-year-bar">—</span>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <article class="cs-body">
+    <p class="cs-intro" id="cs-intro">—</p>
+
+    <div class="cs-section-title">The Challenge</div>
+    <h3 id="cs-challenge-title">—</h3>
+    <p id="cs-challenge-body">—</p>
+
+    <br/><br/>
+
+    <div class="cs-section-title">Our Approach</div>
+    <h3 id="cs-approach-title">—</h3>
+    <p id="cs-approach-body">—</p>
+  </article>
+
+  <!-- GALLERY -->
+  <div class="cs-gallery">
+    <div class="cs-gallery-grid">
+      <div class="cs-gallery-item">
+        <img src="" alt="Project Gallery" id="cs-gallery-1" />
+      </div>
+      <div class="cs-gallery-item">
+        <img src="" alt="Project Gallery" id="cs-gallery-2" />
+      </div>
+      <div class="cs-gallery-item">
+        <img src="" alt="Project Gallery" id="cs-gallery-3" />
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <section class="cs-results">
+    <div class="cs-results-inner">
+      <div class="cs-section-title">The Results</div>
+      <h3>Impact &amp; Outcomes</h3>
+      <p id="cs-results-text">—</p>
+      <div class="cs-stats-grid">
+        <div class="cs-stat">
+          <div class="cs-stat-num" id="cs-stat-1">—</div>
+          <div class="cs-stat-label" id="cs-stat-1-label">—</div>
+        </div>
+        <div class="cs-stat">
+          <div class="cs-stat-num" id="cs-stat-2">—</div>
+          <div class="cs-stat-label" id="cs-stat-2-label">—</div>
+        </div>
+        <div class="cs-stat">
+          <div class="cs-stat-num" id="cs-stat-3">—</div>
+          <div class="cs-stat-label" id="cs-stat-3-label">—</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT PROJECT -->
+  <a href="" class="cs-next" id="cs-next-link">
+    <div>
+      <div class="cs-next-label">Next Project</div>
+      <div class="cs-next-title" id="cs-next-title">—</div>
+    </div>
+    <div class="cs-next-arrow">→</div>
+  </a>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-logo">
+          <span class="logo-2k">2K</span><span class="logo-dot">.</span>
+        </div>
+        <p class="footer-tagline">Crafting cinematic stories<br/>since 2012.</p>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2024 2K Studio. All rights reserved.</span>
+        <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/case-study.js"></script>
+</body>
+</html>
