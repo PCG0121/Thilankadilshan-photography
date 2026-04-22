@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cinematic Frames | Thilanka Dilshan Photography</title>
+  <meta name="description" content="Explore cinematic wedding stories by Thilanka Dilshan Photography." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --bg: #fdfcfb;
+      --ink: #171512;
+      --muted: #6f675e;
+      --gold: #c99b52;
+      --gold-soft: #e6cfa6;
+      --line: rgba(23, 21, 18, 0.13);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .top-nav {
+      position: fixed;
+      inset: 1.1rem 0 auto;
+      z-index: 50;
+    }
+
+    .top-nav-inner {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: linear-gradient(120deg, rgba(18, 17, 15, 0.4), rgba(18, 17, 15, 0.2));
+      backdrop-filter: blur(14px);
+      border-radius: 999px;
+      padding: 0.7rem 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #fff;
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", serif;
+      letter-spacing: 0.03em;
+      font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .nav-links a {
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold-soft);
+    }
+
+    .nav-action {
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 999px;
+      padding: 0.45rem 1rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all 0.35s ease;
+    }
+
+    .nav-action:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #1a140e;
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 999px;
+      background: transparent;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .mobile-menu-toggle span {
+      width: 16px;
+      height: 1.7px;
+      background: #fff;
+      border-radius: 999px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .mobile-menu-toggle.open span:nth-child(1) {
+      transform: translateY(5.7px) rotate(45deg);
+    }
+
+    .mobile-menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-menu-toggle.open span:nth-child(3) {
+      transform: translateY(-5.7px) rotate(-45deg);
+    }
+
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.55rem);
+      left: 0;
+      right: 0;
+      background: linear-gradient(160deg, rgba(18, 17, 15, 0.96), rgba(18, 17, 15, 0.88));
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 20px;
+      padding: 1rem;
+      color: #fff;
+      flex-direction: column;
+      gap: 0.35rem;
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22);
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      display: block;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      padding: 0.65rem 0.35rem;
+      color: rgba(255, 255, 255, 0.94);
+    }
+
+    .mobile-menu a.active { color: var(--gold-soft); }
+
+    .mobile-menu-book {
+      margin-top: 0.2rem;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 999px;
+      padding: 0.7rem 1rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .container {
+      width: min(1180px, 92vw);
+      margin-inline: auto;
+    }
+
+    .hero {
+      padding-top: 8rem;
+      padding-bottom: 3rem;
+      background: var(--bg);
+    }
+
+    .hero-grid {
+      position: relative;
+      display: block;
+    }
+
+    .hero-main,
+    .hero-side {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      min-height: clamp(450px, 75vh, 760px);
+      color: #fff;
+      isolation: isolate;
+      box-shadow: 0 20px 60px rgba(20, 18, 12, 0.15);
+      transform: translate3d(0, 0, 0);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+
+    .hero-side {
+      min-height: 230px;
+      width: min(390px, 36vw);
+      position: absolute;
+      right: 2rem;
+      bottom: 2rem;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+    }
+
+    .hero-main:hover,
+    .hero-side:hover {
+      transform: translate3d(0, 0, 0);
+      box-shadow: 0 28px 80px rgba(20, 18, 12, 0.22);
+    }
+
+    .hero-main img,
+    .hero-side img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: translate3d(0, 0, 0);
+      transition: transform 1.2s cubic-bezier(0.33, 1, 0.68, 1);
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+
+    .hero-main::before,
+    .hero-side::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.15));
+      z-index: 1;
+      transition: opacity 0.4s ease;
+    }
+
+    .hero-main:hover img,
+    .hero-side:hover img {
+      transform: scale(1.08);
+    }
+
+    .hero-main:hover::before,
+    .hero-side:hover::before {
+      opacity: 0.7;
+    }
+
+    .hero-copy {
+      position: absolute;
+      z-index: 2;
+      inset: auto 2rem 2.2rem;
+      max-width: 700px;
+      animation: slideUp 0.8s ease 0.2s both;
+    }
+
+    .hero-copy .eyebrow,
+    .side-copy .eyebrow {
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 0.76rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 0.9rem;
+      display: block;
+      font-weight: 700;
+    }
+
+    .hero-copy h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.2rem, 5vw, 4.8rem);
+      line-height: 0.9;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+      text-wrap: balance;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-copy p,
+    .side-copy p {
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 54ch;
+      line-height: 1.7;
+      font-size: 1.06rem;
+    }
+
+    .hero-actions {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0.75rem 1.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      font-weight: 700;
+      transition: all 0.28s ease;
+      border: 1px solid rgba(255, 255, 255, 0.52);
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .hero-btn.primary {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #1a140e;
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-2px);
+      background: #fff;
+      border-color: #fff;
+      color: #141414;
+    }
+
+    .side-copy {
+      position: absolute;
+      z-index: 2;
+      inset: auto 1.6rem 1.6rem;
+      animation: slideUp 0.8s ease 0.3s both;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1.4rem;
+      margin-bottom: 1.8rem;
+      animation: slideUp 0.8s ease both;
+    }
+
+    .section-head h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    .section-head p {
+      max-width: 62ch;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 1.02rem;
+    }
+
+    .philosophy {
+      padding: 1.8rem 0 5.2rem;
+      animation: fadeIn 0.8s ease 0.2s both;
+    }
+
+    .quote-label {
+      text-align: center;
+      display: block;
+      font-size: 0.76rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .quote-text {
+      max-width: 920px;
+      margin: 0 auto;
+      text-align: center;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.4rem, 5vw, 4.6rem);
+      line-height: 1.08;
+      color: var(--ink);
+      font-weight: 500;
+      text-wrap: balance;
+      letter-spacing: -0.01em;
+    }
+
+    .quote-text em {
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .quote-line {
+      width: 2px;
+      height: 90px;
+      background: var(--line);
+      margin: 2rem auto 0;
+    }
+
+    .recent-work {
+      padding-bottom: 4.2rem;
+    }
+
+    .recent-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1.4rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .recent-head .label {
+      display: block;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .recent-head h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.1rem, 4.2vw, 3.8rem);
+      line-height: 1;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .explore-link {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      color: var(--ink);
+      border-bottom: 2px solid rgba(23, 21, 18, 0.25);
+      padding-bottom: 0.4rem;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+
+    .explore-link:hover {
+      border-color: var(--ink);
+      color: var(--gold);
+    }
+
+    .recent-grid {
+      display: grid;
+      grid-template-columns: 2.2fr 1fr;
+      gap: 1.1rem;
+    }
+
+    .recent-card {
+      position: relative;
+      min-height: 430px;
+      border-radius: 18px;
+      overflow: hidden;
+      isolation: isolate;
+      cursor: zoom-in;
+      box-shadow: 0 8px 24px rgba(23, 21, 18, 0.09);
+      transform: translate3d(0, 0, 0);
+      transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1), box-shadow 0.4s ease;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+
+    .recent-card:hover {
+      transform: translate3d(0, 0, 0);
+      box-shadow: 0 16px 40px rgba(23, 21, 18, 0.15);
+    }
+
+    .recent-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: translate3d(0, 0, 0);
+      transition: transform 1.1s cubic-bezier(0.33, 1, 0.68, 1);
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+
+    .recent-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+      z-index: 1;
+      transition: opacity 0.4s ease;
+    }
+
+    .recent-card:hover img {
+      transform: scale(1.1);
+    }
+
+    /* --- ANIMATIONS --- */
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInCards {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .filter-btn {
+      border: 2px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 0.65rem 1.35rem;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.32s cubic-bezier(0.33, 1, 0.68, 1);
+      font-weight: 600;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .filter-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--ink);
+      opacity: 0;
+      z-index: -1;
+      transition: opacity 0.32s ease;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      border-color: var(--ink);
+      color: #fff;
+    }
+
+    .filter-btn.active::before,
+    .filter-btn:hover::before {
+      opacity: 1;
+    }
+
+    .portfolio {
+      padding-bottom: 4.2rem;
+      background: var(--bg);
+    }
+
+    .masonry {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.1rem;
+      animation: fadeInCards 0.9s ease 0.1s both;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      min-height: 280px;
+      background: linear-gradient(135deg, #e8e1d6, #f0ebe3);
+      isolation: isolate;
+      transform: translate3d(0, 0, 0);
+      transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1), box-shadow 0.4s ease, opacity 0.3s ease;
+      box-shadow: 0 8px 24px rgba(23, 21, 18, 0.09);
+      cursor: zoom-in;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+
+    .card:hover {
+      transform: translate3d(0, 0, 0);
+      box-shadow: 0 16px 40px rgba(23, 21, 18, 0.15);
+    }
+
+    .card.hide {
+      display: none;
+    }
+
+    .card.big { grid-column: span 7; min-height: 450px; }
+    .card.wide { grid-column: span 8; min-height: 360px; }
+    .card.mid { grid-column: span 5; }
+    .card.small { grid-column: span 4; }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: translate3d(0, 0, 0);
+      transition: transform 1.1s cubic-bezier(0.33, 1, 0.68, 1);
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+
+    .card:hover img {
+      transform: scale(1.12);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(9, 9, 9, 0.08), rgba(9, 9, 9, 0.85));
+      z-index: 1;
+      transition: opacity 0.4s ease;
+    }
+
+    .card:hover::before {
+      opacity: 0.95;
+    }
+
+    .meta {
+      position: absolute;
+      z-index: 2;
+      inset: auto 1.3rem 1.2rem;
+      color: #fff;
+      animation: slideUp 0.6s ease both;
+    }
+
+    .meta small {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 600;
+    }
+
+    .meta h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.3rem, 2.4vw, 2.1rem);
+      line-height: 1.1;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+
+    .cta-strip {
+      margin-bottom: 4rem;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 24px;
+      padding: clamp(2rem, 5vw, 2.8rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.8rem;
+      flex-wrap: wrap;
+      box-shadow: 0 12px 35px rgba(23, 21, 18, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      animation: slideUp 0.8s ease 0.3s both;
+    }
+
+    .cta-strip h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+
+    .cta-strip p {
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 48ch;
+      line-height: 1.7;
+      font-size: 1.02rem;
+    }
+
+    .cta-btn {
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 999px;
+      padding: 0.85rem 1.6rem;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      color: #fff;
+      transition: all 0.35s cubic-bezier(0.33, 1, 0.68, 1);
+      white-space: nowrap;
+      font-weight: 700;
+      background: transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      opacity: 0;
+      z-index: -1;
+      transition: opacity 0.35s ease;
+    }
+
+    .cta-btn:hover {
+      border-color: var(--gold);
+      color: var(--ink);
+    }
+
+    .cta-btn:hover::before {
+      opacity: 1;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      text-align: center;
+      padding: 2.2rem 0 2.8rem;
+      font-size: 0.9rem;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.4rem;
+    }
+
+    .footer-content p {
+      margin: 0;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.4rem;
+      justify-content: center;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 2px solid var(--muted);
+      border-radius: 50%;
+      color: var(--ink);
+      transition: all 0.35s cubic-bezier(0.33, 1, 0.68, 1);
+      position: relative;
+    }
+
+    .social-links a::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0;
+      z-index: -1;
+      transition: opacity 0.35s ease;
+    }
+
+    .social-links a:hover {
+      border-color: var(--gold);
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    .social-links a:hover::before {
+      opacity: 1;
+    }
+
+    .social-links i {
+      font-size: 1.15rem;
+    }
+
+    .philosophy {
+      padding: 1.2rem 0 4.6rem;
+    }
+
+    .quote-label {
+      text-align: center;
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #b06221;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .quote-text {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.2rem, 4.8vw, 4.2rem);
+      line-height: 1.05;
+      color: #13213a;
+      font-weight: 500;
+      text-wrap: balance;
+    }
+
+    .quote-text em {
+      font-style: italic;
+      color: #4e5f7d;
+    }
+
+    .quote-line {
+      width: 1px;
+      height: 80px;
+      background: #d9dde6;
+      margin: 1.7rem auto 0;
+    }
+
+    .recent-work {
+      padding-bottom: 3.4rem;
+    }
+
+    .recent-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .recent-head .label {
+      display: block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.17em;
+      font-weight: 700;
+      color: #b06221;
+      margin-bottom: 0.35rem;
+    }
+
+    .recent-head h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 1;
+      font-weight: 600;
+      color: #13213a;
+    }
+
+    .explore-link {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      font-weight: 700;
+      color: #1f2634;
+      border-bottom: 1px solid rgba(31, 38, 52, 0.35);
+      padding-bottom: 0.3rem;
+      white-space: nowrap;
+    }
+
+    .recent-grid {
+      display: grid;
+      grid-template-columns: 2.1fr 1fr;
+      gap: 0.9rem;
+    }
+
+    .recent-card {
+      position: relative;
+      min-height: 410px;
+      border-radius: 14px;
+      overflow: hidden;
+      isolation: isolate;
+      cursor: zoom-in;
+    }
+
+    .recent-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .recent-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.45));
+      z-index: 1;
+    }
+
+    .recent-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.4rem;
+      background: rgba(8, 8, 10, 0.6);
+      backdrop-filter: blur(18px);
+      animation: fadeIn 0.4s ease;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-panel {
+      width: min(1120px, 96vw);
+      max-height: 90vh;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      border-radius: 24px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+      position: relative;
+      animation: slideUp 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .lightbox-media {
+      width: 100%;
+      max-height: 78vh;
+      object-fit: contain;
+      background: rgba(0, 0, 0, 0.4);
+      display: block;
+    }
+
+    .lightbox-meta {
+      padding: 1.2rem 1.4rem;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.2));
+    }
+
+    .lightbox-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+      line-height: 1.1;
+      font-weight: 600;
+    }
+
+    .lightbox-count {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.8);
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .lightbox-btn {
+      position: absolute;
+      border: 1.5px solid rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.13);
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      font-size: 1.4rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .lightbox-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.7);
+      transform: scale(1.08);
+    }
+
+    .lightbox-close {
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .lightbox-prev {
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .lightbox-next {
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        padding-top: 7rem;
+      }
+
+      .hero-side {
+        position: static;
+        width: 100%;
+        margin-top: 1rem;
+        min-height: 300px;
+      }
+
+      .hero-main:hover,
+      .hero-side:hover {
+        transform: translate3d(0, 0, 0);
+      }
+
+      .card.big,
+      .card.wide,
+      .card.mid,
+      .card.small {
+        grid-column: span 6;
+      }
+
+      .recent-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .recent-card {
+        min-height: 320px;
+      }
+
+      .cta-strip {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+      }
+
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        width: min(1180px, 94vw);
+      }
+
+      .top-nav {
+        inset: 0.7rem 0 auto;
+      }
+
+      .top-nav-inner {
+        border-radius: 22px;
+        position: relative;
+      }
+
+      .brand {
+        max-width: 170px;
+        white-space: normal;
+        line-height: 1.05;
+      }
+
+      .nav-links,
+      .nav-action {
+        display: none;
+      }
+
+      .mobile-menu-toggle { display: flex; }
+
+      .mobile-menu { display: none; }
+      .mobile-menu.open { display: flex; }
+
+      .hero {
+        padding-top: 6.6rem;
+        padding-bottom: 2.4rem;
+      }
+
+      .hero-grid {
+        display: block;
+        position: relative;
+      }
+
+      .hero-main,
+      .hero-side {
+        border-radius: 22px;
+      }
+
+      .hero-main {
+        min-height: clamp(460px, 72vh, 760px);
+      }
+
+      .hero-side {
+        position: absolute;
+        width: min(220px, 48vw);
+        right: 0.9rem;
+        bottom: 0.9rem;
+        min-height: 190px;
+        margin-top: 0;
+      }
+
+      .hero-copy .eyebrow,
+      .side-copy .eyebrow {
+        font-size: 0.68rem;
+        letter-spacing: 0.14em;
+      }
+
+      .hero-copy p,
+      .side-copy p {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      .hero-copy,
+      .side-copy {
+        inset-inline: 1.2rem;
+        bottom: 1.2rem;
+      }
+
+      .hero-actions {
+        gap: 0.7rem;
+      }
+
+      .philosophy {
+        padding-top: 0.5rem;
+        padding-bottom: 3.2rem;
+      }
+
+      .quote-line {
+        height: 60px;
+      }
+
+      .recent-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .masonry {
+        grid-template-columns: repeat(12, 1fr);
+        gap: 0.9rem;
+      }
+
+      .card.big,
+      .card.wide,
+      .card.mid,
+      .card.small {
+        grid-column: span 6;
+        min-height: 310px;
+      }
+
+      .filters {
+        gap: 0.6rem;
+        margin-bottom: 1.6rem;
+      }
+
+      .filter-btn {
+        padding: 0.55rem 1rem;
+        font-size: 0.72rem;
+      }
+
+      .recent-card {
+        min-height: 270px;
+      }
+
+      .lightbox {
+        padding: 0.7rem;
+      }
+
+      .lightbox-panel {
+        width: 100%;
+        max-height: 92vh;
+        border-radius: 16px;
+      }
+
+      .lightbox-media {
+        max-height: 72vh;
+      }
+
+      .lightbox-meta {
+        padding: 0.85rem 1rem;
+      }
+
+      .lightbox-btn {
+        width: 40px;
+        height: 40px;
+      }
+
+      .lightbox-prev {
+        left: 0.55rem;
+      }
+
+      .lightbox-next {
+        right: 0.55rem;
+      }
+
+      .lightbox-close {
+        top: 0.55rem;
+        right: 0.55rem;
+      }
+
+      .cta-btn {
+        padding: 0.75rem 1.2rem;
+        font-size: 0.72rem;
+      }
+
+      .footer-content {
+        gap: 1rem;
+      }
+
+      .social-links {
+        gap: 1rem;
+      }
+
+      .social-links a {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .top-nav-inner {
+        width: min(1120px, 94vw);
+        padding: 0.58rem 0.75rem;
+      }
+
+      .brand {
+        max-width: 138px;
+        font-size: 0.9rem;
+      }
+
+      .mobile-menu-toggle {
+        width: 38px;
+        height: 38px;
+      }
+
+      .hero {
+        padding-top: 6.2rem;
+      }
+
+      .hero-main {
+        min-height: 62vh;
+      }
+
+      .hero-side {
+        width: min(200px, 50vw);
+        min-height: 170px;
+      }
+
+      .hero-copy,
+      .side-copy {
+        inset-inline: 0.95rem;
+        bottom: 0.95rem;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(1.85rem, 10vw, 2.35rem);
+      }
+
+      .hero-copy p,
+      .side-copy p {
+        font-size: 0.88rem;
+      }
+
+      .hero-btn {
+        font-size: 0.67rem;
+        padding: 0.7rem 1rem;
+        letter-spacing: 0.08em;
+      }
+
+      .section-head h2,
+      .recent-head h2,
+      .quote-text,
+      .cta-strip h3 {
+        text-wrap: balance;
+      }
+
+      .card.big,
+      .card.wide,
+      .card.mid,
+      .card.small,
+      .recent-card {
+        min-height: 260px;
+      }
+
+      .meta {
+        inset: auto 0.95rem 0.85rem;
+      }
+
+      .meta small {
+        font-size: 0.68rem;
+      }
+
+      .meta h3 {
+        font-size: 1.28rem;
+      }
+
+      .cta-strip {
+        margin-bottom: 3rem;
+        border-radius: 16px;
+        padding: 1.4rem;
+      }
+
+      .cta-strip p {
+        font-size: 0.94rem;
+      }
+
+      .lightbox-title {
+        font-size: 1.08rem;
+      }
+
+      .lightbox-count {
+        font-size: 0.68rem;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        padding-top: 6rem;
+      }
+
+      .hero-grid {
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .hero-main {
+        min-height: 66vh;
+      }
+
+      .hero-side {
+        position: static;
+        width: 100%;
+        min-height: 210px;
+      }
+
+      .hero-copy {
+        max-width: 85%;
+      }
+
+      .side-copy {
+        inset: auto 1rem 1rem;
+        max-width: 30ch;
+      }
+
+      .side-copy p {
+        font-size: 0.94rem;
+        line-height: 1.45;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="top-nav" aria-label="Primary">
+    <div class="top-nav-inner">
+      <a class="brand" href="index.html">Thilanka Dilshan Photography</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a class="active" href="cinematic-frames.html">Cinematic Frames</a>
+        <a href="index.html#services">Services</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a class="nav-action" href="booking.html">Book Now</a>
+      <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
+        <a href="index.html">Home</a>
+        <a class="active" href="cinematic-frames.html">Cinematic Frames</a>
+        <a href="index.html#services">Services</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a class="mobile-menu-book" href="booking.html">Book Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <article class="hero-main">
+          <img src="assets/images/real_photo_1.jpg" alt="Luxury wedding portrait by Thilanka Dilshan" />
+          <div class="hero-copy">
+            <span class="eyebrow">International Luxury Cinematic Frames</span>
+            <h1>Stories That Feel Like Cinema</h1>
+            <p>Every frame is crafted to hold emotion, atmosphere, and timeless detail. This is wedding storytelling for couples who want art, not just coverage.</p>
+            <div class="hero-actions">
+              <a class="hero-btn primary" href="#full-gallery">View Full Gallery</a>
+              <a class="hero-btn" href="booking.html">Book Your Date</a>
+            </div>
+          </div>
+        </article>
+        <article class="hero-side">
+          <img src="assets/images/real_photo_4.jpg" alt="Golden hour wedding story" />
+          <div class="side-copy">
+            <span class="eyebrow">New Collection 2026</span>
+            <p>Destination weddings, intimate ceremonies, and editorial portraits curated in one immersive gallery.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="portfolio" id="full-gallery">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Cinematic Frames Collection</h2>
+            <p>Filter by story type and explore the complete cinematic collection.</p>
+          </div>
+        </div>
+
+        <div class="filters" aria-label="Cinematic Frames filters">
+          <button class="filter-btn active" type="button" data-filter="all">All Stories</button>
+          <button class="filter-btn" type="button" data-filter="wedding">Wedding Day</button>
+          <button class="filter-btn" type="button" data-filter="pre">Pre-Wedding</button>
+          <button class="filter-btn" type="button" data-filter="engagement">Engagement</button>
+          <button class="filter-btn" type="button" data-filter="destination">Destination</button>
+        </div>
+
+        <div class="masonry" id="masonryGrid">
+          <article class="card big" data-category="wedding destination" tabindex="0" role="button" aria-label="Open album: Moonlit Promises">
+            <img src="assets/images/real_photo_2.jpg" alt="Wedding story in Colombo" loading="lazy" />
+            <div class="meta"><small>Colombo - Ayesha & Liam</small><h3>Moonlit Promises</h3></div>
+          </article>
+
+          <article class="card mid" data-category="pre" tabindex="0" role="button" aria-label="Open album: Before the Vows">
+            <img src="assets/images/648436374_1417814523132935_8874425884483654297_n.jpg" alt="Pre-wedding in Kandy" loading="lazy" />
+            <div class="meta"><small>Kandy - Nethmi & Ashan</small><h3>Before the Vows</h3></div>
+          </article>
+
+          <article class="card small" data-category="wedding" tabindex="0" role="button" aria-label="Open album: First Dance Reverie">
+            <img src="assets/images/641262210_1408288054085582_3662194477068953645_n.jpg" alt="First dance reception" loading="lazy" />
+            <div class="meta"><small>Negombo - Sanduni & Erik</small><h3>First Dance Reverie</h3></div>
+          </article>
+
+          <article class="card small" data-category="engagement destination" tabindex="0" role="button" aria-label="Open album: Heirloom Portraits">
+            <img src="assets/images/639420175_1408288920752162_3455617747218749968_n.jpg" alt="Engagement portrait in Ella" loading="lazy" />
+            <div class="meta"><small>Ella - Imesha & Daniel</small><h3>Heirloom Portraits</h3></div>
+          </article>
+
+          <article class="card small" data-category="wedding destination" tabindex="0" role="button" aria-label="Open album: Garden of Light">
+            <img src="assets/images/real_photo_6.jpg" alt="Garden wedding at Galle" loading="lazy" />
+            <div class="meta"><small>Galle - Dilini & Rehan</small><h3>Garden of Light</h3></div>
+          </article>
+
+          <article class="card wide" data-category="wedding" tabindex="0" role="button" aria-label="Open album: Velvet & Vows">
+            <img src="assets/images/637139243_1402427718004949_6666201034993238005_n.jpg" alt="Luxury wedding celebration" loading="lazy" />
+            <div class="meta"><small>Bentota - Amaya & Stefan</small><h3>Velvet & Vows</h3></div>
+          </article>
+
+          <article class="card mid" data-category="pre destination" tabindex="0" role="button" aria-label="Open album: Golden Hour Letters">
+            <img src="assets/images/real_photo_3.jpg" alt="Destination pre-wedding story" loading="lazy" />
+            <div class="meta"><small>Nuwara Eliya - Harini & Joel</small><h3>Golden Hour Letters</h3></div>
+          </article>
+
+          <article class="card small" data-category="engagement" tabindex="0" role="button" aria-label="Open album: Whispered Promises">
+            <img src="assets/images/609026638_1364917278422660_2833140512891095027_n.jpg" alt="Engagement portrait" loading="lazy" />
+            <div class="meta"><small>Kurunegala - Diya & Shawn</small><h3>Whispered Promises</h3></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="container cta-strip">
+      <div>
+        <h3>Ready For Your Own Signature Story?</h3>
+        <p>Share your date and vision. We will craft a cinematic coverage plan around your celebration.</p>
+      </div>
+      <a class="cta-btn" href="booking.html">Book Your Wedding</a>
+    </section>
+  </main>
+
+  <section class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Album image viewer">
+      <button class="lightbox-btn lightbox-close" id="lightboxClose" type="button" aria-label="Close viewer">X</button>
+      <button class="lightbox-btn lightbox-prev" id="lightboxPrev" type="button" aria-label="Previous image">&#8249;</button>
+      <button class="lightbox-btn lightbox-next" id="lightboxNext" type="button" aria-label="Next image">&#8250;</button>
+      <img class="lightbox-media" id="lightboxImage" alt="" />
+      <div class="lightbox-meta">
+        <p class="lightbox-title" id="lightboxTitle"></p>
+        <span class="lightbox-count" id="lightboxCount"></span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>(c) 2026 Thilanka Dilshan Photography. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const topNavInner = document.querySelector('.top-nav-inner');
+
+    if (menuToggle && mobileMenu && topNavInner) {
+      const setMenu = (open) => {
+        menuToggle.classList.toggle('open', open);
+        mobileMenu.classList.toggle('open', open);
+        menuToggle.setAttribute('aria-expanded', String(open));
+      };
+
+      menuToggle.addEventListener('click', () => {
+        setMenu(!mobileMenu.classList.contains('open'));
+      });
+
+      mobileMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setMenu(false));
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!topNavInner.contains(event.target)) {
+          setMenu(false);
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 620) setMenu(false);
+      });
+    }
+
+    const filterButtons = Array.from(document.querySelectorAll('.filter-btn'));
+    const cards = Array.from(document.querySelectorAll('.card'));
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxTitle = document.getElementById('lightboxTitle');
+    const lightboxCount = document.getElementById('lightboxCount');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+    let activeIndex = 0;
+
+    function visibleCards() {
+      return cards.filter((card) => !card.classList.contains('hide'));
+    }
+
+    function showLightbox(index) {
+      const currentVisible = visibleCards();
+      if (!currentVisible.length) return;
+
+      activeIndex = (index + currentVisible.length) % currentVisible.length;
+      const activeCard = currentVisible[activeIndex];
+      const img = activeCard.querySelector('img');
+      const title = activeCard.querySelector('.meta h3');
+
+      lightboxImage.src = img.src;
+      lightboxImage.alt = img.alt || 'Cinematic Frames image';
+      lightboxTitle.textContent = title ? title.textContent : 'Album';
+      lightboxCount.textContent = `${activeIndex + 1} / ${currentVisible.length}`;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        cards.forEach((card) => {
+          const categories = card.dataset.category || '';
+          if (filter === 'all' || categories.includes(filter)) {
+            card.classList.remove('hide');
+          } else {
+            card.classList.add('hide');
+          }
+        });
+      });
+    });
+
+    cards.forEach((card) => {
+      card.addEventListener('click', () => {
+        const list = visibleCards();
+        const idx = list.indexOf(card);
+        if (idx >= 0) showLightbox(idx);
+      });
+
+      card.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          const list = visibleCards();
+          const idx = list.indexOf(card);
+          if (idx >= 0) showLightbox(idx);
+        }
+      });
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', () => showLightbox(activeIndex - 1));
+    lightboxNext.addEventListener('click', () => showLightbox(activeIndex + 1));
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (!lightbox.classList.contains('open')) return;
+      if (event.key === 'Escape') closeLightbox();
+      if (event.key === 'ArrowLeft') showLightbox(activeIndex - 1);
+      if (event.key === 'ArrowRight') showLightbox(activeIndex + 1);
+    });
+  </script>
+</body>
+</html>
+
