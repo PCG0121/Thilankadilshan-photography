@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Packages | Thilanka Dilshan Photography</title>
+  <meta name="description" content="View our wedding photography packages - Gold, Platinum, and Luxury options." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg: #fdfcfb;
+      --ink: #171512;
+      --muted: #6f675e;
+      --gold: #c99b52;
+      --gold-soft: #e6cfa6;
+      --line: rgba(23, 21, 18, 0.13);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .container { width: min(1180px, 92vw); margin-inline: auto; }
+
+    .top-nav {
+      position: fixed;
+      inset: 1.1rem 0 auto;
+      z-index: 50;
+    }
+
+    .top-nav-inner {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: linear-gradient(120deg, rgba(18, 17, 15, 0.4), rgba(18, 17, 15, 0.2));
+      backdrop-filter: blur(14px);
+      border-radius: 999px;
+      padding: 0.7rem 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #fff;
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", serif;
+      letter-spacing: 0.03em;
+      font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--gold-soft); }
+
+    .nav-action {
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 999px;
+      padding: 0.45rem 1rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    .nav-action:hover { background: var(--gold); border-color: var(--gold); color: #1a140e; }
+
+    .mobile-menu-toggle { display: none; }
+
+    .mobile-menu { display: none; }
+
+    .hero {
+      padding-top: 8rem;
+      padding-bottom: 3.5rem;
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 920px;
+      margin-inline: auto;
+    }
+
+    .hero-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 0.95;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 1.5vw, 1.15rem);
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 700px;
+      margin-inline: auto;
+    }
+
+    .packages-section {
+      padding: 4rem 0;
+    }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .package-card-detailed {
+      background: #fff;
+      border: 2px solid var(--line);
+      border-radius: 16px;
+      padding: 2.5rem;
+      transition: all 0.35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .package-card-detailed:hover {
+      border-color: var(--gold);
+      box-shadow: 0 20px 50px rgba(201, 155, 82, 0.15);
+      transform: translateY(-4px);
+    }
+
+    .package-card-detailed.featured {
+      border-color: var(--gold);
+      box-shadow: 0 20px 50px rgba(201, 155, 82, 0.15);
+      transform: scale(1.04);
+    }
+
+    .package-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .package-name {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .package-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .package-price {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2.8rem;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .package-price-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .package-features {
+      flex: 1;
+      margin-bottom: 2rem;
+    }
+
+    .package-features h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .package-features h4:first-child {
+      margin-top: 0;
+    }
+
+    .feature-list {
+      list-style: none;
+    }
+
+    .feature-list li {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--muted);
+      padding-left: 1.5rem;
+      position: relative;
+      margin-bottom: 0.6rem;
+    }
+
+    .feature-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .package-cta {
+      background: var(--ink);
+      color: #fff;
+      border: none;
+      padding: 1rem 1.5rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+    }
+
+    .package-cta:hover {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    .package-description {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      padding: 1.2rem;
+      background: rgba(201, 155, 82, 0.05);
+      border-left: 3px solid var(--gold);
+      border-radius: 4px;
+    }
+
+    .deliverables-section {
+      padding: 4rem 0;
+      background: rgba(23, 21, 18, 0.03);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .deliverables-title {
+      text-align: center;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-bottom: 3rem;
+      color: var(--ink);
+    }
+
+    .deliverables-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .deliverable-card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(23, 21, 18, 0.08);
+    }
+
+    .deliverable-card h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--ink);
+    }
+
+    .deliverable-card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .process-section {
+      padding: 4rem 0;
+    }
+
+    .process-title {
+      text-align: center;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-bottom: 3rem;
+      color: var(--ink);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .process-step {
+      text-align: center;
+    }
+
+    .step-number {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+
+    .step-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .step-description {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .faq-section {
+      padding: 4rem 0;
+      background: rgba(23, 21, 18, 0.03);
+      border-top: 1px solid var(--line);
+    }
+
+    .faq-title {
+      text-align: center;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-bottom: 3rem;
+      color: var(--ink);
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(23, 21, 18, 0.08);
+    }
+
+    .faq-question {
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.8rem;
+      font-size: 1rem;
+    }
+
+    .faq-answer {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .comparison-section {
+      padding: 4rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .comparison-title {
+      text-align: center;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-bottom: 3rem;
+      color: var(--ink);
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(23, 21, 18, 0.08);
+    }
+
+    .comparison-table thead {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .comparison-table th {
+      padding: 1.5rem;
+      text-align: left;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .comparison-table td {
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .comparison-table tbody tr:hover {
+      background: rgba(201, 155, 82, 0.04);
+    }
+
+    .comparison-table .feature-name {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .comparison-table .gold,
+    .comparison-table .platinum,
+    .comparison-table .luxury {
+      text-align: center;
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .cta-section {
+      padding: 5rem 1rem;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      margin-top: 3rem;
+    }
+
+    .cta-section h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      margin-bottom: 1rem;
+      color: var(--ink);
+    }
+
+    .cta-section p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--ink);
+      color: #fff;
+      padding: 1.2rem 2.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .cta-button:hover {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding: 2.2rem 0 2.8rem;
+      margin-top: 2rem;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.4rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.4rem;
+      justify-content: center;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 2px solid var(--muted);
+      border-radius: 50%;
+      color: var(--ink);
+      transition: all 0.35s ease;
+    }
+
+    .social-links a:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    @media (max-width: 980px) {
+      .packages-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .package-card-detailed.featured {
+        transform: scale(1);
+      }
+
+      .comparison-table {
+        font-size: 0.85rem;
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+        padding: 1rem;
+      }
+
+      .deliverables-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .top-nav { inset: 0.7rem 0 auto; }
+
+      .top-nav-inner { border-radius: 22px; position: relative; }
+
+      .nav-links, .nav-action { display: none; }
+
+      .mobile-menu-toggle { display: flex; width: 42px; height: 42px; border: 1px solid rgba(255, 255, 255, 0.45); border-radius: 999px; background: transparent; align-items: center; justify-content: center; flex-direction: column; gap: 4px; cursor: pointer; }
+
+      .mobile-menu-toggle span { width: 16px; height: 1.7px; background: #fff; border-radius: 999px; transition: transform 0.25s ease, opacity 0.25s ease; }
+
+      .mobile-menu-toggle.open span:nth-child(1) { transform: translateY(5.7px) rotate(45deg); }
+
+      .mobile-menu-toggle.open span:nth-child(2) { opacity: 0; }
+
+      .mobile-menu-toggle.open span:nth-child(3) { transform: translateY(-5.7px) rotate(-45deg); }
+
+      .mobile-menu { display: none; position: absolute; top: calc(100% + 0.55rem); left: 0; right: 0; background: linear-gradient(160deg, rgba(18, 17, 15, 0.96), rgba(18, 17, 15, 0.88)); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 20px; padding: 1rem; color: #fff; flex-direction: column; gap: 0.35rem; }
+
+      .mobile-menu.open { display: flex; }
+
+      .mobile-menu a { padding: 0.65rem 0.35rem; color: rgba(255, 255, 255, 0.94); font-size: 0.9rem; }
+
+      .mobile-menu a.active { color: var(--gold-soft); }
+
+      .hero {
+        padding-top: 6.5rem;
+        padding-bottom: 2rem;
+      }
+
+      .packages-section {
+        padding: 2.5rem 0;
+      }
+
+      .packages-grid {
+        gap: 1.5rem;
+      }
+
+      .package-card-detailed {
+        padding: 1.5rem;
+      }
+
+      .package-name {
+        font-size: 1.8rem;
+      }
+
+      .package-price {
+        font-size: 2rem;
+      }
+
+      .package-description {
+        font-size: 0.9rem;
+        padding: 1rem;
+      }
+
+      .comparison-section {
+        padding: 2.5rem 0;
+      }
+
+      .comparison-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .comparison-table {
+        font-size: 0.8rem;
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+        padding: 0.8rem 0.6rem;
+      }
+
+      .deliverables-section {
+        padding: 2.5rem 0;
+      }
+
+      .deliverables-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .deliverables-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .deliverable-card {
+        padding: 1.2rem;
+      }
+
+      .deliverable-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .deliverable-card p {
+        font-size: 0.9rem;
+      }
+
+      .process-section {
+        padding: 2.5rem 0;
+      }
+
+      .process-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .step-number {
+        font-size: 2rem;
+      }
+
+      .step-title {
+        font-size: 0.95rem;
+      }
+
+      .step-description {
+        font-size: 0.85rem;
+      }
+
+      .faq-section {
+        padding: 2.5rem 0;
+      }
+
+      .faq-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .faq-item {
+        padding: 1.2rem;
+      }
+
+      .faq-question {
+        font-size: 0.95rem;
+      }
+
+      .faq-answer {
+        font-size: 0.85rem;
+      }
+
+      .cta-section {
+        padding: 3rem 1rem;
+      }
+
+      .cta-section h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="top-nav" aria-label="Primary">
+    <div class="top-nav-inner">
+      <a class="brand" href="index.html">Thilanka Dilshan Photography</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="cinematic-frames.html">Cinematic Frames</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a class="nav-action" href="booking.html">Book Now</a>
+      <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
+        <a href="index.html">Home</a>
+        <a href="cinematic-frames.html">Cinematic Frames</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="booking.html" style="margin-top: 0.5rem; padding: 0.7rem 0.35rem; border: 1px solid rgba(255,255,255,0.45); border-radius: 8px; text-align: center;">Book Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-content">
+        <span class="hero-tag">Our Packages</span>
+        <h1>Choose Your Perfect Package</h1>
+        <p>Each package is meticulously designed to capture your unique love story with the artistry and professionalism you deserve.</p>
+      </div>
+    </section>
+
+    <section class="packages-section">
+      <div class="container">
+        <div class="packages-grid">
+          <!-- Gold Package -->
+          <div class="package-card-detailed">
+            <div class="package-header">
+              <span class="package-badge">CLASSIC</span>
+              <h2 class="package-name">Gold</h2>
+            </div>
+            <div class="package-price">
+              LKR 230,000
+            </div>
+            <p class="package-price-sub">Wedding only - 10 Hours Coverage</p>
+
+            <div class="package-description">
+              Perfect for intimate weddings and couples who want professional cinematic coverage of their special day without pre-wedding shoots. This package captures the essence of your wedding with professional photography and a beautiful magazine-style album.
+            </div>
+
+            <div class="package-features">
+              <ul class="feature-list">
+                <li>10 Hours Coverage</li>
+                <li>Groom & Bride whilst getting ready at the hotel</li>
+                <li>Main photo session at a preferred location</li>
+                <li>15 x 20 / 16x24 / 17x22 Magazine album 20 spreads</li>
+                <li>one 16 x 24 Enlargements</li>
+                <li>100 Thank you cards</li>
+                <li>150 Edited images</li>
+                <li>Three camera coverage</li>
+                <li>Mini Mobile streams</li>
+                <li>All unedited images on USB</li>
+              </ul>
+            </div>
+
+            <a href="booking.html" class="package-cta">Book Gold</a>
+          </div>
+
+          <!-- Platinum Package -->
+          <div class="package-card-detailed featured">
+            <div class="package-header">
+              <span class="package-badge">MOST POPULAR</span>
+              <h2 class="package-name">Platinum</h2>
+            </div>
+            <div class="package-price">
+              LKR 340,000
+            </div>
+            <p class="package-price-sub">Pre-Shoot + 10 Hours Coverage</p>
+
+            <div class="package-description">
+              Our most popular choice! Includes a beautiful pre-wedding photoshoot plus complete wedding day coverage. The pre-shoot captures your romance in a relaxed setting, while the wedding day preserves every precious moment. Ideal for couples who want comprehensive coverage and multiple albums.
+            </div>
+
+            <div class="package-features">
+              <h4>Pre-Shoot Session (4 Hours)</h4>
+              <ul class="feature-list">
+                <li>Casual Location of Your Choice</li>
+                <li>Relaxed & Romantic Photography</li>
+                <li>Magazine Album (15 Spreads)</li>
+                <li>One 12x18 Premium Enlargement</li>
+                <li>60 Professional Edited Images</li>
+                <li>Pre-Shoot Slide Show for Wedding Day</li>
+                <li>Mini Mobile Streams</li>
+              </ul>
+
+              <h4>Wedding Day Coverage (10 Hours)</h4>
+              <ul class="feature-list">
+                <li>Groom & Bride Getting Ready</li>
+                <li>Main Photo Session at Preferred Location</li>
+                <li>Three Camera Coverage</li>
+                <li>Magazine Album (20 Spreads)</li>
+                <li>Two 16x24 Premium Enlargements</li>
+                <li>100 Personalized Thank You Cards</li>
+                <li>200 Professional Edited Images</li>
+                <li>Mini Mobile Live Streams</li>
+                <li>Complete Unedited Images on USB</li>
+              </ul>
+            </div>
+
+            <a href="booking.html" class="package-cta">Book Platinum</a>
+          </div>
+
+          <!-- Luxury Package -->
+          <div class="package-card-detailed">
+            <div class="package-header">
+              <span class="package-badge">PREMIUM</span>
+              <h2 class="package-name">Luxury</h2>
+            </div>
+            <div class="package-price">
+              LKR 540,000
+            </div>
+            <p class="package-price-sub">Pre-Shoot + 10 Hours + Homecoming</p>
+
+            <div class="package-description">
+              Our most comprehensive package designed for couples who want complete coverage of their entire wedding journey. From pre-wedding romance, through the big day, to the homecoming celebration – we capture it all with professional artistry and multiple premium deliverables.
+            </div>
+
+            <div class="package-features">
+              <h4>Pre-Shoot Session (4 Hours)</h4>
+              <ul class="feature-list">
+                <li>Casual Location of Your Choice</li>
+                <li>Relaxed & Romantic Photography</li>
+                <li>Magazine Album (15 Spreads)</li>
+                <li>One 12x18 Premium Enlargement</li>
+                <li>100 Professional Edited Images</li>
+                <li>Pre-Shoot Slide Show for Wedding Day</li>
+                <li>Mini Mobile Streams</li>
+              </ul>
+
+              <h4>Wedding Day Coverage (10 Hours)</h4>
+              <ul class="feature-list">
+                <li>Groom & Bride Getting Ready at Hotel</li>
+                <li>Main Photo Session at Preferred Location</li>
+                <li>Three Camera Coverage</li>
+                <li>Premium Magazine Album (30 Spreads)</li>
+                <li>Two 20x30 Premium Enlargements</li>
+                <li>One 16x24 Signature Board</li>
+                <li>100 Personalized Thank You Cards</li>
+                <li>200 Professional Edited Images</li>
+                <li>Mini Mobile Live Streams</li>
+                <li>Complete Unedited Images on USB</li>
+              </ul>
+
+              <h4>Homecoming Coverage (10 Hours)</h4>
+              <ul class="feature-list">
+                <li>Groom & Bride Getting Ready</li>
+                <li>Complete Homecoming Ceremony Coverage</li>
+                <li>Main Photo Session</li>
+                <li>Magazine Album (25 Spreads)</li>
+                <li>Two 16x24 Premium Enlargements</li>
+                <li>100 Personalized Thank You Cards</li>
+                <li>150 Professional Edited Images</li>
+                <li>Three Camera Coverage</li>
+                <li>Mini Mobile Streams</li>
+                <li>Complete Unedited Images on USB</li>
+              </ul>
+            </div>
+
+            <a href="booking.html" class="package-cta">Book Luxury</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="comparison-section">
+      <div class="container">
+        <h2 class="comparison-title">Package Comparison</h2>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th class="gold">Gold</th>
+              <th class="platinum">Platinum</th>
+              <th class="luxury">Luxury</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="feature-name">Pre-Shoot Session</td>
+              <td class="gold">—</td>
+              <td class="platinum">✓ (4 hrs)</td>
+              <td class="luxury">✓ (4 hrs)</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Wedding Coverage</td>
+              <td class="gold">10 hrs</td>
+              <td class="platinum">10 hrs</td>
+              <td class="luxury">10 hrs</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Homecoming Coverage</td>
+              <td class="gold">—</td>
+              <td class="platinum">—</td>
+              <td class="luxury">✓ (10 hrs)</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Magazine Albums</td>
+              <td class="gold">20 spreads</td>
+              <td class="platinum">15 + 20 spreads</td>
+              <td class="luxury">15 + 30 + 25 spreads</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Large Enlargements</td>
+              <td class="gold">1x (16x24)</td>
+              <td class="platinum">2x (16x24)</td>
+              <td class="luxury">2x (20x30)</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Signature Board</td>
+              <td class="gold">—</td>
+              <td class="platinum">—</td>
+              <td class="luxury">✓ (16x24)</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Edited Images</td>
+              <td class="gold">150</td>
+              <td class="platinum">260 (60+200)</td>
+              <td class="luxury">450 (100+200+150)</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Thank You Cards</td>
+              <td class="gold">100</td>
+              <td class="platinum">100</td>
+              <td class="luxury">100</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Camera Coverage</td>
+              <td class="gold">3 cameras</td>
+              <td class="platinum">3 cameras</td>
+              <td class="luxury">3 cameras</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Mobile Streams</td>
+              <td class="gold">✓</td>
+              <td class="platinum">✓</td>
+              <td class="luxury">✓</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Unedited Images</td>
+              <td class="gold">✓</td>
+              <td class="platinum">✓</td>
+              <td class="luxury">✓</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="deliverables-section">
+      <div class="container">
+        <h2 class="deliverables-title">What You Receive</h2>
+        <div class="deliverables-grid">
+          <div class="deliverable-card">
+            <h3>📸 Professional Albums</h3>
+            <p>Beautiful magazine-style albums printed on premium paper with your favorite moments thoughtfully curated. Each spread is designed to tell your wedding story with artistic layouts and high-quality printing. Albums vary from 15-30 spreads depending on your package.</p>
+          </div>
+          <div class="deliverable-card">
+            <h3>🖼️ Premium Enlargements</h3>
+            <p>Professionally printed large-format enlargements (16x24, 20x30, or custom sizes) perfect for displaying in your home. These museum-quality prints come with protective coating and can be framed for a stunning display of your favorite moments.</p>
+          </div>
+          <div class="deliverable-card">
+            <h3>📱 Digital Images</h3>
+            <p>Receive all your professionally edited high-resolution images delivered on premium USB and via secure cloud link. Platinum & Luxury packages include 200+ edited images, plus complete unedited RAW files for your personal archival.</p>
+          </div>
+          <div class="deliverable-card">
+            <h3>💌 Thank You Cards</h3>
+            <p>100 personalized thank you cards printed with your chosen wedding photo. These beautifully designed cards help you express gratitude to your guests in a memorable and personal way.</p>
+          </div>
+          <div class="deliverable-card">
+            <h3>🎬 Live Streams & Highlights</h3>
+            <p>Mini mobile streams allow family and friends to watch the live action in real-time. Pre-shoot slide shows can be displayed during your wedding reception. Professional highlight videos available as add-ons.</p>
+          </div>
+          <div class="deliverable-card">
+            <h3>🎨 Signature Board (Luxury Only)</h3>
+            <p>An exclusive 16x24 signature board featuring your most stunning moment. This premium print serves as a beautiful keepsake and can be displayed during reception for guest signatures.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="process-section">
+      <div class="container">
+        <h2 class="process-title">Our Photography Process</h2>
+        <div class="process-grid">
+          <div class="process-step">
+            <div class="step-number">1</div>
+            <div class="step-title">Consultation</div>
+            <div class="step-description">We meet to discuss your vision, preferred locations, timeline, and specific moments you want captured. This allows us to understand your unique story.</div>
+          </div>
+          <div class="process-step">
+            <div class="step-number">2</div>
+            <div class="step-title">Capture</div>
+            <div class="step-description">Our team arrives early, covers all key moments with multiple camera angles, and captures emotional candids alongside formal portraits and details.</div>
+          </div>
+          <div class="process-step">
+            <div class="step-number">3</div>
+            <div class="step-title">Editing</div>
+            <div class="step-description">Every image is carefully edited and color-graded to maintain consistent, cinematic quality. We preserve the authentic emotions while enhancing visual appeal.</div>
+          </div>
+          <div class="process-step">
+            <div class="step-number">4</div>
+            <div class="step-title">Delivery</div>
+            <div class="step-description">Your images are delivered on premium USB, via secure cloud link, and beautifully printed albums arrive at your doorstep. We ensure everything is perfect.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div class="container">
+        <h2 class="faq-title">Frequently Asked Questions</h2>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <div class="faq-question">Can I customize the hours or add more coverage?</div>
+            <div class="faq-answer">Absolutely! All packages are flexible. We can extend coverage hours, add extra pre-shoots, or include additional events like engagement shoots or reception-only coverage. Contact us for custom pricing.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">What's included in the unedited images?</div>
+            <div class="faq-answer">You receive complete RAW files for all shots taken during your wedding. These are unedited originals that allow you to have backups and make any personal edits you prefer.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">How long does it take to receive the final images?</div>
+            <div class="faq-answer">Typically 4-6 weeks from your wedding date. This allows us to carefully edit every image to our high standards. Urgent requests may be accommodated for an additional fee.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Can I order additional prints after delivery?</div>
+            <div class="faq-answer">Yes! You'll have lifetime access to reorder prints, additional albums, or enlargements at competitive pricing. We keep all your images archived securely.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">What's the difference between album spreads?</div>
+            <div class="faq-answer">A spread is two facing pages. A 20-spread album contains 40 pages of beautifully designed layouts with your photos. More spreads mean more images and larger format pages.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">What payment and deposit are required?</div>
+            <div class="faq-answer">A 30% advance payment is required to secure your date. The remaining balance is due one week before your wedding. We accept multiple payment methods for your convenience.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Do you offer videography or highlight reels?</div>
+            <div class="faq-answer">Photography is our specialty, but we can recommend trusted videography partners. Highlight reels and cinematic videos are available as premium add-ons to any package.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">What if I need additional photographers?</div>
+            <div class="faq-answer">Each package includes three-camera coverage. For larger venues or split events, we can add assistant photographers. Large format events receive dedicated crew planning.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2>Ready to Book?</h2>
+        <p>Choose your package and let's start creating your timeless wedding memories. Our team is here to make your vision a reality.</p>
+        <a href="booking.html" class="cta-button">Book Your Session</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>(c) 2026 Thilanka Dilshan Photography. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const topNavInner = document.querySelector('.top-nav-inner');
+
+    if (menuToggle && mobileMenu && topNavInner) {
+      const setMenu = (open) => {
+        menuToggle.classList.toggle('open', open);
+        mobileMenu.classList.toggle('open', open);
+        menuToggle.setAttribute('aria-expanded', String(open));
+      };
+
+      menuToggle.addEventListener('click', () => {
+        setMenu(!mobileMenu.classList.contains('open'));
+      });
+
+      mobileMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setMenu(false));
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!topNavInner.contains(event.target)) {
+          setMenu(false);
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 620) setMenu(false);
+      });
+    }
+  </script>
+</body>
+</html>

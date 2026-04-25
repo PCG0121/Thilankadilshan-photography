@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Book Now | Thilanka Dilshan Photography</title>
-  <meta name="description" content="Select your wedding date and complete your booking inquiry with Thilanka Dilshan Photography." />
+  <meta name="description"
+    content="Select your wedding date and complete your booking inquiry with Thilanka Dilshan Photography." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
   <style>
     :root {
       --bg: #f5f5f5;
@@ -149,7 +153,9 @@
       box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22);
     }
 
-    .mobile-menu.open { display: flex; }
+    .mobile-menu.open {
+      display: flex;
+    }
 
     .mobile-menu a {
       display: block;
@@ -159,7 +165,9 @@
       color: rgba(255, 255, 255, 0.94);
     }
 
-    .mobile-menu a.active { color: #e6cfa6; }
+    .mobile-menu a.active {
+      color: #e6cfa6;
+    }
 
     .mobile-menu-book {
       margin-top: 0.2rem;
@@ -357,12 +365,84 @@
       border-radius: 4px;
       background: transparent;
       padding: 1.4rem;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease;
+      text-align: left;
+    }
+
+    .addon-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
+    }
+
+    .package-card {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    .card-header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 100%;
+      gap: 1rem;
+    }
+
+    .package-details {
+      margin-top: 0.8rem;
+      width: 100%;
+    }
+
+    .details-toggle {
       cursor: pointer;
-      transition: border-color 0.2s ease, background 0.2s ease;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #7a869a;
+      display: inline-block;
+      user-select: none;
+      transition: color 0.2s ease;
+    }
+
+    .details-toggle:hover {
+      color: #101827;
+    }
+
+    .package-details[open] .details-toggle {
+      margin-bottom: 0.5rem;
+      color: #101827;
+    }
+
+    .package-details-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border-top: 1px solid #d3dae5;
+      padding-top: 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.6rem 1rem;
+    }
+
+    .package-details-list li {
+      font-size: 0.9rem;
+      color: #5f6e87;
+      position: relative;
+      padding-left: 1.2rem;
+      line-height: 1.4;
+    }
+
+    .package-details-list li::before {
+      content: "•";
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+      top: 0;
     }
 
     .package-card:hover,
@@ -704,10 +784,17 @@
         display: none;
       }
 
-      .mobile-menu-toggle { display: flex; }
+      .mobile-menu-toggle {
+        display: flex;
+      }
 
-      .mobile-menu { display: none; }
-      .mobile-menu.open { display: flex; }
+      .mobile-menu {
+        display: none;
+      }
+
+      .mobile-menu.open {
+        display: flex;
+      }
 
       .booking-shell {
         padding: 0 0.9rem 3rem;
@@ -772,9 +859,18 @@
 
       .package-card,
       .addon-row {
+        padding: 1.05rem;
+      }
+
+      .addon-row {
         flex-direction: column;
         align-items: flex-start;
-        padding: 1.05rem;
+      }
+
+      .card-header-flex {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
       }
 
       .addon-right {
@@ -839,6 +935,7 @@
     }
   </style>
 </head>
+
 <body>
   <header class="top-nav" aria-label="Primary">
     <div class="top-nav-inner">
@@ -846,11 +943,11 @@
       <nav class="nav-links">
         <a href="index.html">Home</a>
         <a href="cinematic-frames.html">Cinematic Frames</a>
-        <a href="index.html#services">Services</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
       </nav>
-      <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
+      <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu"
+        aria-label="Toggle navigation menu">
         <span></span>
         <span></span>
         <span></span>
@@ -859,7 +956,6 @@
       <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
         <a href="index.html">Home</a>
         <a href="cinematic-frames.html">Cinematic Frames</a>
-        <a href="index.html#services">Services</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
         <a class="mobile-menu-book active" href="booking.html">Book Now</a>
@@ -901,34 +997,88 @@
     <section class="panel" data-panel="2">
       <h2 class="panel-title">Select your package</h2>
       <div class="cards-stack">
-        <button class="package-card" type="button" data-package="essential" data-price="150000" data-label="The Essential Wedding">
-          <div>
-            <h3 class="card-title">The Essential Wedding</h3>
-            <p class="card-sub">6 Hours Coverage</p>
+        <div class="package-card" tabindex="0" role="button" data-package="gold" data-price="230000" data-label="Gold">
+          <div class="card-header-flex">
+            <div>
+              <h3 class="card-title">Gold</h3>
+              <p class="card-sub">Wedding only - 10 Hours Coverage</p>
+            </div>
+            <span class="price">LKR 230,000</span>
           </div>
-          <span class="price">LKR 150,000</span>
-        </button>
-        <button class="package-card" type="button" data-package="premium" data-price="280000" data-label="The Premium Legacy">
-          <div>
-            <h3 class="card-title">The Premium Legacy</h3>
-            <p class="card-sub">Full Day + Highlight Film</p>
+          <details class="package-details">
+            <summary class="details-toggle">Click Here to View Details</summary>
+            <ul class="package-details-list">
+              <li>10 Hours Coverage</li>
+              <li>Groom & Bride whilst getting ready at the hotel</li>
+              <li>Main photo session at a preferred location</li>
+              <li>15 x 20 / 16x24 / 17x22 Magazine album 20 spreads</li>
+              <li>one 16 x 24 Enlargements</li>
+              <li>100 Thank you cards</li>
+              <li>150 Edited images</li>
+              <li>Three camera coverage</li>
+              <li>Mini Mobile streams</li>
+              <li>All unedited images on USB</li>
+            </ul>
+          </details>
+        </div>
+        <div class="package-card" tabindex="0" role="button" data-package="platinum" data-price="340000"
+          data-label="Platinum">
+          <div class="card-header-flex">
+            <div>
+              <h3 class="card-title">Platinum</h3>
+              <p class="card-sub">Pre-Shoot + 10 Hours Coverage</p>
+            </div>
+            <span class="price">LKR 340,000</span>
           </div>
-          <span class="price">LKR 280,000</span>
-        </button>
-        <button class="package-card" type="button" data-package="grand" data-price="450000" data-label="The Grand Cinematic">
-          <div>
-            <h3 class="card-title">The Grand Cinematic</h3>
-            <p class="card-sub">2 Days + Same Day Edit</p>
+          <details class="package-details">
+            <summary class="details-toggle">Click Here to View Details</summary>
+            <ul class="package-details-list">
+              <li>Casual Location Pre-Shoot (4 Hours)</li>
+              <li>Groom & Bride Getting Ready</li>
+              <li>Main Photo Session at Preferred Location</li>
+              <li>Magazine Album (15 + 20 Spreads)</li>
+              <li>One 12x18 & Two 16x24 Premium Enlargements</li>
+              <li>100 Personalized Thank You Cards</li>
+              <li>260 Professional Edited Images</li>
+              <li>Three Camera Coverage</li>
+              <li>Mini Mobile Streams & Pre-Shoot Slide Show</li>
+              <li>Complete Unedited Images on USB</li>
+            </ul>
+          </details>
+        </div>
+        <div class="package-card" tabindex="0" role="button" data-package="luxury" data-price="540000"
+          data-label="Luxury">
+          <div class="card-header-flex">
+            <div>
+              <h3 class="card-title">Luxury</h3>
+              <p class="card-sub">Pre-Shoot + 10 Hours + Homecoming</p>
+            </div>
+            <span class="price">LKR 540,000</span>
           </div>
-          <span class="price">LKR 450,000</span>
-        </button>
+          <details class="package-details">
+            <summary class="details-toggle">Click Here to View Details</summary>
+            <ul class="package-details-list">
+              <li>Pre-Shoot Session (4 Hours)</li>
+              <li>Wedding Day Coverage (10 Hours)</li>
+              <li>Homecoming Coverage (10 Hours)</li>
+              <li>Magazine Albums (15 + 30 + 25 Spreads)</li>
+              <li>One 12x18, Two 16x24, Two 20x30 Enlargements</li>
+              <li>One 16x24 Signature Board</li>
+              <li>200 Personalized Thank You Cards</li>
+              <li>450 Professional Edited Images</li>
+              <li>Three Camera Coverage</li>
+              <li>Complete Unedited Images on USB</li>
+            </ul>
+          </details>
+        </div>
       </div>
     </section>
 
     <section class="panel" data-panel="3">
       <h2 class="panel-title">Enhance your experience</h2>
       <div class="cards-stack">
-        <button class="addon-row" type="button" data-addon="pre-shoot" data-price="45000" data-label="Pre-Shoot Session">
+        <button class="addon-row" type="button" data-addon="pre-shoot" data-price="45000"
+          data-label="Pre-Shoot Session">
           <h3 class="addon-title">Pre-Shoot Session</h3>
           <div class="addon-right">
             <span class="price">LKR 45,000</span>
@@ -1021,7 +1171,8 @@
           </div>
         </div>
       </div>
-      <p class="summary-note">A 30% advance payment is required to lock in your date. We will contact you shortly to finalize details.</p>
+      <p class="summary-note">A 30% advance payment is required to lock in your date. We will contact you shortly to
+        finalize details.</p>
     </section>
 
     <section class="wizard-footer" id="wizardFooter">
@@ -1038,7 +1189,8 @@
         <span class="success-icon">&#10003;</span>
       </div>
       <h2 class="success-title">Inquiry Received</h2>
-      <p class="success-copy" id="successCopy">Thank you. We have received your booking inquiry. Our team will review availability and contact you within 24 hours.</p>
+      <p class="success-copy" id="successCopy">Thank you. We have received your booking inquiry. Our team will review
+        availability and contact you within 24 hours.</p>
       <a class="home-btn" href="index.html">Return to Homepage</a>
     </div>
   </section>
@@ -1231,10 +1383,10 @@
 
       summaryDate.textContent = state.selectedDate
         ? state.selectedDate.toLocaleDateString("en-US", {
-            month: "long",
-            day: "numeric",
-            year: "numeric",
-          })
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        })
         : "-";
 
       summaryPackage.textContent = state.selectedPackage || "-";
@@ -1371,11 +1523,54 @@
         ? state.selectedDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })
         : "your selected date";
 
-      successCopy.textContent = `Thank you, ${name}. We have received your booking inquiry for ${dateText}. Our team will review availability and contact you within 24 hours to confirm details and arrange the advance payment.`;
+      const addonsText = state.selectedAddons.length > 0
+        ? state.selectedAddons.map((a) => a.label).join(", ")
+        : "None";
+
+      const addonsTotal = state.selectedAddons.reduce((sum, addon) => sum + addon.price, 0);
+      const total = state.selectedPackagePrice + addonsTotal;
+      const formattedTotal = formatLkr(total);
+
+      const message = `Hello Thilanka Dilshan Photography, I would like to make a booking inquiry.
+
+*Booking Details:*
+- Date: ${dateText}
+- Package: ${state.selectedPackage || "-"}
+- Add-ons: ${addonsText}
+- Estimated Total: ${formattedTotal}
+
+*My Details:*
+- Name: ${state.form.name}
+- Partner's Name: ${state.form.partnerName || "-"}
+- Email: ${state.form.email}
+- Phone: ${state.form.phone}
+- Venue: ${state.form.venue || "-"}
+- Vision: ${state.form.vision || "-"}
+`;
+
+      const whatsappNumber = "94715287456"; // Replace with your actual WhatsApp number without the '+'
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+      // Open WhatsApp in a new tab (might be blocked by some browsers)
+      const waWindow = window.open(whatsappUrl, '_blank');
+
+      // Update success message with a fallback link
+      successCopy.innerHTML = `Thank you, ${name}. We are redirecting you to WhatsApp to send your booking inquiry for ${dateText}.<br><br>
+      <span style="display:block; margin-top:15px; font-size:1.1rem;">
+        If WhatsApp doesn't open automatically, <br>
+        <a href="${whatsappUrl}" target="_blank" style="color: #0b9e46; font-weight: 700; text-decoration: underline;">Click Here to Send WhatsApp Message</a>
+      </span>`;
 
       wizardRoot.style.display = "none";
       successScreen.classList.add("active");
       window.scrollTo({ top: 0, behavior: "smooth" });
+      
+      // Fallback: If window.open failed (e.g. popup blocker), navigate the current window
+      if(!waWindow || waWindow.closed || typeof waWindow.closed=='undefined') {
+          setTimeout(() => {
+              window.location.href = whatsappUrl;
+          }, 1500);
+      }
     });
 
     editButtons.forEach((btn) => {
@@ -1419,5 +1614,5 @@
     goToStep(1);
   </script>
 </body>
-</html>
 
+</html>

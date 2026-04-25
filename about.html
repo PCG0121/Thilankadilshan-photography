@@ -284,6 +284,60 @@
       font-weight: 600;
     }
 
+    .bio-section {
+      padding: 5rem 1rem;
+      background: linear-gradient(135deg, rgba(201, 155, 82, 0.04) 0%, rgba(201, 155, 82, 0.02) 100%);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .bio-quote {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .bio-intro {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.4rem;
+      color: var(--ink);
+      margin-bottom: 2.5rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .bio-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .bio-content p {
+      font-size: 1.02rem;
+      line-height: 1.9;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+
+    .bio-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .bio-signature {
+      margin-top: 2.5rem;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.05em;
+    }
+
     .connect {
       padding: 7rem 1rem;
       text-align: center;
@@ -450,6 +504,38 @@
       .stat-item h3 {
         font-size: 2.5rem;
       }
+
+      .bio-section {
+        padding: 3rem 1rem;
+        margin: 2rem 0;
+      }
+
+      .bio-intro {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .bio-quote {
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        margin-bottom: 1.5rem;
+      }
+
+      .bio-content p {
+        font-size: 0.98rem;
+        line-height: 1.75;
+        margin-bottom: 1rem;
+        text-align: left;
+      }
+
+      .bio-signature {
+        margin-top: 1.5rem;
+        font-size: 1.1rem;
+      }
+
+      .connect {
+        padding: 3rem 1rem;
+        margin-top: 2rem;
+      }
     }
   </style>
 </head>
@@ -460,7 +546,6 @@
       <nav class="nav-links">
         <a href="index.html">Home</a>
         <a href="cinematic-frames.html">Cinematic Frames</a>
-        <a href="index.html#services">Services</a>
         <a class="active" href="about.html">About</a>
         <a href="contact.html">Contact</a>
       </nav>
@@ -473,7 +558,6 @@
       <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
         <a href="index.html">Home</a>
         <a href="cinematic-frames.html">Cinematic Frames</a>
-        <a href="index.html#services">Services</a>
         <a class="active" href="about.html">About</a>
         <a href="contact.html">Contact</a>
         <a class="mobile-menu-book" href="booking.html">Book Now</a>
@@ -490,33 +574,20 @@
       </div>
     </section>
 
-    <div class="container about-sections">
-      <div class="section-block">
-        <div class="section-grid">
-          <div class="section-copy">
-            <h2>Our Philosophy</h2>
-            <p>At Thilanka Dilshan Photography, we don't just document weddings—we craft cinematic experiences. Our approach blends artistic vision with technical precision, creating images that feel both timeless and deeply personal.</p>
-            <p>Every wedding tells a unique story. We believe your photos should feel like a beautifully edited film, with careful attention to light, color, composition, and emotion.</p>
-          </div>
-          <div class="section-image">
-            <img src="assets/images/real_photo_1.jpg" alt="Photography philosophy" />
-          </div>
+    <section class="bio-section">
+      <div class="container">
+        <p class="bio-intro">Hey, I'm Thilanka</p>
+        <p class="bio-quote">'It's nothing about the cameras but it's all about the passion'</p>
+        <div class="bio-content">
+          <p>I believe that photography is not an art of living for me, but rather it's what I have been born to live with. I had instincts since my childhood, that I have a tacit capability of converting people's precious moments into remarkable memories.</p>
+          <p>While I was pensive, I realized that I was driven by my destiny to make me recognize my unique and exclusive talents in capturing snaps which are far behind the scope of any ordinary person.</p>
+          <p>When people started adoring my photography, speaking about their uniqueness and rarity and when they were overwhelmed by the way that their significant memories were captured by me and when they realized that I bring out the reminiscence of their best memories, I felt motivated and a self esteem and confidence started building within me.</p>
+          <p>I believe my inner inspiration and my secluded talents paved me paths to convert the images taken by my camera into everlasting memories. I believe that the sky is the limit for me and I have innumerous trends in my mind which are untouched even by the best photographers over the world which I will use to make your untold stories and your rare moments into eternal memories in a simple split second.</p>
+          <p>My attempt is to hit the blue waters, walk an extra mile and always think out of the box to give you a wonderful experience and an exemplary service to my dear valued customers.</p>
+          <p class="bio-signature">— Thilanka Dilshan</p>
         </div>
       </div>
-
-      <div class="section-block">
-        <div class="section-grid reverse">
-          <div class="section-copy">
-            <h2>Award-Winning Approach</h2>
-            <p>With over a decade of experience in luxury wedding photography, we've had the honor of documenting weddings across destination locations and intimate venues. Our work has been recognized for its bold storytelling and meticulous attention to detail.</p>
-            <p>We invest in the latest technology and continuously refine our craft to deliver images that exceed expectations. Your wedding deserves nothing less than excellence.</p>
-          </div>
-          <div class="section-image">
-            <img src="assets/images/real_photo_4.jpg" alt="Award-winning work" />
-          </div>
-        </div>
-      </div>
-    </div>
+    </section>
 
     <div class="container stats">
       <div class="stats-grid">
