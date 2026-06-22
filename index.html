@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thilanka Dilshan Photography</title>
   <meta name="description" content="Luxury cinematic wedding photography by Thilanka Dilshan Photography." />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thilanka Dilshan Photography</title>
+  <meta name="description" content="Luxury cinematic wedding photography by Thilanka Dilshan Photography." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,7 +35,270 @@
       background: var(--bg);
       color: var(--ink);
       overflow-x: hidden;
+      cursor: none;
     }
+
+    /* ── CUSTOM CURSOR ─────────────────────────────── */
+    .cursor-dot {
+      position: fixed;
+      top: 0; left: 0;
+      width: 8px; height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.08s ease, background 0.3s ease, width 0.3s ease, height 0.3s ease;
+      mix-blend-mode: multiply;
+    }
+    .cursor-ring {
+      position: fixed;
+      top: 0; left: 0;
+      width: 36px; height: 36px;
+      border: 1.5px solid rgba(201,155,82,0.6);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.18s cubic-bezier(0.25,0.46,0.45,0.94),
+                  width 0.3s ease, height 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+    }
+    body.cursor-hover .cursor-dot  { width: 12px; height: 12px; background: #fff; }
+    body.cursor-hover .cursor-ring  { width: 58px; height: 58px; border-color: var(--gold); }
+    body.cursor-click .cursor-dot  { transform: translate(-50%,-50%) scale(0.5); }
+
+    /* ── PRELOADER ──────────────────────────────────── */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: #0c0b09;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      transition: opacity 0.7s ease, visibility 0.7s ease;
+    }
+    #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .pre-logo {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      opacity: 0;
+      animation: preLogoIn 1s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
+    }
+    .pre-logo span { font-style: italic; color: rgba(230,207,166,0.85); }
+    .pre-bar-wrap {
+      width: min(280px, 70vw);
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+      overflow: hidden;
+      border-radius: 99px;
+    }
+    .pre-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-soft));
+      width: 0%;
+      animation: preBarFill 1.6s cubic-bezier(0.65,0,0.35,1) 0.5s forwards;
+    }
+    .pre-count {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.4);
+      font-weight: 600;
+    }
+    @keyframes preLogoIn {
+      from { opacity:0; transform: translateY(18px) blur(8px); filter: blur(8px); }
+      to   { opacity:1; transform: translateY(0); filter: blur(0); }
+    }
+    @keyframes preBarFill { from { width:0% } to { width:100% } }
+
+    /* ── SCROLL REVEAL ──────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(44px);
+      transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1), transform 0.85s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-54px);
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(54px);
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.92);
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+    /* stagger delays */
+    .delay-1 { transition-delay: 0.1s !important; }
+    .delay-2 { transition-delay: 0.22s !important; }
+    .delay-3 { transition-delay: 0.34s !important; }
+    .delay-4 { transition-delay: 0.46s !important; }
+    .delay-5 { transition-delay: 0.58s !important; }
+
+    /* ── WORD SPLIT HEADINGS ────────────────────────── */
+    .split-word {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+    }
+    .split-word .word-inner {
+      display: inline-block;
+      transform: translateY(110%);
+      transition: transform 0.72s cubic-bezier(0.16,1,0.3,1);
+    }
+    .split-word.visible .word-inner { transform: translateY(0); }
+    .split-word:nth-child(2) .word-inner { transition-delay: 0.12s; }
+    .split-word:nth-child(3) .word-inner { transition-delay: 0.22s; }
+    .split-word:nth-child(4) .word-inner { transition-delay: 0.32s; }
+    .split-word:nth-child(5) .word-inner { transition-delay: 0.42s; }
+
+    /* ── FLOATING PARTICLES ─────────────────────────── */
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0;
+      animation: particleFloat linear infinite;
+    }
+    @keyframes particleFloat {
+      0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+      10%  { opacity: 0.7; }
+      90%  { opacity: 0.4; }
+      100% { transform: translateY(-10vh) scale(1.3); opacity: 0; }
+    }
+
+    /* ── MARQUEE STRIP ──────────────────────────────── */
+    .marquee-section {
+      background: var(--ink);
+      overflow: hidden;
+      padding: 1.1rem 0;
+      white-space: nowrap;
+    }
+    .marquee-track {
+      display: inline-flex;
+      gap: 0;
+      animation: marqueeScroll 22s linear infinite;
+    }
+    .marquee-section:hover .marquee-track { animation-play-state: paused; }
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.6rem;
+      padding: 0 2rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: rgba(255,255,255,0.55);
+    }
+    .marquee-item .dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── STATS BAR ──────────────────────────────────── */
+    .stats-bar {
+      background: #f7f4ef;
+      border-top: 1px solid #ece6de;
+      border-bottom: 1px solid #ece6de;
+      padding: 3.2rem 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+    .stat-item {
+      padding: 1.4rem 0.5rem;
+      border-right: 1px solid #e2dbd3;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      line-height: 1;
+      color: var(--ink);
+      font-weight: 600;
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--muted);
+      margin-top: 0.4rem;
+      display: block;
+    }
+    .stat-gold { color: var(--gold); }
+
+    /* ── GRAIN OVERLAY ──────────────────────────────── */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 180px;
+      animation: grainMove 0.15s steps(1) infinite;
+    }
+    @keyframes grainMove {
+      0%  { background-position: 0 0; }
+      25% { background-position: -40px 20px; }
+      50% { background-position: 20px -30px; }
+      75% { background-position: -20px 40px; }
+    }
+
+    /* ── GOLD LINE DIVIDER ──────────────────────────── */
+    .gold-divider {
+      width: 48px; height: 1.5px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 1.2rem 0;
+    }
+
+    /* ── PHILO IMAGE OVERLAY ─────────────────────────── */
+    .philo-image::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(201,155,82,0.18));
+      z-index: 1;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    .philo-image:hover::before { opacity: 0; }
+    .philo-image img {
+      transition: transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .philo-image:hover img { transform: scale(1.04); }
 
     a { text-decoration: none; color: inherit; }
 
@@ -171,6 +441,7 @@
       background: #000;
       color: #fff;
       text-align: center;
+      --hero-progress: 0;
     }
 
     .hero-slide {
@@ -190,6 +461,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      will-change: transform;
     }
 
     .hero::after {
@@ -197,6 +469,8 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(180deg, rgba(0,0,0,0.75), rgba(0,0,0,0.26), rgba(0,0,0,0.44));
+      opacity: calc(1 - (var(--hero-progress) * 0.22));
+      transition: opacity 0.12s linear;
     }
 
     .hero-content {
@@ -204,6 +478,21 @@
       z-index: 1;
       padding: 0 1rem;
       max-width: 980px;
+      will-change: transform, opacity, filter;
+      animation: heroTextIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+    }
+
+    @keyframes heroTextIn {
+      from {
+        opacity: 0;
+        transform: translateY(34px);
+        filter: blur(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
     }
 
     .hero-tag {
@@ -254,6 +543,35 @@
     }
 
     .hero-cta:hover { background: #fff; color: #0f0f0f; }
+
+    .hero-scroll-mark {
+      position: absolute;
+      left: 50%;
+      bottom: 1.8rem;
+      z-index: 2;
+      width: 1px;
+      height: 58px;
+      background: rgba(255,255,255,0.28);
+      overflow: hidden;
+      transform: translateX(-50%);
+    }
+
+    .hero-scroll-mark::after {
+      content: "";
+      position: absolute;
+      top: -35%;
+      left: 0;
+      width: 100%;
+      height: 35%;
+      background: var(--gold-soft);
+      animation: scrollMark 1.8s ease-in-out infinite;
+    }
+
+    @keyframes scrollMark {
+      0% { transform: translateY(0); opacity: 0; }
+      25% { opacity: 1; }
+      100% { transform: translateY(220px); opacity: 0; }
+    }
 
     .philosophy {
       padding: 7rem 0;
@@ -528,6 +846,17 @@
   </style>
 </head>
 <body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="pre-logo">Thilanka Dilshan <span>Photography</span></div>
+    <div class="pre-bar-wrap"><div class="pre-bar" id="preBar"></div></div>
+    <div class="pre-count" id="preCount">0%</div>
+  </div>
   <header class="top-nav" aria-label="Primary">
     <div class="top-nav-inner">
       <a class="brand" href="index.html">Thilanka Dilshan Photography</a>
@@ -559,6 +888,9 @@
       <div class="hero-slide"><img src="assets/images/real_photo_5.jpg" alt="Luxury Wedding Photography 2" /></div>
       <div class="hero-slide"><img src="assets/images/real_photo_6.jpg" alt="Luxury Wedding Photography 3" /></div>
 
+      <!-- Floating Particles -->
+      <div class="hero-particles" id="heroParticles" aria-hidden="true"></div>
+
       <div class="hero-content">
         <span class="hero-tag">Thilanka Dilshan Photography</span>
         <h1>
@@ -569,24 +901,56 @@
           More than just photographs. We craft luxurious, emotional heirlooms capturing the unseen moments
           and raw elegance of your most cherished day.
         </p>
-        <a class="hero-cta" href="booking.html">Book Your Dream Wedding -></a>
+        <a class="hero-cta magnetic-btn" href="booking.html" id="heroCta">Book Your Dream Wedding -></a>
       </div>
+      <span class="hero-scroll-mark" aria-hidden="true"></span>
     </section>
+
+    <!-- Marquee Strip -->
+    <div class="marquee-section" aria-hidden="true">
+      <div class="marquee-track" id="marqueeTrack">
+        <span class="marquee-item"><span class="dot"></span> Luxury Wedding Photography <span class="dot"></span> Cinematic Videography <span class="dot"></span> Sri Lanka <span class="dot"></span> Kandy <span class="dot"></span> Colombo <span class="dot"></span> Galle <span class="dot"></span> Destination Weddings <span class="dot"></span> Fine Art Portraits</span>
+        <span class="marquee-item"><span class="dot"></span> Luxury Wedding Photography <span class="dot"></span> Cinematic Videography <span class="dot"></span> Sri Lanka <span class="dot"></span> Kandy <span class="dot"></span> Colombo <span class="dot"></span> Galle <span class="dot"></span> Destination Weddings <span class="dot"></span> Fine Art Portraits</span>
+      </div>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+      <div class="container stats-grid">
+        <div class="stat-item reveal delay-1">
+          <span class="stat-num stat-gold" data-target="350">0</span>
+          <span class="stat-label">Weddings Captured</span>
+        </div>
+        <div class="stat-item reveal delay-2">
+          <span class="stat-num" data-target="8">0</span>
+          <span class="stat-label">Years of Excellence</span>
+        </div>
+        <div class="stat-item reveal delay-3">
+          <span class="stat-num stat-gold" data-target="12">0</span>
+          <span class="stat-label">Awards & Recognitions</span>
+        </div>
+        <div class="stat-item reveal delay-4">
+          <span class="stat-num" data-target="100">0</span>
+          <span class="stat-label">% Client Satisfaction</span>
+        </div>
+      </div>
+    </div>
 
     <section class="philosophy" id="services">
       <div class="container philosophy-grid">
-        <div class="philo-image">
+        <div class="philo-image reveal-left">
           <img src="assets/images/real_photo_1.jpg" alt="Elegant details" loading="lazy" />
         </div>
-        <div class="philo-copy">
-          <span class="label">Our Philosophy</span>
-          <h2>Timeless Elegance,<br /><span>Unscripted Emotion.</span></h2>
-          <p>
+        <div class="philo-copy reveal-right">
+          <span class="label reveal delay-1">Our Philosophy</span>
+          <div class="gold-divider reveal delay-1"></div>
+          <h2 class="split-heading">Timeless Elegance,<br /><span>Unscripted Emotion.</span></h2>
+          <p class="reveal delay-2">
             We believe your wedding day should be captured exactly as it feels. No forced poses, no artificial
             moments. Just the raw, beautiful reality of your love story, elevated through a cinematic lens into
             art you will cherish forever.
           </p>
-          <a class="inline-link" href="cinematic-frames.html">Explore The Gallery</a>
+          <a class="inline-link reveal delay-3" href="cinematic-frames.html">Explore The Gallery</a>
         </div>
       </div>
     </section>
@@ -595,26 +959,26 @@
       <div class="container">
         <div class="featured-head">
           <div>
-            <span class="label">Cinematic Frames</span>
-            <h2>Featured <span>Stories.</span></h2>
+            <span class="label reveal">Cinematic Frames</span>
+            <h2 class="split-heading">Featured <span>Stories.</span></h2>
           </div>
-          <a class="view-link" href="cinematic-frames.html">View Full Gallery</a>
+          <a class="view-link reveal delay-2" href="cinematic-frames.html">View Full Gallery</a>
         </div>
 
         <div class="stories">
-          <a class="story" href="cinematic-frames.html">
+          <a class="story reveal-scale delay-1" href="cinematic-frames.html">
             <div class="story-media"><img src="assets/images/637139243_1402427718004949_6666201034993238005_n.jpg" alt="Kandy Grand Wedding" loading="lazy" /></div>
             <h3>Kandy Grand Wedding</h3>
             <p>View Story</p>
           </a>
 
-          <a class="story" href="cinematic-frames.html">
+          <a class="story reveal-scale delay-2" href="cinematic-frames.html">
             <div class="story-media"><img src="assets/images/648436374_1417814523132935_8874425884483654297_n.jpg" alt="Galle Fort Engagement" loading="lazy" /></div>
             <h3>Galle Fort Engagement</h3>
             <p>View Story</p>
           </a>
 
-          <a class="story" href="cinematic-frames.html">
+          <a class="story reveal-scale delay-3" href="cinematic-frames.html">
             <div class="story-media"><img src="assets/images/609026638_1364917278422660_2833140512891095027_n.jpg" alt="Colombo Intimate Elopement" loading="lazy" /></div>
             <h3>Colombo Intimate Elopement</h3>
             <p>View Story</p>
@@ -625,9 +989,9 @@
 
     <section class="connect" id="contact">
       <div class="container">
-        <h2>Let's create something <span>beautiful.</span></h2>
-        <p>We are currently accepting bookings for the upcoming wedding season. Reach out to secure your dates.</p>
-        <a class="connect-btn" href="booking.html">Inquire Now</a>
+        <h2 class="split-heading">Let's create something <span>beautiful.</span></h2>
+        <p class="reveal delay-2">We are currently accepting bookings for the upcoming wedding season. Reach out to secure your dates.</p>
+        <a class="connect-btn magnetic-btn reveal delay-3" href="booking.html">Inquire Now</a>
       </div>
     </section>
   </main>
@@ -647,8 +1011,52 @@
   </footer>
 
   <script>
-    const menuToggle = document.querySelector('.mobile-menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
+    /* ── PRELOADER ──────────────────────────────────── */
+    const preloader  = document.getElementById('preloader');
+    const preCount   = document.getElementById('preCount');
+    let pct = 0;
+    const preInterval = setInterval(() => {
+      pct += Math.random() * 18 + 6;
+      if (pct >= 100) { pct = 100; clearInterval(preInterval); }
+      if (preCount) preCount.textContent = Math.floor(pct) + '%';
+      if (pct === 100) {
+        setTimeout(() => { if (preloader) preloader.classList.add('hidden'); }, 320);
+      }
+    }, 90);
+
+    /* ── CUSTOM CURSOR ──────────────────────────────── */
+    const dot  = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    let mx = -200, my = -200, rx = -200, ry = -200;
+    const isMobile = () => window.matchMedia('(hover: none)').matches;
+
+    if (!isMobile()) {
+      document.addEventListener('mousemove', (e) => {
+        mx = e.clientX; my = e.clientY;
+        if (dot)  { dot.style.left  = mx + 'px'; dot.style.top  = my + 'px'; }
+      });
+      const loopRing = () => {
+        rx += (mx - rx) * 0.12;
+        ry += (my - ry) * 0.12;
+        if (ring) { ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; }
+        requestAnimationFrame(loopRing);
+      };
+      loopRing();
+      document.addEventListener('mousedown', () => document.body.classList.add('cursor-click'));
+      document.addEventListener('mouseup',   () => document.body.classList.remove('cursor-click'));
+      document.querySelectorAll('a, button, .story, .magnetic-btn').forEach(el => {
+        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+      });
+    } else {
+      if (dot)  dot.style.display  = 'none';
+      if (ring) ring.style.display = 'none';
+      document.body.style.cursor = 'auto';
+    }
+
+    /* ── MOBILE MENU ────────────────────────────────── */
+    const menuToggle  = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu  = document.getElementById('mobile-menu');
     const topNavInner = document.querySelector('.top-nav-inner');
 
     if (menuToggle && mobileMenu && topNavInner) {
@@ -657,27 +1065,18 @@
         mobileMenu.classList.toggle('open', open);
         menuToggle.setAttribute('aria-expanded', String(open));
       };
-
-      menuToggle.addEventListener('click', () => {
-        setMenu(!mobileMenu.classList.contains('open'));
-      });
-
-      mobileMenu.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', () => setMenu(false));
-      });
-
-      document.addEventListener('click', (event) => {
-        if (!topNavInner.contains(event.target)) {
-          setMenu(false);
-        }
-      });
-
-      window.addEventListener('resize', () => {
-        if (window.innerWidth > 620) setMenu(false);
-      });
+      menuToggle.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
+      mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+      document.addEventListener('click', (e) => { if (!topNavInner.contains(e.target)) setMenu(false); });
+      window.addEventListener('resize', () => { if (window.innerWidth > 620) setMenu(false); });
     }
 
-    const slides = Array.from(document.querySelectorAll('.hero-slide'));
+    /* ── HERO SLIDESHOW ─────────────────────────────── */
+    const slides     = Array.from(document.querySelectorAll('.hero-slide'));
+    const hero       = document.querySelector('.hero');
+    const heroContent = document.querySelector('.hero-content');
+    const heroImages  = Array.from(document.querySelectorAll('.hero-slide img'));
+    const scrollMark  = document.querySelector('.hero-scroll-mark');
     let current = 0;
 
     setInterval(() => {
@@ -685,7 +1084,144 @@
       current = (current + 1) % slides.length;
       slides[current].classList.add('active');
     }, 6000);
+
+    /* ── PARALLAX SCROLL ────────────────────────────── */
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!reduceMotion && hero && heroContent) {
+      let ticking = false;
+      const animateHeroOnScroll = () => {
+        const rect     = hero.getBoundingClientRect();
+        const progress = Math.min(Math.max(-rect.top / Math.max(rect.height, 1), 0), 1);
+        const eased    = progress * progress * (3 - 2 * progress);
+
+        hero.style.setProperty('--hero-progress', eased.toFixed(3));
+        heroContent.style.transform = `translate3d(0, ${eased * -96}px, 0) scale(${1 - eased * 0.035})`;
+        heroContent.style.opacity   = String(Math.max(1 - eased * 1.35, 0));
+        heroContent.style.filter    = `blur(${eased * 8}px)`;
+        heroImages.forEach(img => {
+          img.style.transform = `translate3d(0, ${eased * 90}px, 0) scale(${1 + eased * 0.11})`;
+        });
+        if (scrollMark) {
+          scrollMark.style.opacity   = String(Math.max(1 - eased * 2.2, 0));
+          scrollMark.style.transform = `translate3d(-50%, ${eased * 34}px, 0)`;
+        }
+        ticking = false;
+      };
+      const requestHeroAnimation = () => {
+        if (!ticking) { window.requestAnimationFrame(animateHeroOnScroll); ticking = true; }
+      };
+      animateHeroOnScroll();
+      window.addEventListener('scroll', requestHeroAnimation, { passive: true });
+      window.addEventListener('resize', requestHeroAnimation);
+    }
+
+    /* ── FLOATING PARTICLES ─────────────────────────── */
+    const particleContainer = document.getElementById('heroParticles');
+    if (particleContainer && !reduceMotion) {
+      for (let i = 0; i < 22; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 3 + 1;
+        p.style.cssText = [
+          `width:${size}px`, `height:${size}px`,
+          `left:${Math.random() * 100}%`,
+          `animation-duration:${Math.random() * 14 + 10}s`,
+          `animation-delay:${Math.random() * 10}s`,
+          `opacity:0`
+        ].join(';');
+        particleContainer.appendChild(p);
+      }
+    }
+
+    /* ── SCROLL REVEAL (Intersection Observer) ────────── */
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    /* ── SPLIT HEADING WORDS ────────────────────────── */
+    document.querySelectorAll('.split-heading').forEach(heading => {
+      const originalHTML = heading.innerHTML;
+      // split text nodes only, preserve child tags
+      const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+      const textNodes = [];
+      let node;
+      while ((node = walker.nextNode())) textNodes.push(node);
+      textNodes.forEach(tn => {
+        const words = tn.textContent.split(/\s+/).filter(Boolean);
+        const frag  = document.createDocumentFragment();
+        words.forEach((w, i) => {
+          const wrapper = document.createElement('span');
+          wrapper.className = 'split-word';
+          wrapper.innerHTML = `<span class="word-inner">${w}</span>`;
+          frag.appendChild(wrapper);
+          if (i < words.length - 1) frag.appendChild(document.createTextNode(' '));
+        });
+        tn.replaceWith(frag);
+      });
+
+      const wordObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.querySelectorAll('.split-word').forEach((sw, i) => {
+              sw.style.transitionDelay = `${i * 0.1}s`;
+              sw.classList.add('visible');
+            });
+            wordObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      wordObserver.observe(heading);
+    });
+
+    /* ── STATS COUNTER ──────────────────────────────── */
+    const statEls = document.querySelectorAll('.stat-num[data-target]');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el     = entry.target;
+        const target = parseInt(el.dataset.target, 10);
+        const suffix = el.dataset.suffix || '';
+        const dur    = 1600;
+        const start  = performance.now();
+        const tick   = (now) => {
+          const t   = Math.min((now - start) / dur, 1);
+          const eased = t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
+          el.textContent = Math.floor(eased * target) + suffix;
+          if (t < 1) requestAnimationFrame(tick);
+          else el.textContent = target + suffix;
+        };
+        requestAnimationFrame(tick);
+        counterObserver.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    statEls.forEach(el => counterObserver.observe(el));
+
+    /* ── MAGNETIC BUTTONS ───────────────────────────── */
+    if (!isMobile()) {
+      document.querySelectorAll('.magnetic-btn').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+          const rect   = btn.getBoundingClientRect();
+          const cx     = rect.left + rect.width  / 2;
+          const cy     = rect.top  + rect.height / 2;
+          const dx     = (e.clientX - cx) * 0.28;
+          const dy     = (e.clientY - cy) * 0.28;
+          btn.style.transform = `translate(${dx}px, ${dy}px)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transition = 'transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94)';
+          btn.style.transform  = 'translate(0,0)';
+          setTimeout(() => { btn.style.transition = ''; }, 450);
+        });
+      });
+    }
   </script>
 </body>
 </html>
-
