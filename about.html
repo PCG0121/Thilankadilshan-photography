@@ -43,15 +43,17 @@
     .top-nav-inner {
       width: min(1120px, 92vw);
       margin: 0 auto;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      background: linear-gradient(120deg, rgba(18, 17, 15, 0.4), rgba(18, 17, 15, 0.2));
-      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #050505;
+      backdrop-filter: blur(16px);
       border-radius: 999px;
       padding: 0.7rem 1.1rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       color: #fff;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+      transition: all 0.3s ease;
     }
 
     .brand {
@@ -546,6 +548,22 @@
   </style>
 </head>
 <body>
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Cinematic Curtain (preloader wipe exit) -->
+  <div id="preloader-curtain" class="preloader-curtain" aria-hidden="true">
+    <div class="curtain-panel"></div>
+    <div class="curtain-panel"></div>
+    <div class="curtain-panel"></div>
+    <div class="curtain-panel"></div>
+    <div class="curtain-panel"></div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
   <header class="top-nav" aria-label="Primary">
     <div class="top-nav-inner">
       <a class="brand" href="index.html">Thilanka Dilshan Photography</a>
@@ -562,35 +580,35 @@
       </button>
       <a class="nav-action" href="booking.html">Book Now</a>
       <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
-        <a href="index.html">Home</a>
-        <a href="cinematic-frames.html">Cinematic Frames</a>
-        <a class="active" href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a class="mobile-menu-book" href="booking.html">Book Now</a>
+        <a class="mobile-nav-link" href="index.html">Home</a>
+        <a class="mobile-nav-link" href="cinematic-frames.html">Cinematic Frames</a>
+        <a class="active mobile-nav-link" href="about.html">About</a>
+        <a class="mobile-nav-link" href="contact.html">Contact</a>
+        <a class="mobile-menu-book mobile-nav-link" href="booking.html">Book Now</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero" data-section-reveal>
       <div class="container hero-content">
-        <span class="hero-tag">About Thilanka Dilshan Photography</span>
-        <h1>Cinematic Stories That Last Forever</h1>
-        <p>We believe in capturing more than just moments—we capture emotions, light, and the essence of your most meaningful day. Every frame is a work of art, crafted with intention and passion.</p>
+        <span class="hero-tag anim-label">About Thilanka Dilshan Photography</span>
+        <h1 data-line-anim>Cinematic Stories That Last Forever</h1>
+        <p data-words-right>We believe in capturing more than just moments—we capture emotions, light, and the essence of your most meaningful day. Every frame is a work of art, crafted with intention and passion.</p>
       </div>
     </section>
 
-    <section class="bio-section">
+    <section class="bio-section" data-section-reveal>
       <div class="container">
-        <p class="bio-intro">Hey, I'm Thilanka</p>
-        <p class="bio-quote">'It's nothing about the cameras but it's all about the passion'</p>
-        <div class="bio-content">
-          <p>I believe that photography is not an art of living for me, but rather it's what I have been born to live with. I had instincts since my childhood, that I have a tacit capability of converting people's precious moments into remarkable memories.</p>
-          <p>While I was pensive, I realized that I was driven by my destiny to make me recognize my unique and exclusive talents in capturing snaps which are far behind the scope of any ordinary person.</p>
-          <p>When people started adoring my photography, speaking about their uniqueness and rarity and when they were overwhelmed by the way that their significant memories were captured by me and when they realized that I bring out the reminiscence of their best memories, I felt motivated and a self esteem and confidence started building within me.</p>
-          <p>I believe my inner inspiration and my secluded talents paved me paths to convert the images taken by my camera into everlasting memories. I believe that the sky is the limit for me and I have innumerous trends in my mind which are untouched even by the best photographers over the world which I will use to make your untold stories and your rare moments into eternal memories in a simple split second.</p>
-          <p>My attempt is to hit the blue waters, walk an extra mile and always think out of the box to give you a wonderful experience and an exemplary service to my dear valued customers.</p>
-          <p class="bio-signature">— Thilanka Dilshan</p>
+        <p class="bio-intro anim-label">Hey, I'm Thilanka</p>
+        <p class="bio-quote" data-line-anim>'It's nothing about the cameras but it's all about the passion'</p>
+        <div class="bio-content" data-stagger>
+          <p data-stagger-item>I believe that photography is not an art of living for me, but rather it's what I have been born to live with. I had instincts since my childhood, that I have a tacit capability of converting people's precious moments into remarkable memories.</p>
+          <p data-stagger-item>While I was pensive, I realized that I was driven by my destiny to make me recognize my unique and exclusive talents in capturing snaps which are far behind the scope of any ordinary person.</p>
+          <p data-stagger-item>When people started adoring my photography, speaking about their uniqueness and rarity and when they were overwhelmed by the way that their significant memories were captured by me and when they realized that I bring out the reminiscence of their best memories, I felt motivated and a self esteem and confidence started building within me.</p>
+          <p data-stagger-item>I believe my inner inspiration and my secluded talents paved me paths to convert the images taken by my camera into everlasting memories. I believe that the sky is the limit for me and I have innumerous trends in my mind which are untouched even by the best photographers over the world which I will use to make your untold stories and your rare moments into eternal memories in a simple split second.</p>
+          <p data-stagger-item>My attempt is to hit the blue waters, walk an extra mile and always think out of the box to give you a wonderful experience and an exemplary service to my dear valued customers.</p>
+          <p class="bio-signature" data-stagger-item>— Thilanka Dilshan</p>
         </div>
       </div>
     </section>
@@ -598,7 +616,7 @@
     <div class="container stats">
       <div class="stats-grid">
         <div class="stat-item">
-          <h3>200+</h3>
+          <h3>500+</h3>
           <p>Weddings Captured</p>
         </div>
         <div class="stat-item">
@@ -612,11 +630,14 @@
       </div>
     </div>
 
-    <section class="connect">
+    <section class="connect" data-section-reveal>
       <div class="container">
-        <h2>Ready To Tell Your <span>Story?</span></h2>
-        <p>Let's create something beautiful together. Get in touch to discuss your wedding vision and find the perfect package for your celebration.</p>
-        <a class="connect-btn" href="booking.html">Inquire Now</a>
+        <h2 data-line-anim>Ready To Tell Your <span>Story?</span></h2>
+        <p data-words-right>Let's create something beautiful together. Get in touch to discuss your wedding vision and find the perfect package for your celebration.</p>
+        <a class="connect-btn magnetic-btn btn-cover-wrap" href="booking.html">
+          <div class="btn-cover"></div>
+          <span class="btn-cover-label">Inquire Now</span>
+        </a>
       </div>
     </section>
   </main>
@@ -634,6 +655,7 @@
       </div>
     </div>
   </footer>
+  <script src="js/animations.js"></script>
   <script>
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -644,6 +666,23 @@
         menuToggle.classList.toggle('open', open);
         mobileMenu.classList.toggle('open', open);
         menuToggle.setAttribute('aria-expanded', String(open));
+        
+        if (open) {
+          mobileMenu.classList.remove('animating');
+          const links = mobileMenu.querySelectorAll('.mobile-nav-link');
+          links.forEach(link => {
+            link.style.opacity = '0';
+            link.style.transform = 'translateY(24px)';
+          });
+          requestAnimationFrame(() => {
+            mobileMenu.classList.add('animating');
+            links.forEach((link, i) => {
+              link.style.transitionDelay = `${0.15 + i * 0.07}s`;
+            });
+          });
+        } else {
+          mobileMenu.classList.remove('animating');
+        }
       };
 
       menuToggle.addEventListener('click', () => {
@@ -664,6 +703,14 @@
         if (window.innerWidth > 620) setMenu(false);
       });
     }
+
+    // Curtain exit on load for secondary pages
+    window.addEventListener('load', () => {
+      const curtain = document.getElementById('preloader-curtain');
+      if (curtain) {
+        setTimeout(() => curtain.classList.add('exit'), 100);
+      }
+    });
   </script>
 </body>
 </html>

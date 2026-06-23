@@ -2123,6 +2123,22 @@
   </style>
 </head>
 <body>
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Cinematic Curtain (preloader wipe exit) -->
+  <div id="preloader-curtain" class="preloader-curtain" aria-hidden="true">
+    <div class="curtain-panel"></div>
+    <div class="curtain-panel"></div>
+    <div class="curtain-panel"></div>
+    <div class="curtain-panel"></div>
+    <div class="curtain-panel"></div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
   <header class="top-nav" aria-label="Primary">
     <div class="top-nav-inner">
       <a class="brand" href="index.html">Thilanka Dilshan Photography</a>
@@ -2139,11 +2155,11 @@
       </button>
       <a class="nav-action" href="booking.html">Book Now</a>
       <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
-        <a href="index.html">Home</a>
-        <a class="active" href="cinematic-frames.html">Cinematic Frames</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a class="mobile-menu-book" href="booking.html">Book Now</a>
+        <a class="mobile-nav-link" href="index.html">Home</a>
+        <a class="active mobile-nav-link" href="cinematic-frames.html">Cinematic Frames</a>
+        <a class="mobile-nav-link" href="about.html">About</a>
+        <a class="mobile-nav-link" href="contact.html">Contact</a>
+        <a class="mobile-menu-book mobile-nav-link" href="booking.html">Book Now</a>
       </nav>
     </div>
   </header>
@@ -2533,6 +2549,16 @@
         // Performance monitoring not supported
       }
     }
+  </script>
+  <script src="js/animations.js"></script>
+  <script>
+    // Curtain exit on load for secondary pages
+    window.addEventListener('load', () => {
+      const curtain = document.getElementById('preloader-curtain');
+      if (curtain) {
+        setTimeout(() => curtain.classList.add('exit'), 100);
+      }
+    });
   </script>
 </body>
 </html>

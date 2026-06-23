@@ -43,15 +43,17 @@
     .top-nav-inner {
       width: min(1120px, 92vw);
       margin: 0 auto;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      background: linear-gradient(120deg, rgba(18, 17, 15, 0.4), rgba(18, 17, 15, 0.2));
-      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #050505;
+      backdrop-filter: blur(16px);
       border-radius: 999px;
       padding: 0.7rem 1.1rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       color: #fff;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+      transition: all 0.3s ease;
     }
 
     .brand {
@@ -419,6 +421,22 @@
   </style>
 </head>
 <body>
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Cinematic Curtain (preloader wipe exit) -->
+  <div id="preloader-curtain" class="preloader-curtain" aria-hidden="true">
+    <div class="curtain-panel"></div>
+    <div class="curtain-panel"></div>
+    <div class="curtain-panel"></div>
+    <div class="curtain-panel"></div>
+    <div class="curtain-panel"></div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
   <header class="top-nav" aria-label="Primary">
     <div class="top-nav-inner">
       <a class="brand" href="index.html">Thilanka Dilshan Photography</a>
@@ -435,44 +453,44 @@
       </button>
       <a class="nav-action" href="booking.html">Book Now</a>
       <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
-        <a href="index.html">Home</a>
-        <a href="cinematic-frames.html">Cinematic Frames</a>
-        <a href="about.html">About</a>
-        <a class="active" href="contact.html">Contact</a>
-        <a class="mobile-menu-book" href="booking.html">Book Now</a>
+        <a class="mobile-nav-link" href="index.html">Home</a>
+        <a class="mobile-nav-link" href="cinematic-frames.html">Cinematic Frames</a>
+        <a class="mobile-nav-link" href="about.html">About</a>
+        <a class="active mobile-nav-link" href="contact.html">Contact</a>
+        <a class="mobile-menu-book mobile-nav-link" href="booking.html">Book Now</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero" data-section-reveal>
       <div class="container">
-        <h1>Get In Touch</h1>
-        <p>Have questions about our services or ready to book your wedding? We'd love to hear from you. Reach out and let's start creating your cinematic love story.</p>
+        <h1 data-line-anim>Get In Touch</h1>
+        <p data-words-right>Have questions about our services or ready to book your wedding? We'd love to hear from you. Reach out and let's start creating your cinematic love story.</p>
       </div>
     </section>
 
-    <section class="contact-section">
+    <section class="contact-section" data-section-reveal>
       <div class="container contact-grid">
-        <div class="contact-info">
-          <h2>Let's Connect</h2>
+        <div class="contact-info" data-stagger>
+          <h2 data-line-anim>Let's Connect</h2>
           
-          <div class="info-block">
+          <div class="info-block" data-stagger-item>
             <h3>Email</h3>
             <p><a href="mailto:hello@thilankadilshan.com">hello@thilankadilshan.com</a></p>
           </div>
 
-          <div class="info-block">
+          <div class="info-block" data-stagger-item>
             <h3>Phone</h3>
             <p><a href="tel:+94701234567">+94 70 123 4567</a></p>
           </div>
 
-          <div class="info-block">
+          <div class="info-block" data-stagger-item>
             <h3>Location</h3>
             <p>Colombo, Sri Lanka<br />Available for destination weddings worldwide</p>
           </div>
 
-          <div class="info-block">
+          <div class="info-block" data-stagger-item>
             <h3>Follow Us</h3>
             <div style="display: flex; gap: 1rem; margin-top: 0.9rem;">
               <a href="https://www.facebook.com" target="_blank" rel="noopener" style="color: var(--ink); font-size: 1.3rem; transition: color 0.3s ease;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink)'">
@@ -485,33 +503,36 @@
           </div>
         </div>
 
-        <form class="contact-form">
-          <div class="form-group">
+        <form class="contact-form" data-stagger>
+          <div class="form-group" data-stagger-item>
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required>
           </div>
 
-          <div class="form-group">
+          <div class="form-group" data-stagger-item>
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required>
           </div>
 
-          <div class="form-group">
+          <div class="form-group" data-stagger-item>
             <label for="phone">Phone</label>
             <input type="tel" id="phone" name="phone">
           </div>
 
-          <div class="form-group">
+          <div class="form-group" data-stagger-item>
             <label for="wedding-date">Wedding Date</label>
             <input type="date" id="wedding-date" name="wedding-date">
           </div>
 
-          <div class="form-group">
+          <div class="form-group" data-stagger-item>
             <label for="message">Message</label>
             <textarea id="message" name="message" required placeholder="Tell us about your vision..."></textarea>
           </div>
 
-          <button type="submit" class="submit-btn">Send Message</button>
+          <button type="submit" class="submit-btn btn-cover-wrap magnetic-btn" data-stagger-item>
+            <div class="btn-cover"></div>
+            <span class="btn-cover-label">Send Message</span>
+          </button>
         </form>
       </div>
     </section>
@@ -530,6 +551,7 @@
       </div>
     </div>
   </footer>
+  <script src="js/animations.js"></script>
   <script>
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -540,6 +562,23 @@
         menuToggle.classList.toggle('open', open);
         mobileMenu.classList.toggle('open', open);
         menuToggle.setAttribute('aria-expanded', String(open));
+        
+        if (open) {
+          mobileMenu.classList.remove('animating');
+          const links = mobileMenu.querySelectorAll('.mobile-nav-link');
+          links.forEach(link => {
+            link.style.opacity = '0';
+            link.style.transform = 'translateY(24px)';
+          });
+          requestAnimationFrame(() => {
+            mobileMenu.classList.add('animating');
+            links.forEach((link, i) => {
+              link.style.transitionDelay = `${0.15 + i * 0.07}s`;
+            });
+          });
+        } else {
+          mobileMenu.classList.remove('animating');
+        }
       };
 
       menuToggle.addEventListener('click', () => {
@@ -560,6 +599,14 @@
         if (window.innerWidth > 620) setMenu(false);
       });
     }
+
+    // Curtain exit on load for secondary pages
+    window.addEventListener('load', () => {
+      const curtain = document.getElementById('preloader-curtain');
+      if (curtain) {
+        setTimeout(() => curtain.classList.add('exit'), 100);
+      }
+    });
   </script>
 </body>
 </html>

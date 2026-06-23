@@ -230,7 +230,7 @@
     }
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
       text-align: center;
     }
@@ -243,9 +243,24 @@
       font-family: "Cormorant Garamond", serif;
       font-size: clamp(2.4rem, 5vw, 3.8rem);
       line-height: 1;
+      color: var(--gold);
+      font-weight: 700;
+      display: inline;
+      letter-spacing: -0.02em;
+    }
+    .plus {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
       color: var(--ink);
       font-weight: 600;
-      display: block;
+      display: inline;
+    }
+    .percent {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      color: var(--ink);
+      font-weight: 600;
+      display: inline;
     }
     .stat-label {
       font-size: 0.58rem;
@@ -265,11 +280,17 @@
       inset: 0;
       z-index: 2;
       pointer-events: none;
-      opacity: 0.03;
+      opacity: 0.04;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
       background-size: 180px;
       animation: grainMove 0.15s steps(1) infinite;
     }
+
+    .hero::before {
+      box-shadow: inset 0 0 120px 80px rgba(0, 0, 0, 0.3), 
+                  inset 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
     @keyframes grainMove {
       0%  { background-position: 0 0; }
       25% { background-position: -40px 20px; }
@@ -313,15 +334,17 @@
     .top-nav-inner {
       width: min(1120px, 92vw);
       margin: 0 auto;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      background: linear-gradient(120deg, rgba(18, 17, 15, 0.4), rgba(18, 17, 15, 0.2));
-      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #050505;
+      backdrop-filter: blur(16px);
       border-radius: 999px;
       padding: 0.7rem 1.1rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       color: #fff;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+      transition: all 0.3s ease;
     }
 
     .brand {
@@ -444,12 +467,17 @@
       --hero-progress: 0;
     }
 
+    .hero::backdrop {
+      filter: blur(8px);
+    }
+
     .hero-slide {
       position: absolute;
       inset: 0;
       opacity: 0;
-      transform: scale(1.05);
-      transition: opacity 1.4s ease, transform 6s linear;
+      transform: scale(1.08);
+      transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                  transform 7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .hero-slide.active {
@@ -457,20 +485,48 @@
       transform: scale(1);
     }
 
+    .hero-slide.prev {
+      opacity: 0;
+      transform: scale(1.02);
+    }
+
     .hero-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       will-change: transform;
+      animation: imageZoom 8s ease-in-out infinite;
+    }
+
+    .hero-slide.active img {
+      animation: imageZoomActive 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    }
+
+    @keyframes imageZoom {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes imageZoomActive {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+      100% { transform: scale(1); }
     }
 
     .hero::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.75), rgba(0,0,0,0.26), rgba(0,0,0,0.44));
-      opacity: calc(1 - (var(--hero-progress) * 0.22));
+      background: linear-gradient(180deg, 
+        rgba(0,0,0,0.85) 0%, 
+        rgba(0,0,0,0.5) 35%, 
+        rgba(0,0,0,0.3) 60%,
+        rgba(0,0,0,0.5) 100%);
+      opacity: calc(1 - (var(--hero-progress) * 0.18));
       transition: opacity 0.12s linear;
+      z-index: 2;
+      pointer-events: none;
     }
 
     .hero-content {
@@ -479,14 +535,14 @@
       padding: 0 1rem;
       max-width: 980px;
       will-change: transform, opacity, filter;
-      animation: heroTextIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+      animation: heroTextIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
     }
 
     @keyframes heroTextIn {
       from {
         opacity: 0;
-        transform: translateY(34px);
-        filter: blur(10px);
+        transform: translateY(44px);
+        filter: blur(12px);
       }
       to {
         opacity: 1;
@@ -496,12 +552,28 @@
     }
 
     .hero-tag {
-      font-size: 0.65rem;
+      font-size: 0.68rem;
       text-transform: uppercase;
-      letter-spacing: 0.4em;
+      letter-spacing: 0.5em;
       font-weight: 700;
-      color: rgba(255,255,255,0.82);
-      margin-bottom: 1.6rem;
+      color: var(--gold-soft);
+      margin-bottom: 1.8rem;
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      border: 1px solid rgba(201, 155, 82, 0.4);
+      border-radius: 999px;
+      animation: tagSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+    }
+
+    @keyframes tagSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     .hero h1 {
@@ -529,31 +601,50 @@
     .hero-cta {
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      border: 1px solid rgba(255,255,255,0.52);
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(8px);
-      color: #fff;
-      padding: 0.95rem 1.5rem;
+      gap: 0.85rem;
+      border: 1.5px solid rgba(201, 155, 82, 0.6);
+      background: linear-gradient(135deg, rgba(201, 155, 82, 0.15), rgba(201, 155, 82, 0.05));
+      backdrop-filter: blur(12px);
+      color: var(--gold-soft);
+      padding: 1rem 1.8rem;
       text-transform: uppercase;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
       font-weight: 700;
-      transition: all 0.35s ease;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      overflow: hidden;
     }
 
-    .hero-cta:hover { background: #fff; color: #0f0f0f; }
+    .hero-cta::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(201, 155, 82, 0.3), rgba(230, 207, 166, 0.2));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
+    }
+
+    .hero-cta:hover {
+      background: linear-gradient(135deg, rgba(201, 155, 82, 0.3), rgba(201, 155, 82, 0.15));
+      border-color: var(--gold-soft);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(201, 155, 82, 0.25);
+    }
 
     .hero-scroll-mark {
       position: absolute;
       left: 50%;
-      bottom: 1.8rem;
+      bottom: 2.4rem;
       z-index: 2;
-      width: 1px;
-      height: 58px;
-      background: rgba(255,255,255,0.28);
+      width: 1.2px;
+      height: 48px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.1));
       overflow: hidden;
       transform: translateX(-50%);
+      pointer-events: none;
     }
 
     .hero-scroll-mark::after {
@@ -562,15 +653,58 @@
       top: -35%;
       left: 0;
       width: 100%;
-      height: 35%;
-      background: var(--gold-soft);
-      animation: scrollMark 1.8s ease-in-out infinite;
+      height: 40%;
+      background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+      box-shadow: 0 0 8px rgba(201, 155, 82, 0.5);
+      animation: scrollMark 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
     }
 
     @keyframes scrollMark {
-      0% { transform: translateY(0); opacity: 0; }
-      25% { opacity: 1; }
-      100% { transform: translateY(220px); opacity: 0; }
+      0% { transform: translateY(-10px); opacity: 0; }
+      20% { opacity: 1; }
+      85% { opacity: 0.8; }
+      100% { transform: translateY(180px); opacity: 0; }
+    }
+
+    /* ── SLIDE INDICATORS ─────────────────────────── */
+    .hero-indicators {
+      position: absolute;
+      right: 2.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .hero-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(201, 155, 82, 0.5);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+    }
+
+    .hero-indicator.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      width: 12px;
+      height: 12px;
+      box-shadow: 0 0 16px rgba(201, 155, 82, 0.4);
+    }
+
+    .hero-indicator:hover {
+      border-color: var(--gold-soft);
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 980px) {
+      .hero-indicators { display: none; }
     }
 
     .philosophy {
@@ -836,6 +970,52 @@
       .mobile-menu { display: none; }
       .mobile-menu.open { display: flex; }
 
+      .hero {
+        min-height: 85vh;
+        padding: 0;
+        margin: 0;
+      }
+
+      .hero-content {
+        padding: 2rem 1.2rem;
+        max-width: 100%;
+      }
+
+      .hero-tag {
+        font-size: 0.6rem;
+        margin-bottom: 1.2rem;
+        padding: 0.45rem 0.8rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.8rem, 5vw, 2.8rem);
+        line-height: 1;
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+      }
+
+      .hero p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 1.6rem;
+        max-width: 100%;
+      }
+
+      .hero-cta {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.65rem;
+        gap: 0.6rem;
+      }
+
+      .hero-scroll-mark {
+        bottom: 1.2rem;
+        height: 40px;
+      }
+
+      .hero-indicators {
+        display: none;
+      }
+
       .philosophy,
       .featured,
       .testimonial,
@@ -843,9 +1023,84 @@
 
       .stories { grid-template-columns: 1fr; }
     }
+
+    /* ── EXTRA SMALL MOBILE (Below 480px) ─────────── */
+    @media (max-width: 480px) {
+      .hero {
+        min-height: 80vh;
+      }
+
+      .hero-content {
+        padding: 1.8rem 1rem;
+      }
+
+      .hero-tag {
+        font-size: 0.55rem;
+        margin-bottom: 1rem;
+        padding: 0.4rem 0.7rem;
+        letter-spacing: 0.3em;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+        margin-bottom: 0.9rem;
+      }
+
+      .hero p {
+        font-size: 0.85rem;
+        margin-bottom: 1.4rem;
+        line-height: 1.5;
+      }
+
+      .hero-cta {
+        padding: 0.7rem 1rem;
+        font-size: 0.6rem;
+        letter-spacing: 0.15em;
+      }
+
+      .hero-scroll-mark {
+        bottom: 1rem;
+        height: 35px;
+      }
+
+      .marquee-item {
+        font-size: 0.55rem;
+        padding: 0 1.2rem;
+        gap: 1rem;
+      }
+
+      .stat-num {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+      }
+
+      .plus {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+      }
+
+      .percent {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+      }
+
+      .stat-label {
+        font-size: 0.5rem;
+        margin-top: 0.3rem;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Cinematic Curtain (preloader wipe exit) -->
+  <div id="preloader-curtain" class="preloader-curtain" aria-hidden="true">
+    <div class="curtain-panel"></div>
+    <div class="curtain-panel"></div>
+    <div class="curtain-panel"></div>
+    <div class="curtain-panel"></div>
+    <div class="curtain-panel"></div>
+  </div>
 
   <!-- Custom Cursor -->
   <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
@@ -873,23 +1128,30 @@
       </button>
       <a class="nav-action" href="booking.html">Book Now</a>
       <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
-        <a class="active" href="index.html">Home</a>
-        <a href="cinematic-frames.html">Cinematic Frames</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a class="mobile-menu-book" href="booking.html">Book Now</a>
+        <a class="active mobile-nav-link" href="index.html">Home</a>
+        <a class="mobile-nav-link" href="cinematic-frames.html">Cinematic Frames</a>
+        <a class="mobile-nav-link" href="about.html">About</a>
+        <a class="mobile-nav-link" href="contact.html">Contact</a>
+        <a class="mobile-menu-book mobile-nav-link" href="booking.html">Book Now</a>
       </nav>
     </div>
   </header>
 
   <main id="home">
     <section class="hero">
-      <div class="hero-slide active"><img src="assets/images/real_photo_2.jpg" alt="Luxury Wedding Photography 1" /></div>
-      <div class="hero-slide"><img src="assets/images/real_photo_5.jpg" alt="Luxury Wedding Photography 2" /></div>
-      <div class="hero-slide"><img src="assets/images/real_photo_6.jpg" alt="Luxury Wedding Photography 3" /></div>
+      <div class="hero-slide active"><img src="assets/images/Hero images/hero1.JPG" alt="Luxury Wedding Photography 1" /></div>
+      <div class="hero-slide"><img src="assets/images/Hero images/hero2.jpg" alt="Luxury Wedding Photography 2" /></div>
+      <div class="hero-slide"><img src="assets/images/Hero images/hero3.jpg" alt="Luxury Wedding Photography 3" /></div>
 
       <!-- Floating Particles -->
       <div class="hero-particles" id="heroParticles" aria-hidden="true"></div>
+
+      <!-- Slide Indicators -->
+      <div class="hero-indicators" aria-label="Slide indicators">
+        <button class="hero-indicator active" data-slide="0" aria-label="Show slide 1"></button>
+        <button class="hero-indicator" data-slide="1" aria-label="Show slide 2"></button>
+        <button class="hero-indicator" data-slide="2" aria-label="Show slide 3"></button>
+      </div>
 
       <div class="hero-content">
         <span class="hero-tag">Thilanka Dilshan Photography</span>
@@ -918,68 +1180,66 @@
     <div class="stats-bar">
       <div class="container stats-grid">
         <div class="stat-item reveal delay-1">
-          <span class="stat-num stat-gold" data-target="350">0</span>
+          <span class="stat-num stat-gold" data-target="1500">0</span><span class="plus">+</span>
           <span class="stat-label">Weddings Captured</span>
         </div>
         <div class="stat-item reveal delay-2">
-          <span class="stat-num" data-target="8">0</span>
+          <span class="stat-num" data-target="10">0</span><span class="plus">+</span>
           <span class="stat-label">Years of Excellence</span>
         </div>
         <div class="stat-item reveal delay-3">
-          <span class="stat-num stat-gold" data-target="12">0</span>
-          <span class="stat-label">Awards & Recognitions</span>
-        </div>
-        <div class="stat-item reveal delay-4">
-          <span class="stat-num" data-target="100">0</span>
-          <span class="stat-label">% Client Satisfaction</span>
+          <span class="stat-num" data-target="100">0</span><span class="percent">%</span>
+          <span class="stat-label">Client Satisfaction</span>
         </div>
       </div>
     </div>
 
     <section class="philosophy" id="services">
       <div class="container philosophy-grid">
-        <div class="philo-image reveal-left">
+        <div class="philo-image img-reveal" data-reveal-dir="left">
           <img src="assets/images/real_photo_1.jpg" alt="Elegant details" loading="lazy" />
         </div>
-        <div class="philo-copy reveal-right">
-          <span class="label reveal delay-1">Our Philosophy</span>
-          <div class="gold-divider reveal delay-1"></div>
-          <h2 class="split-heading">Timeless Elegance,<br /><span>Unscripted Emotion.</span></h2>
-          <p class="reveal delay-2">
-            We believe your wedding day should be captured exactly as it feels. No forced poses, no artificial
-            moments. Just the raw, beautiful reality of your love story, elevated through a cinematic lens into
-            art you will cherish forever.
-          </p>
+        <div class="philo-copy">
+          <span class="label anim-label" data-delay="0.1">Our Philosophy</span>
+          <div class="gold-divider anim-line" data-delay="0.2"></div>
+          <h2 class="split-heading" data-line-anim>Timeless Elegance,<br /><span>Unscripted Emotion.</span></h2>
+          <p class="reveal delay-2" data-words-right>We believe your wedding day should be captured exactly as it feels. No forced poses, no artificial moments. Just the raw, beautiful reality of your love story, elevated through a cinematic lens into art you will cherish forever.</p>
           <a class="inline-link reveal delay-3" href="cinematic-frames.html">Explore The Gallery</a>
         </div>
       </div>
     </section>
 
-    <section class="featured" id="portfolio">
+    <section class="featured" id="portfolio" data-section-reveal>
       <div class="container">
         <div class="featured-head">
           <div>
-            <span class="label reveal">Cinematic Frames</span>
-            <h2 class="split-heading">Featured <span>Stories.</span></h2>
+            <span class="label anim-label">Cinematic Frames</span>
+            <h2 class="split-heading" data-line-anim>Featured <span>Stories.</span></h2>
           </div>
           <a class="view-link reveal delay-2" href="cinematic-frames.html">View Full Gallery</a>
         </div>
 
-        <div class="stories">
-          <a class="story reveal-scale delay-1" href="cinematic-frames.html">
-            <div class="story-media"><img src="assets/images/637139243_1402427718004949_6666201034993238005_n.jpg" alt="Kandy Grand Wedding" loading="lazy" /></div>
+        <div class="stories" data-stagger>
+          <a class="story" href="cinematic-frames.html" data-stagger-item>
+            <div class="story-media img-reveal" data-reveal-dir="left">
+              <img src="assets/images/637139243_1402427718004949_6666201034993238005_n.jpg" alt="Kandy Grand Wedding" loading="lazy" />
+            </div>
             <h3>Kandy Grand Wedding</h3>
             <p>View Story</p>
           </a>
 
-          <a class="story reveal-scale delay-2" href="cinematic-frames.html">
-            <div class="story-media"><img src="assets/images/648436374_1417814523132935_8874425884483654297_n.jpg" alt="Galle Fort Engagement" loading="lazy" /></div>
+          <a class="story" href="cinematic-frames.html" data-stagger-item>
+            <div class="story-media img-reveal" data-reveal-dir="right">
+              <img src="assets/images/648436374_1417814523132935_8874425884483654297_n.jpg" alt="Galle Fort Engagement" loading="lazy" />
+            </div>
             <h3>Galle Fort Engagement</h3>
             <p>View Story</p>
           </a>
 
-          <a class="story reveal-scale delay-3" href="cinematic-frames.html">
-            <div class="story-media"><img src="assets/images/609026638_1364917278422660_2833140512891095027_n.jpg" alt="Colombo Intimate Elopement" loading="lazy" /></div>
+          <a class="story" href="cinematic-frames.html" data-stagger-item>
+            <div class="story-media img-reveal" data-reveal-dir="left">
+              <img src="assets/images/609026638_1364917278422660_2833140512891095027_n.jpg" alt="Colombo Intimate Elopement" loading="lazy" />
+            </div>
             <h3>Colombo Intimate Elopement</h3>
             <p>View Story</p>
           </a>
@@ -987,11 +1247,14 @@
       </div>
     </section>
 
-    <section class="connect" id="contact">
+    <section class="connect" id="contact" data-section-reveal data-reveal-delay="0.1">
       <div class="container">
-        <h2 class="split-heading">Let's create something <span>beautiful.</span></h2>
-        <p class="reveal delay-2">We are currently accepting bookings for the upcoming wedding season. Reach out to secure your dates.</p>
-        <a class="connect-btn magnetic-btn reveal delay-3" href="booking.html">Inquire Now</a>
+        <h2 class="split-heading" data-line-anim>Let's create something <span>beautiful.</span></h2>
+        <p class="reveal delay-2" data-words-right>We are currently accepting bookings for the upcoming wedding season. Reach out to secure your dates.</p>
+        <a class="connect-btn magnetic-btn reveal delay-3 btn-cover-wrap" href="booking.html">
+          <div class="btn-cover"></div>
+          <span class="btn-cover-label">Inquire Now</span>
+        </a>
       </div>
     </section>
   </main>
@@ -1077,58 +1340,182 @@
     const heroContent = document.querySelector('.hero-content');
     const heroImages  = Array.from(document.querySelectorAll('.hero-slide img'));
     const scrollMark  = document.querySelector('.hero-scroll-mark');
+    const indicators  = document.querySelectorAll('.hero-indicator');
     let current = 0;
+    let slideInterval;
 
-    setInterval(() => {
-      slides[current].classList.remove('active');
+    // Define update indicator function first
+    const updateIndicatorStates = () => {
+      indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === current);
+      });
+    };
+
+    const updateSlides = () => {
+      slides.forEach((slide, index) => {
+        if (index === current) {
+          slide.classList.remove('prev');
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+          if (index === (current - 1 + slides.length) % slides.length) {
+            slide.classList.add('prev');
+          } else {
+            slide.classList.remove('prev');
+          }
+        }
+      });
+      updateIndicatorStates();
+    };
+
+    const nextSlide = () => {
       current = (current + 1) % slides.length;
-      slides[current].classList.add('active');
-    }, 6000);
+      updateSlides();
+    };
 
-    /* ── PARALLAX SCROLL ────────────────────────────── */
+    updateSlides();
+    slideInterval = setInterval(nextSlide, 6500);
+
+    // ── SLIDE INDICATORS ────────────────────────────
+    indicators.forEach((indicator) => {
+      indicator.addEventListener('click', (e) => {
+        const slideIndex = parseInt(e.target.dataset.slide, 10);
+        current = slideIndex;
+        updateSlides();
+        // Reset interval
+        clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 6500);
+      });
+    });
+
+    /* ── SMOOTH SCROLL PARALLAX ────────────────────────── */
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (!reduceMotion && hero && heroContent) {
       let ticking = false;
       const animateHeroOnScroll = () => {
-        const rect     = hero.getBoundingClientRect();
-        const progress = Math.min(Math.max(-rect.top / Math.max(rect.height, 1), 0), 1);
-        const eased    = progress * progress * (3 - 2 * progress);
+        const rect = hero.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // Calculate smooth progress (0 to 1)
+        const heroCenter = rect.top + rect.height / 2;
+        const scrollProgress = Math.max(0, Math.min(1, (windowHeight / 2 - heroCenter) / (windowHeight / 2 + rect.height / 2)));
+        
+        // Smooth easing function
+        const eased = scrollProgress < 0.5 
+          ? 2 * scrollProgress * scrollProgress 
+          : 1 - Math.pow(-2 * scrollProgress + 2, 2) / 2;
 
         hero.style.setProperty('--hero-progress', eased.toFixed(3));
-        heroContent.style.transform = `translate3d(0, ${eased * -96}px, 0) scale(${1 - eased * 0.035})`;
-        heroContent.style.opacity   = String(Math.max(1 - eased * 1.35, 0));
-        heroContent.style.filter    = `blur(${eased * 8}px)`;
-        heroImages.forEach(img => {
-          img.style.transform = `translate3d(0, ${eased * 90}px, 0) scale(${1 + eased * 0.11})`;
+
+        // Smooth content fade and move
+        const contentOpacity = Math.max(0, 1 - scrollProgress * 1.2);
+        const contentTranslate = scrollProgress * 60;
+        const contentBlur = scrollProgress * 6;
+        
+        heroContent.style.transform = `translate3d(0, -${contentTranslate}px, 0)`;
+        heroContent.style.opacity = String(contentOpacity);
+        heroContent.style.filter = `blur(${contentBlur}px)`;
+
+        // Smooth zoom on images
+        heroImages.forEach((img) => {
+          const imageZoom = 1 + scrollProgress * 0.08;
+          img.style.transform = `scale(${imageZoom})`;
         });
+
+        // Smooth scroll mark fade
         if (scrollMark) {
-          scrollMark.style.opacity   = String(Math.max(1 - eased * 2.2, 0));
-          scrollMark.style.transform = `translate3d(-50%, ${eased * 34}px, 0)`;
+          scrollMark.style.opacity = String(Math.max(0, 1 - scrollProgress * 1.8));
+          scrollMark.style.transform = `translate3d(-50%, ${scrollProgress * 24}px, 0)`;
         }
+
         ticking = false;
       };
+
       const requestHeroAnimation = () => {
-        if (!ticking) { window.requestAnimationFrame(animateHeroOnScroll); ticking = true; }
+        if (!ticking) { 
+          window.requestAnimationFrame(animateHeroOnScroll); 
+          ticking = true; 
+        }
       };
+
       animateHeroOnScroll();
       window.addEventListener('scroll', requestHeroAnimation, { passive: true });
       window.addEventListener('resize', requestHeroAnimation);
     }
 
+    /* ── MOUSE PARALLAX ────────────────────────────── */
+    if (!reduceMotion && hero && heroImages) {
+      let mouseX = 0;
+      let mouseY = 0;
+      let targetMouseX = 0;
+      let targetMouseY = 0;
+      let isHovering = false;
+      let tickingMouse = false;
+
+      const animateMouseParallax = () => {
+        // Smooth interpolation
+        mouseX += (targetMouseX - mouseX) * 0.1;
+        mouseY += (targetMouseY - mouseY) * 0.1;
+
+        heroImages.forEach((img, index) => {
+          if (isHovering) {
+            // Create parallax depth effect with staggered movement
+            const depth = (index + 1) * 0.5;
+            const moveX = mouseX * depth * 0.02;
+            const moveY = mouseY * depth * 0.02;
+            const rotation = mouseX * 0.001;
+            img.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) scale(1.02) rotateZ(${rotation}deg)`;
+          } else {
+            img.style.transform = 'translate3d(0, 0, 0) scale(1)';
+          }
+        });
+
+        tickingMouse = false;
+      };
+
+      const requestMouseAnimation = () => {
+        if (!tickingMouse) {
+          window.requestAnimationFrame(animateMouseParallax);
+          tickingMouse = true;
+        }
+      };
+
+      hero.addEventListener('mouseenter', () => {
+        isHovering = true;
+      });
+
+      hero.addEventListener('mouseleave', () => {
+        isHovering = false;
+        targetMouseX = 0;
+        targetMouseY = 0;
+        requestMouseAnimation();
+      });
+
+      hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        targetMouseX = e.clientX - rect.left - rect.width / 2;
+        targetMouseY = e.clientY - rect.top - rect.height / 2;
+        requestMouseAnimation();
+      });
+    }
+
     /* ── FLOATING PARTICLES ─────────────────────────── */
     const particleContainer = document.getElementById('heroParticles');
     if (particleContainer && !reduceMotion) {
-      for (let i = 0; i < 22; i++) {
+      for (let i = 0; i < 28; i++) {
         const p = document.createElement('div');
         p.className = 'particle';
-        const size = Math.random() * 3 + 1;
+        const size = Math.random() * 2.5 + 0.8;
+        const duration = Math.random() * 16 + 12;
+        const delay = Math.random() * 12;
         p.style.cssText = [
           `width:${size}px`, `height:${size}px`,
           `left:${Math.random() * 100}%`,
-          `animation-duration:${Math.random() * 14 + 10}s`,
-          `animation-delay:${Math.random() * 10}s`,
-          `opacity:0`
+          `animation-duration:${duration}s`,
+          `animation-delay:${delay}s`,
+          `opacity:0`,
+          `box-shadow: 0 0 ${size * 2}px rgba(201, 155, 82, 0.6)`
         ].join(';');
         particleContainer.appendChild(p);
       }
@@ -1223,5 +1610,7 @@
       });
     }
   </script>
+  <!-- Animations module (Ceylon Wedlock style) -->
+  <script src="js/animations.js"></script>
 </body>
 </html>

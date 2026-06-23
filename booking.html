@@ -27,6 +27,7 @@
       --ok: #0b9e46;
     }
 
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -38,6 +39,54 @@
       font-family: "Manrope", "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--text);
+    }
+
+    /* Scroll Progress Bar */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), #e6cfa6);
+      z-index: 10001;
+      pointer-events: none;
+      transition: width 0.1s linear;
+    }
+
+    /* Cinematic Curtain (preloader wipe exit) */
+    .preloader-curtain {
+      position: fixed;
+      inset: 0;
+      z-index: 10002;
+      pointer-events: none;
+      display: flex;
+    }
+    .curtain-panel {
+      flex: 1;
+      background: #000;
+      transform-origin: top;
+      transform: scaleY(1);
+      transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+    .curtain-panel:nth-child(1) { transition-delay: 0s; }
+    .curtain-panel:nth-child(2) { transition-delay: 0.07s; }
+    .curtain-panel:nth-child(3) { transition-delay: 0.14s; }
+    .curtain-panel:nth-child(4) { transition-delay: 0.21s; }
+    .curtain-panel:nth-child(5) { transition-delay: 0.28s; }
+    .preloader-curtain.exit .curtain-panel {
+      transform: scaleY(0);
+    }
+
+    /* Navbar stagger on open */
+    .mobile-nav-link {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mobile-menu.animating .mobile-nav-link {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     a {
@@ -54,15 +103,17 @@
     .top-nav-inner {
       width: min(1120px, 92vw);
       margin: 0 auto;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      background: linear-gradient(120deg, rgba(18, 17, 15, 0.4), rgba(18, 17, 15, 0.2));
-      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #050505;
+      backdrop-filter: blur(16px);
       border-radius: 999px;
       padding: 0.7rem 1.1rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       color: #fff;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+      transition: all 0.3s ease;
     }
 
     .brand {
@@ -1165,6 +1216,17 @@
 </head>
 
 <body>
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Cinematic Curtain (preloader wipe exit) -->
+  <div id="preloader-curtain" class="preloader-curtain" aria-hidden="true">
+    <div class="curtain-panel"></div>
+    <div class="curtain-panel"></div>
+    <div class="curtain-panel"></div>
+    <div class="curtain-panel"></div>
+    <div class="curtain-panel"></div>
+  </div>
   <header class="top-nav" aria-label="Primary">
     <div class="top-nav-inner">
       <a class="brand" href="index.html">Thilanka Dilshan Photography</a>
@@ -1182,11 +1244,11 @@
       </button>
       <a class="nav-action" href="booking.html">Book Now</a>
       <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
-        <a href="index.html">Home</a>
-        <a href="cinematic-frames.html">Cinematic Frames</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a class="mobile-menu-book active" href="booking.html">Book Now</a>
+        <a class="mobile-nav-link" href="index.html">Home</a>
+        <a class="mobile-nav-link" href="cinematic-frames.html">Cinematic Frames</a>
+        <a class="mobile-nav-link" href="about.html">About</a>
+        <a class="mobile-nav-link" href="contact.html">Contact</a>
+        <a class="mobile-menu-book mobile-nav-link" href="booking.html">Book Now</a>
       </nav>
     </div>
   </header>
@@ -1455,36 +1517,6 @@
   </section>
 
   <script>
-    const menuToggle = document.querySelector('.mobile-menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const topNavInner = document.querySelector('.top-nav-inner');
-
-    if (menuToggle && mobileMenu && topNavInner) {
-      const setMenu = (open) => {
-        menuToggle.classList.toggle('open', open);
-        mobileMenu.classList.toggle('open', open);
-        menuToggle.setAttribute('aria-expanded', String(open));
-      };
-
-      menuToggle.addEventListener('click', () => {
-        setMenu(!mobileMenu.classList.contains('open'));
-      });
-
-      mobileMenu.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', () => setMenu(false));
-      });
-
-      document.addEventListener('click', (event) => {
-        if (!topNavInner.contains(event.target)) {
-          setMenu(false);
-        }
-      });
-
-      window.addEventListener('resize', () => {
-        if (window.innerWidth > 620) setMenu(false);
-      });
-    }
-
     const steps = Array.from(document.querySelectorAll(".step"));
     const panels = Array.from(document.querySelectorAll(".panel"));
     const packageCards = Array.from(document.querySelectorAll(".package-card"));
@@ -1862,13 +1894,11 @@
 - Vision: ${state.form.vision || "-"}
 `;
 
-      const whatsappNumber = "94715287456"; // Replace with your actual WhatsApp number without the '+'
+      const whatsappNumber = "94715287456";
       const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
-      // Open WhatsApp in a new tab (might be blocked by some browsers)
       const waWindow = window.open(whatsappUrl, '_blank');
 
-      // Update success message with a fallback link
       successCopy.innerHTML = `Thank you, ${name}. We are redirecting you to WhatsApp to send your booking inquiry for ${dateText}.<br><br>
       <span style="display:block; margin-top:15px; font-size:1.1rem;">
         If WhatsApp doesn't open automatically, <br>
@@ -1879,7 +1909,6 @@
       successScreen.classList.add("active");
       window.scrollTo({ top: 0, behavior: "smooth" });
       
-      // Fallback: If window.open failed (e.g. popup blocker), navigate the current window
       if(!waWindow || waWindow.closed || typeof waWindow.closed=='undefined') {
           setTimeout(() => {
               window.location.href = whatsappUrl;
@@ -1934,6 +1963,71 @@
     renderCalendar(activeYear, activeMonth);
     renderYearJump();
     goToStep(1);
+
+    // Scroll Progress Bar logic for standalone booking.html
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      const pb = document.getElementById('scroll-progress');
+      if (pb) pb.style.width = scrolled + '%';
+    });
+
+    // Curtain exit on load
+    window.addEventListener('load', () => {
+      const curtain = document.getElementById('preloader-curtain');
+      if (curtain) {
+        setTimeout(() => curtain.classList.add('exit'), 100);
+      }
+    });
+
+    // Handle Mobile Menu Animation
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const topNavInner = document.querySelector('.top-nav-inner');
+
+    if (menuToggle && mobileMenu && topNavInner) {
+      const setMenu = (open) => {
+        menuToggle.classList.toggle('open', open);
+        mobileMenu.classList.toggle('open', open);
+        menuToggle.setAttribute('aria-expanded', String(open));
+        
+        if (open) {
+          mobileMenu.classList.remove('animating');
+          const links = mobileMenu.querySelectorAll('.mobile-nav-link');
+          links.forEach(link => {
+            link.style.opacity = '0';
+            link.style.transform = 'translateY(24px)';
+          });
+          requestAnimationFrame(() => {
+            mobileMenu.classList.add('animating');
+            links.forEach((link, i) => {
+              link.style.transitionDelay = `${0.15 + i * 0.07}s`;
+            });
+          });
+        } else {
+          mobileMenu.classList.remove('animating');
+        }
+      };
+
+      menuToggle.addEventListener('click', () => {
+        setMenu(!mobileMenu.classList.contains('open'));
+      });
+
+      mobileMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setMenu(false));
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!topNavInner.contains(event.target)) {
+          setMenu(false);
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 620) setMenu(false);
+      });
+    }
   </script>
 </body>
 
