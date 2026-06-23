@@ -1327,3 +1327,377 @@ a.detail-value:hover { color: var(--gold); }
 .parallax-img {
   will-change: transform;
 }
+
+/* ═══════════════════════════════════════════════
+   CEYLON WEDLOCK-INSPIRED ADVANCED ANIMATIONS
+   Added to enhance cinematic feel of the site
+═══════════════════════════════════════════════ */
+
+/* ── SCROLL PROGRESS BAR ─────────────────────── */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  z-index: 10001;
+  pointer-events: none;
+  transition: width 0.1s linear;
+}
+
+/* ── LINE-BY-LINE TEXT REVEAL ─────────────────── */
+[data-line-anim] {
+  visibility: hidden;
+}
+[data-line-anim][data-line-split="true"] {
+  visibility: visible;
+}
+.line-outer {
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+.line-wrap {
+  display: block;
+  transform: translateY(105%);
+  opacity: 0;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.7s ease;
+}
+.line-wrap.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ── CHARACTER CASCADE ────────────────────────── */
+[data-char-anim] {
+  visibility: hidden;
+}
+[data-char-anim].chars-ready {
+  visibility: visible;
+}
+.char-outer {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.char-inner {
+  display: inline-block;
+  transform: translateY(105%);
+  opacity: 0;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.5s ease;
+}
+.char-inner.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ── IMAGE OVERLAY WIPE REVEAL ────────────────── */
+.img-reveal {
+  position: relative;
+  overflow: hidden;
+}
+.img-reveal-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--black);
+  z-index: 2;
+  transform-origin: left center;
+  transform: scaleX(1);
+  transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.img-reveal[data-reveal-dir="right"] .img-reveal-overlay {
+  transform-origin: right center;
+}
+.img-reveal.revealed .img-reveal-overlay {
+  transform: scaleX(0);
+}
+.img-reveal img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+/* ── ENHANCED BUTTON COVER (Ceylon Wedlock style) ─ */
+.btn-cover-wrap {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: none;
+}
+.btn-cover {
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  z-index: 0;
+}
+.btn-cover-wrap:hover .btn-cover {
+  transform: scaleX(1);
+}
+.btn-cover-label {
+  position: relative;
+  z-index: 1;
+  transition: color 0.4s ease;
+}
+.btn-cover-wrap:hover .btn-cover-label {
+  color: var(--black);
+}
+
+/* ── ANIM LINE DRAW ───────────────────────────── */
+.anim-line {
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+
+/* ── SECTION LABEL SLIDE ──────────────────────── */
+.anim-label {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+/* ── WORDS FROM RIGHT ─────────────────────────── */
+.word-from-right {
+  display: inline-block;
+  transform: translateX(80px);
+  opacity: 0;
+}
+
+/* ── NAVBAR STAGGER ON OPEN ───────────────────── */
+.mobile-nav-link {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mobile-menu.animating .mobile-nav-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── CINEMATIC PRELOADER CURTAIN ──────────────── */
+.preloader-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 10002;
+  pointer-events: none;
+  display: flex;
+}
+.curtain-panel {
+  flex: 1;
+  background: var(--black);
+  transform-origin: top;
+  transform: scaleY(1);
+  transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.curtain-panel:nth-child(1) { transition-delay: 0s; }
+.curtain-panel:nth-child(2) { transition-delay: 0.07s; }
+.curtain-panel:nth-child(3) { transition-delay: 0.14s; }
+.curtain-panel:nth-child(4) { transition-delay: 0.21s; }
+.curtain-panel:nth-child(5) { transition-delay: 0.28s; }
+.preloader-curtain.exit .curtain-panel {
+  transform: scaleY(0);
+}
+
+/* ── HERO WORD SPLIT ENHANCED ─────────────────── */
+.hero-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.hero-word-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-word.visible .hero-word-inner {
+  transform: translateY(0);
+}
+.hero-word:nth-child(1) .hero-word-inner { transition-delay: 0.0s; }
+.hero-word:nth-child(2) .hero-word-inner { transition-delay: 0.08s; }
+.hero-word:nth-child(3) .hero-word-inner { transition-delay: 0.16s; }
+.hero-word:nth-child(4) .hero-word-inner { transition-delay: 0.24s; }
+.hero-word:nth-child(5) .hero-word-inner { transition-delay: 0.32s; }
+.hero-word:nth-child(6) .hero-word-inner { transition-delay: 0.40s; }
+.hero-word:nth-child(7) .hero-word-inner { transition-delay: 0.48s; }
+
+/* ── FEATURED ITEM IMAGE ZOOM ON HOVER ────────── */
+.featured-media {
+  overflow: hidden;
+}
+.featured-media img {
+  transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+.featured-item:hover .featured-media img,
+.featured-item--reverse:hover .featured-media img {
+  transform: scale(1.04) !important;
+}
+
+/* ── STORY CARD ENHANCED ──────────────────────── */
+.story {
+  position: relative;
+}
+.story-media::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.story:hover .story-media::before {
+  opacity: 1;
+}
+
+/* ── GRID ITEM REVEAL ─────────────────────────── */
+.grid-item {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.grid-item:hover {
+  transform: translateY(-4px) !important;
+}
+
+/* ── PHILOSOPHY IMAGE REVEAL WRAPPER ─────────── */
+.philo-image.img-reveal {
+  aspect-ratio: 3/4;
+  border-radius: 6px;
+  box-shadow: 0 16px 40px rgba(26, 20, 12, 0.15);
+}
+
+/* ── MARQUEE ENHANCED ─────────────────────────── */
+.marquee-section {
+  position: relative;
+  background: var(--ink, #171512);
+}
+.marquee-section::before,
+.marquee-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+.marquee-section::before {
+  left: 0;
+  background: linear-gradient(to right, var(--ink, #171512), transparent);
+}
+.marquee-section::after {
+  right: 0;
+  background: linear-gradient(to left, var(--ink, #171512), transparent);
+}
+
+/* ── GOLD SHIMMER ON HEADINGS ─────────────────── */
+@keyframes goldShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.shimmer-gold {
+  background: linear-gradient(
+    90deg,
+    var(--gold) 0%,
+    var(--gold-light) 50%,
+    var(--gold) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 3s linear infinite;
+}
+
+/* ── FLOATING DUST PARTICLES (hero) ──────────── */
+@keyframes dustFloat {
+  0%   { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.3; }
+  100% { transform: translate(var(--tx), var(--ty)) rotate(var(--tr)); opacity: 0; }
+}
+.dust-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: dustFloat linear infinite;
+  pointer-events: none;
+}
+
+/* ── SECTION ENTRANCE FADE ────────────────────── */
+[data-section-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-section-reveal].in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── CURSOR TRAIL EFFECT ──────────────────────── */
+.cursor-trail {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  pointer-events: none;
+  z-index: 9997;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+
+/* ── STATS ITEM ENHANCED ──────────────────────── */
+.stat-item {
+  position: relative;
+  overflow: hidden;
+}
+.stat-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 32px;
+  height: 1px;
+  background: var(--gold, #c99b52);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stat-item.visible::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* ── SMOOTH NAV UNDERLINE ─────────────────────── */
+.nav-links a {
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold-soft, #e6cfa6);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* ── RESPONSIVE ADJUSTMENTS ───────────────────── */
+@media (max-width: 768px) {
+  .preloader-curtain { display: none; }
+  [data-parallax] { transform: none !important; }
+}
+

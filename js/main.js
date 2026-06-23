@@ -50,15 +50,35 @@
   }, 50);
 
   function revealSite() {
+    // Step 1: Fade out preloader content
     const tl = gsap.timeline();
     tl.to(preloader, {
       opacity: 0,
-      duration: 0.6,
+      duration: 0.5,
       ease: 'power2.inOut',
-      onComplete: () => { preloader.style.display = 'none'; }
-    }).then(() => {
-      document.body.classList.remove('loading');
-      initHeroAnimations();
+      onComplete: () => {
+        preloader.style.display = 'none';
+        // Step 2: Cinematic curtain wipe
+        const curtain = document.getElementById('preloader-curtain');
+        if (curtain) {
+          curtain.classList.add('exit');
+          setTimeout(() => {
+            curtain.style.display = 'none';
+            document.body.classList.remove('loading');
+            initHeroAnimations();
+            // Step 3: Reveal hero words
+            setTimeout(() => {
+              document.querySelectorAll('.hero-word').forEach(w => w.classList.add('visible'));
+            }, 100);
+          }, 800);
+        } else {
+          document.body.classList.remove('loading');
+          initHeroAnimations();
+          setTimeout(() => {
+            document.querySelectorAll('.hero-word').forEach(w => w.classList.add('visible'));
+          }, 100);
+        }
+      }
     });
   }
 
@@ -133,12 +153,22 @@
     mobileMenu.classList.toggle('open', menuOpen);
     if (menuOpen) {
       lenis.stop();
-      gsap.from('.mobile-nav-link', {
-        y: 40, opacity: 0, stagger: 0.08, duration: 0.6,
-        ease: 'power3.out', delay: 0.2
+      // Ceylon Wedlock style: stagger links in with CSS transitions
+      mobileMenu.classList.remove('animating');
+      const links = mobileMenu.querySelectorAll('.mobile-nav-link');
+      links.forEach(link => {
+        link.style.opacity = '0';
+        link.style.transform = 'translateY(24px)';
+      });
+      requestAnimationFrame(() => {
+        mobileMenu.classList.add('animating');
+        links.forEach((link, i) => {
+          link.style.transitionDelay = `${0.15 + i * 0.07}s`;
+        });
       });
     } else {
       lenis.start();
+      mobileMenu.classList.remove('animating');
     }
   }
 
@@ -427,7 +457,82 @@
   /* Wait for DOM to be ready before scroll animations */
   window.addEventListener('load', () => {
     initScrollAnimations();
+    initSectionReveal();
+    initCursorTrail();
+    initStatUnderlines();
   });
+
+  /* ══════════════════════════════════════
+     SECTION REVEAL (data-section-reveal)
+  ══════════════════════════════════════ */
+  function initSectionReveal() {
+    const els = document.querySelectorAll('[data-section-reveal]');
+    if (!els.length) return;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = parseFloat(entry.target.dataset.revealDelay) || 0;
+          setTimeout(() => entry.target.classList.add('in-view'), delay * 1000);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(el => obs.observe(el));
+  }
+
+  /* ══════════════════════════════════════
+     CURSOR TRAIL
+  ══════════════════════════════════════ */
+  function initCursorTrail() {
+    if (window.matchMedia('(hover: none)').matches) return;
+    const trailCount = 6;
+    const trails = [];
+    for (let i = 0; i < trailCount; i++) {
+      const t = document.createElement('div');
+      t.className = 'cursor-trail';
+      document.body.appendChild(t);
+      trails.push({ el: t, x: 0, y: 0 });
+    }
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX; mouseY = e.clientY;
+    });
+    const animTrail = () => {
+      let lx = mouseX, ly = mouseY;
+      trails.forEach((trail, i) => {
+        const delay = 1 - (i / trailCount) * 0.8;
+        trail.x += (lx - trail.x) * delay * 0.18;
+        trail.y += (ly - trail.y) * delay * 0.18;
+        const scale = 1 - (i / trailCount) * 0.6;
+        trail.el.style.cssText = `
+          left: ${trail.x}px;
+          top: ${trail.y}px;
+          opacity: ${(1 - i / trailCount) * 0.35};
+          transform: translate(-50%, -50%) scale(${scale});
+        `;
+        lx = trail.x; ly = trail.y;
+      });
+      requestAnimationFrame(animTrail);
+    };
+    animTrail();
+  }
+
+  /* ══════════════════════════════════════
+     STAT ITEM UNDERLINES (on scroll)
+  ══════════════════════════════════════ */
+  function initStatUnderlines() {
+    const items = document.querySelectorAll('.stat-item');
+    if (!items.length) return;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    items.forEach(item => obs.observe(item));
+  }
 
   /* ══════════════════════════════════════
      PORTFOLIO FILTER
@@ -525,6 +630,30 @@
     ease: 'power3.inOut',
     delay: 0.3
   });
+
+  /* ══════════════════════════════════════
+     HERO H1 WORD SPLIT
+  ══════════════════════════════════════ */
+  (function splitHeroH1() {
+    const h1 = document.querySelector('.hero h1');
+    if (!h1) return;
+    const walker = document.createTreeWalker(h1, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    let n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    nodes.forEach(textNode => {
+      const words = textNode.textContent.split(/\s+/).filter(Boolean);
+      const frag = document.createDocumentFragment();
+      words.forEach((word, i) => {
+        const outer = document.createElement('span');
+        outer.className = 'hero-word';
+        outer.innerHTML = `<span class="hero-word-inner">${word}</span>`;
+        frag.appendChild(outer);
+        if (i < words.length - 1) frag.appendChild(document.createTextNode(' '));
+      });
+      textNode.replaceWith(frag);
+    });
+  })();
 
   /* ══════════════════════════════════════
      MARQUEE PAUSE ON HOVER

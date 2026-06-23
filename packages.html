@@ -43,15 +43,17 @@
     .top-nav-inner {
       width: min(1120px, 92vw);
       margin: 0 auto;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      background: linear-gradient(120deg, rgba(18, 17, 15, 0.4), rgba(18, 17, 15, 0.2));
-      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #050505;
+      backdrop-filter: blur(16px);
       border-radius: 999px;
       padding: 0.7rem 1.1rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       color: #fff;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+      transition: all 0.3s ease;
     }
 
     .brand {
@@ -760,26 +762,31 @@
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
         <a href="booking.html" style="margin-top: 0.5rem; padding: 0.7rem 0.35rem; border: 1px solid rgba(255,255,255,0.45); border-radius: 8px; text-align: center;">Book Now</a>
+        <a class="mobile-nav-link" href="index.html">Home</a>
+        <a class="mobile-nav-link" href="cinematic-frames.html">Cinematic Frames</a>
+        <a class="mobile-nav-link" href="about.html">About</a>
+        <a class="mobile-nav-link" href="contact.html">Contact</a>
+        <a class="mobile-menu-book mobile-nav-link" href="booking.html">Book Now</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero" data-section-reveal>
       <div class="container hero-content">
-        <span class="hero-tag">Our Packages</span>
-        <h1>Choose Your Perfect Package</h1>
-        <p>Each package is meticulously designed to capture your unique love story with the artistry and professionalism you deserve.</p>
+        <span class="hero-tag" data-stagger-item>Pricing & Offerings</span>
+        <h1 data-line-anim>Investment Packages</h1>
+        <p data-words-right>Carefully curated collections designed to capture every moment of your special day. From intimate gatherings to grand celebrations, we ensure your memories are preserved beautifully.</p>
       </div>
     </section>
 
-    <section class="packages-section">
-      <div class="container">
+    <section class="packages-section" data-section-reveal>
+      <div class="container packages-grid" data-stagger>
         <div class="packages-grid">
           <!-- Gold Package -->
-          <div class="package-card-detailed">
+          <div class="package-card-detailed" data-stagger-item>
             <div class="package-header">
-              <span class="package-badge">CLASSIC</span>
+              <span class="package-badge">Essential</span>
               <h2 class="package-name">Gold</h2>
             </div>
             <div class="package-price">
@@ -806,11 +813,14 @@
               </ul>
             </div>
 
-            <a href="booking.html" class="package-cta">Book Gold</a>
+            <a href="booking.html" class="package-cta btn-cover-wrap magnetic-btn">
+              <div class="btn-cover"></div>
+              <span class="btn-cover-label">Select Gold</span>
+            </a>
           </div>
 
           <!-- Platinum Package -->
-          <div class="package-card-detailed featured">
+          <div class="package-card-detailed featured" data-stagger-item>
             <div class="package-header">
               <span class="package-badge">MOST POPULAR</span>
               <h2 class="package-name">Platinum</h2>
@@ -850,11 +860,14 @@
               </ul>
             </div>
 
-            <a href="booking.html" class="package-cta">Book Platinum</a>
+            <a href="booking.html" class="package-cta btn-cover-wrap magnetic-btn">
+              <div class="btn-cover"></div>
+              <span class="btn-cover-label">Select Platinum</span>
+            </a>
           </div>
 
           <!-- Luxury Package -->
-          <div class="package-card-detailed">
+          <div class="package-card-detailed" data-stagger-item>
             <div class="package-header">
               <span class="package-badge">PREMIUM</span>
               <h2 class="package-name">Luxury</h2>
@@ -909,7 +922,10 @@
               </ul>
             </div>
 
-            <a href="booking.html" class="package-cta">Book Luxury</a>
+            <a href="booking.html" class="package-cta btn-cover-wrap magnetic-btn">
+              <div class="btn-cover"></div>
+              <span class="btn-cover-label">Select Luxury</span>
+            </a>
           </div>
         </div>
       </div>
@@ -999,31 +1015,31 @@
       </div>
     </section>
 
-    <section class="deliverables-section">
+    <section class="deliverables-section" data-section-reveal>
       <div class="container">
-        <h2 class="deliverables-title">What You Receive</h2>
-        <div class="deliverables-grid">
-          <div class="deliverable-card">
+        <h2 class="deliverables-title" data-line-anim>What You Receive</h2>
+        <div class="deliverables-grid" data-stagger>
+          <div class="deliverable-card" data-stagger-item>
             <h3>📸 Professional Albums</h3>
             <p>Beautiful magazine-style albums printed on premium paper with your favorite moments thoughtfully curated. Each spread is designed to tell your wedding story with artistic layouts and high-quality printing. Albums vary from 15-30 spreads depending on your package.</p>
           </div>
-          <div class="deliverable-card">
+          <div class="deliverable-card" data-stagger-item>
             <h3>🖼️ Premium Enlargements</h3>
             <p>Professionally printed large-format enlargements (16x24, 20x30, or custom sizes) perfect for displaying in your home. These museum-quality prints come with protective coating and can be framed for a stunning display of your favorite moments.</p>
           </div>
-          <div class="deliverable-card">
+          <div class="deliverable-card" data-stagger-item>
             <h3>📱 Digital Images</h3>
             <p>Receive all your professionally edited high-resolution images delivered on premium USB and via secure cloud link. Platinum & Luxury packages include 200+ edited images, plus complete unedited RAW files for your personal archival.</p>
           </div>
-          <div class="deliverable-card">
+          <div class="deliverable-card" data-stagger-item>
             <h3>💌 Thank You Cards</h3>
             <p>100 personalized thank you cards printed with your chosen wedding photo. These beautifully designed cards help you express gratitude to your guests in a memorable and personal way.</p>
           </div>
-          <div class="deliverable-card">
+          <div class="deliverable-card" data-stagger-item>
             <h3>🎬 Live Streams & Highlights</h3>
             <p>Mini mobile streams allow family and friends to watch the live action in real-time. Pre-shoot slide shows can be displayed during your wedding reception. Professional highlight videos available as add-ons.</p>
           </div>
-          <div class="deliverable-card">
+          <div class="deliverable-card" data-stagger-item>
             <h3>🎨 Signature Board (Luxury Only)</h3>
             <p>An exclusive 16x24 signature board featuring your most stunning moment. This premium print serves as a beautiful keepsake and can be displayed during reception for guest signatures.</p>
           </div>
@@ -1031,26 +1047,26 @@
       </div>
     </section>
 
-    <section class="process-section">
+    <section class="process-section" data-section-reveal>
       <div class="container">
-        <h2 class="process-title">Our Photography Process</h2>
-        <div class="process-grid">
-          <div class="process-step">
+        <h2 class="process-title" data-line-anim>Our Photography Process</h2>
+        <div class="process-grid" data-stagger>
+          <div class="process-step" data-stagger-item>
             <div class="step-number">1</div>
             <div class="step-title">Consultation</div>
             <div class="step-description">We meet to discuss your vision, preferred locations, timeline, and specific moments you want captured. This allows us to understand your unique story.</div>
           </div>
-          <div class="process-step">
+          <div class="process-step" data-stagger-item>
             <div class="step-number">2</div>
             <div class="step-title">Capture</div>
             <div class="step-description">Our team arrives early, covers all key moments with multiple camera angles, and captures emotional candids alongside formal portraits and details.</div>
           </div>
-          <div class="process-step">
+          <div class="process-step" data-stagger-item>
             <div class="step-number">3</div>
             <div class="step-title">Editing</div>
             <div class="step-description">Every image is carefully edited and color-graded to maintain consistent, cinematic quality. We preserve the authentic emotions while enhancing visual appeal.</div>
           </div>
-          <div class="process-step">
+          <div class="process-step" data-stagger-item>
             <div class="step-number">4</div>
             <div class="step-title">Delivery</div>
             <div class="step-description">Your images are delivered on premium USB, via secure cloud link, and beautifully printed albums arrive at your doorstep. We ensure everything is perfect.</div>
@@ -1059,39 +1075,39 @@
       </div>
     </section>
 
-    <section class="faq-section">
+    <section class="faq-section" data-section-reveal>
       <div class="container">
-        <h2 class="faq-title">Frequently Asked Questions</h2>
-        <div class="faq-grid">
-          <div class="faq-item">
+        <h2 class="faq-title" data-line-anim>Frequently Asked Questions</h2>
+        <div class="faq-grid" data-stagger>
+          <div class="faq-item" data-stagger-item>
             <div class="faq-question">Can I customize the hours or add more coverage?</div>
             <div class="faq-answer">Absolutely! All packages are flexible. We can extend coverage hours, add extra pre-shoots, or include additional events like engagement shoots or reception-only coverage. Contact us for custom pricing.</div>
           </div>
-          <div class="faq-item">
+          <div class="faq-item" data-stagger-item>
             <div class="faq-question">What's included in the unedited images?</div>
             <div class="faq-answer">You receive complete RAW files for all shots taken during your wedding. These are unedited originals that allow you to have backups and make any personal edits you prefer.</div>
           </div>
-          <div class="faq-item">
+          <div class="faq-item" data-stagger-item>
             <div class="faq-question">How long does it take to receive the final images?</div>
             <div class="faq-answer">Typically 4-6 weeks from your wedding date. This allows us to carefully edit every image to our high standards. Urgent requests may be accommodated for an additional fee.</div>
           </div>
-          <div class="faq-item">
+          <div class="faq-item" data-stagger-item>
             <div class="faq-question">Can I order additional prints after delivery?</div>
             <div class="faq-answer">Yes! You'll have lifetime access to reorder prints, additional albums, or enlargements at competitive pricing. We keep all your images archived securely.</div>
           </div>
-          <div class="faq-item">
+          <div class="faq-item" data-stagger-item>
             <div class="faq-question">What's the difference between album spreads?</div>
             <div class="faq-answer">A spread is two facing pages. A 20-spread album contains 40 pages of beautifully designed layouts with your photos. More spreads mean more images and larger format pages.</div>
           </div>
-          <div class="faq-item">
+          <div class="faq-item" data-stagger-item>
             <div class="faq-question">What payment and deposit are required?</div>
             <div class="faq-answer">A 30% advance payment is required to secure your date. The remaining balance is due one week before your wedding. We accept multiple payment methods for your convenience.</div>
           </div>
-          <div class="faq-item">
+          <div class="faq-item" data-stagger-item>
             <div class="faq-question">Do you offer videography or highlight reels?</div>
             <div class="faq-answer">Photography is our specialty, but we can recommend trusted videography partners. Highlight reels and cinematic videos are available as premium add-ons to any package.</div>
           </div>
-          <div class="faq-item">
+          <div class="faq-item" data-stagger-item>
             <div class="faq-question">What if I need additional photographers?</div>
             <div class="faq-answer">Each package includes three-camera coverage. For larger venues or split events, we can add assistant photographers. Large format events receive dedicated crew planning.</div>
           </div>
@@ -1122,6 +1138,7 @@
     </div>
   </footer>
 
+  <script src="js/animations.js"></script>
   <script>
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -1132,6 +1149,23 @@
         menuToggle.classList.toggle('open', open);
         mobileMenu.classList.toggle('open', open);
         menuToggle.setAttribute('aria-expanded', String(open));
+        
+        if (open) {
+          mobileMenu.classList.remove('animating');
+          const links = mobileMenu.querySelectorAll('.mobile-nav-link');
+          links.forEach(link => {
+            link.style.opacity = '0';
+            link.style.transform = 'translateY(24px)';
+          });
+          requestAnimationFrame(() => {
+            mobileMenu.classList.add('animating');
+            links.forEach((link, i) => {
+              link.style.transitionDelay = `${0.15 + i * 0.07}s`;
+            });
+          });
+        } else {
+          mobileMenu.classList.remove('animating');
+        }
       };
 
       menuToggle.addEventListener('click', () => {
@@ -1152,6 +1186,14 @@
         if (window.innerWidth > 620) setMenu(false);
       });
     }
+
+    // Curtain exit on load for secondary pages
+    window.addEventListener('load', () => {
+      const curtain = document.getElementById('preloader-curtain');
+      if (curtain) {
+        setTimeout(() => curtain.classList.add('exit'), 100);
+      }
+    });
   </script>
 </body>
 </html>
