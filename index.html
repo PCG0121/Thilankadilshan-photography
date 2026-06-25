@@ -17,6 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preload" as="image" href="assets/images/optimized/hero1-1920.jpg" imagesrcset="assets/images/optimized/hero1-960.jpg 960w, assets/images/optimized/hero1-1920.jpg 1920w" imagesizes="100vw" />
 
   <style>
     :root {
@@ -806,7 +807,7 @@
       background:
         linear-gradient(90deg, #050505 0%, rgba(5,5,5,0.72) 36%, rgba(5,5,5,0.16) 100%),
         linear-gradient(180deg, rgba(5,5,5,0.22), rgba(5,5,5,0.84)),
-        url("assets/images/real_photo_5.jpg") center / cover no-repeat;
+        url("assets/images/optimized/philosophy-bg-1200.jpg") center / cover no-repeat;
       border-left: 1px solid rgba(201,155,82,0.2);
       opacity: 0.22;
       filter: grayscale(100%) contrast(1.12) brightness(0.78);
@@ -1151,8 +1152,9 @@
       padding: 7rem 0;
       overflow: hidden;
       background:
-        radial-gradient(circle at 78% 10%, rgba(201,155,82,0.12), transparent 24rem),
-        linear-gradient(180deg, #0d0c0b 0%, #060606 100%);
+        radial-gradient(circle at 78% 10%, rgba(201,155,82,0.15), transparent 24rem),
+        linear-gradient(135deg, rgba(201,155,82,0.08) 0 12%, transparent 12% 100%),
+        linear-gradient(180deg, #0d0c0b 0%, #030303 100%);
       border-top: 1px solid rgba(255,255,255,0.08);
     }
 
@@ -1174,58 +1176,121 @@
     }
 
     .featured-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 1rem;
-      margin-bottom: 2.2rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1.5rem;
+      align-items: end;
+      margin-bottom: 2.6rem;
     }
 
     .stories {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      grid-auto-rows: minmax(250px, auto);
+      gap: 1.1rem;
     }
 
     .story {
-      display: block;
+      position: relative;
+      display: grid;
       color: #f4efe7;
+      min-height: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.09);
+      background: #070707;
+      box-shadow: 0 22px 68px rgba(0,0,0,0.36);
+    }
+
+    .story:first-child {
+      grid-row: span 2;
+    }
+
+    .story::before {
+      content: "";
+      position: absolute;
+      inset: 1rem;
+      z-index: 3;
+      border: 1px solid rgba(201,155,82,0.22);
+      opacity: 0;
+      transform: scale(0.97);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+      pointer-events: none;
     }
 
     .story-media {
       position: relative;
-      aspect-ratio: 3/4;
+      grid-area: 1 / 1;
+      min-height: 100%;
+      aspect-ratio: 4/5;
       overflow: hidden;
-      border-radius: 4px;
-      margin-bottom: 1rem;
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 18px 54px rgba(0,0,0,0.36);
+      border-radius: inherit;
     }
 
     .story-media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 1.4s ease;
+      filter: saturate(0.86) contrast(1.08) brightness(0.82);
+      transform: scale(1.02);
+      transition: transform 1.25s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.45s ease;
     }
 
     .story-media::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, transparent 36%, rgba(0,0,0,0.58));
-      opacity: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.24) 40%, rgba(0,0,0,0.84) 100%),
+        linear-gradient(135deg, rgba(201,155,82,0.18), transparent 38%);
+      opacity: 1;
       transition: opacity 0.35s ease;
     }
 
-    .story:hover .story-media img { transform: scale(1.06); }
-    .story:hover .story-media::after { opacity: 1; }
+    .story-copy {
+      position: relative;
+      grid-area: 1 / 1;
+      z-index: 4;
+      align-self: end;
+      padding: clamp(1.15rem, 3vw, 2rem);
+    }
+
+    .story-index {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.8rem;
+      color: var(--gold-soft);
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .story-index::after {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .story:hover::before {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .story:hover .story-media img {
+      transform: scale(1.08);
+      filter: saturate(1) contrast(1.12) brightness(0.9);
+    }
 
     .story h3 {
       font-family: "Cormorant Garamond", serif;
-      font-size: 1.9rem;
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 0.95;
       font-style: italic;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.7rem;
+      color: #fff7ec;
     }
 
     .story p {
@@ -1234,6 +1299,10 @@
       letter-spacing: 0.2em;
       font-weight: 700;
       color: rgba(230,207,166,0.78);
+    }
+
+    .story:not(:first-child) h3 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
     }
 
     .testimonial {
@@ -1379,8 +1448,11 @@
         height: 46%;
         opacity: 0.12;
       }
-      .featured-head { flex-direction: column; align-items: flex-start; }
-      .stories { grid-template-columns: 1fr 1fr; }
+      .featured-head { grid-template-columns: 1fr; align-items: flex-start; }
+      .stories { grid-template-columns: 1fr; }
+      .story,
+      .story:first-child { grid-row: auto; }
+      .story-media { aspect-ratio: 16/11; }
     }
 
     @media (max-width: 620px) {
@@ -1409,6 +1481,10 @@
         min-height: 85vh;
         padding: 0;
         margin: 0;
+      }
+
+      .hero-slide:first-child img {
+        object-position: center center;
       }
 
       .hero-content {
@@ -1496,7 +1572,8 @@
       .service-option h3 { margin-bottom: 0.45rem; }
       .service-progress { margin-top: 0.9rem; }
       .featured-head { margin-bottom: 1.5rem; }
-      .story-media { margin-bottom: 0.7rem; }
+      .story-copy { padding: 1rem; }
+      .story-media { aspect-ratio: 4/5; }
 
       .stories { grid-template-columns: 1fr; }
     }
@@ -1630,9 +1707,9 @@
 
   <main id="home">
     <section class="hero">
-      <div class="hero-slide active"><img src="assets/images/Hero images/hero1.JPG" alt="Luxury Wedding Photography 1" /></div>
-      <div class="hero-slide"><img src="assets/images/Hero images/hero2.jpg" alt="Luxury Wedding Photography 2" /></div>
-      <div class="hero-slide"><img src="assets/images/Hero images/hero3.jpg" alt="Luxury Wedding Photography 3" /></div>
+      <div class="hero-slide active"><img src="assets/images/optimized/hero1-1920.jpg" srcset="assets/images/optimized/hero1-960.jpg 960w, assets/images/optimized/hero1-1920.jpg 1920w" sizes="100vw" alt="Luxury Wedding Photography 1" fetchpriority="high" decoding="async" /></div>
+      <div class="hero-slide"><img src="assets/images/optimized/hero2-1920.jpg" srcset="assets/images/optimized/hero2-960.jpg 960w, assets/images/optimized/hero2-1920.jpg 1920w" sizes="100vw" alt="Luxury Wedding Photography 2" loading="lazy" decoding="async" /></div>
+      <div class="hero-slide"><img src="assets/images/optimized/hero3-1920.jpg" srcset="assets/images/optimized/hero3-960.jpg 960w, assets/images/optimized/hero3-1920.jpg 1920w" sizes="100vw" alt="Luxury Wedding Photography 3" loading="lazy" decoding="async" /></div>
 
       <!-- Floating Particles -->
       <div class="hero-particles" id="heroParticles" aria-hidden="true"></div>
@@ -1688,7 +1765,7 @@
     <section class="philosophy philosophy-intro" id="philosophy">
       <div class="container philosophy-grid">
         <div class="philo-image img-reveal" data-reveal-dir="left">
-          <img src="assets/images/Philosophy.jpg" alt="Our philosophy" loading="lazy" />
+          <img src="assets/images/optimized/philosophy-1200.jpg" srcset="assets/images/optimized/philosophy-700.jpg 700w, assets/images/optimized/philosophy-1200.jpg 1200w" sizes="(max-width: 620px) 88vw, 40vw" alt="Our philosophy" loading="lazy" decoding="async" />
         </div>
         <div class="philo-copy">
           <span class="label anim-label" data-delay="0.1">Our Philosophy</span>
@@ -1714,13 +1791,13 @@
         <div class="services-carousel" data-service-carousel>
           <div class="service-visual reveal-scale">
             <div class="service-slide active" data-service-slide="0">
-              <img src="assets/images/home wedding.jpg" alt="Wedding photography" loading="lazy" />
+              <img src="assets/images/optimized/homewedding-1400.jpg" srcset="assets/images/optimized/homewedding-800.jpg 800w, assets/images/optimized/homewedding-1400.jpg 1400w" sizes="(max-width: 980px) 92vw, 55vw" alt="Wedding photography" loading="lazy" decoding="async" />
             </div>
             <div class="service-slide" data-service-slide="1">
-              <img src="assets/images/real_photo_3.jpg" alt="Engagement photography" loading="lazy" />
+              <img src="assets/images/optimized/engagement-1400.jpg" srcset="assets/images/optimized/engagement-800.jpg 800w, assets/images/optimized/engagement-1400.jpg 1400w" sizes="(max-width: 980px) 92vw, 55vw" alt="Engagement photography" loading="lazy" decoding="async" />
             </div>
             <div class="service-slide" data-service-slide="2">
-              <img src="assets/images/casualshoots.jpg" alt="Casual shoot photography" loading="lazy" />
+              <img src="assets/images/optimized/casualshoots-1400.jpg" srcset="assets/images/optimized/casualshoots-800.jpg 800w, assets/images/optimized/casualshoots-1400.jpg 1400w" sizes="(max-width: 980px) 92vw, 55vw" alt="Casual shoot photography" loading="lazy" decoding="async" />
             </div>
             <div class="service-visual-caption">
               <strong class="service-visual-title" id="serviceVisualTitle">Weddings</strong>
@@ -1769,26 +1846,35 @@
         <div class="stories" data-stagger>
           <a class="story" href="cinematic-frames.html" data-stagger-item>
             <div class="story-media img-reveal" data-reveal-dir="left">
-              <img src="assets/images/637139243_1402427718004949_6666201034993238005_n.jpg" alt="Kandy Grand Wedding" loading="lazy" />
+              <img src="assets/images/optimized/story-kandy-1400.jpg" srcset="assets/images/optimized/story-kandy-800.jpg 800w, assets/images/optimized/story-kandy-1400.jpg 1400w" sizes="(max-width: 980px) 92vw, 56vw" alt="Kandy Grand Wedding" loading="lazy" decoding="async" />
             </div>
-            <h3>Kandy Grand Wedding</h3>
-            <p>View Story</p>
+            <div class="story-copy">
+              <span class="story-index">01</span>
+              <h3>Kandy Grand Wedding</h3>
+              <p>View Story</p>
+            </div>
           </a>
 
           <a class="story" href="cinematic-frames.html" data-stagger-item>
             <div class="story-media img-reveal" data-reveal-dir="right">
-              <img src="assets/images/648436374_1417814523132935_8874425884483654297_n.jpg" alt="Galle Fort Engagement" loading="lazy" />
+              <img src="assets/images/optimized/story-galle-1200.jpg" srcset="assets/images/optimized/story-galle-700.jpg 700w, assets/images/optimized/story-galle-1200.jpg 1200w" sizes="(max-width: 980px) 92vw, 36vw" alt="Galle Fort Engagement" loading="lazy" decoding="async" />
             </div>
-            <h3>Galle Fort Engagement</h3>
-            <p>View Story</p>
+            <div class="story-copy">
+              <span class="story-index">02</span>
+              <h3>Galle Fort Engagement</h3>
+              <p>View Story</p>
+            </div>
           </a>
 
           <a class="story" href="cinematic-frames.html" data-stagger-item>
             <div class="story-media img-reveal" data-reveal-dir="left">
-              <img src="assets/images/609026638_1364917278422660_2833140512891095027_n.jpg" alt="Colombo Intimate Elopement" loading="lazy" />
+              <img src="assets/images/optimized/story-colombo-1200.jpg" srcset="assets/images/optimized/story-colombo-700.jpg 700w, assets/images/optimized/story-colombo-1200.jpg 1200w" sizes="(max-width: 980px) 92vw, 36vw" alt="Colombo Intimate Elopement" loading="lazy" decoding="async" />
             </div>
-            <h3>Colombo Intimate Elopement</h3>
-            <p>View Story</p>
+            <div class="story-copy">
+              <span class="story-index">03</span>
+              <h3>Colombo Intimate Elopement</h3>
+              <p>View Story</p>
+            </div>
           </a>
         </div>
       </div>
