@@ -1261,9 +1261,9 @@
 
     <section class="stepper" aria-label="Booking steps">
       <button class="step active" type="button" data-step="1">Select Date</button>
-      <button class="step" type="button" data-step="2">Choose Package</button>
-      <button class="step" type="button" data-step="3">Add-ons</button>
-      <button class="step" type="button" data-step="4">Your Details</button>
+      <button class="step" type="button" data-step="2">Your Details</button>
+      <button class="step" type="button" data-step="3">Package Details</button>
+      <button class="step" type="button" data-step="4">Add-ons</button>
       <button class="step" type="button" data-step="5">Review & Book</button>
     </section>
 
@@ -1285,7 +1285,7 @@
       </div>
     </section>
 
-    <section class="panel" data-panel="2">
+    <section class="panel" data-panel="3">
       <h2 class="panel-title">Select your package</h2>
       <div class="cards-stack">
         <div class="package-card" tabindex="0" role="button" data-package="gold" data-price="230000" data-label="Gold">
@@ -1365,7 +1365,7 @@
       </div>
     </section>
 
-    <section class="panel" data-panel="3">
+    <section class="panel" data-panel="4">
       <h2 class="panel-title">Enhance your experience</h2>
       <div class="cards-stack">
         <button class="addon-row" type="button" data-addon="pre-shoot" data-price="45000"
@@ -1386,7 +1386,7 @@
       </div>
     </section>
 
-    <section class="panel" data-panel="4">
+    <section class="panel" data-panel="2">
       <h2 class="panel-title">Tell us about you</h2>
       <form class="form-grid" id="detailsForm" novalidate>
         <div class="field">
@@ -1459,24 +1459,24 @@
 
         <div class="summary-row">
           <div>
-            <span class="summary-label">Package</span>
-            <p class="summary-value package" id="summaryPackage">-</p>
+            <span class="summary-label">Event Details</span>
+            <p class="summary-value" id="summaryEventDetails">-</p>
           </div>
           <button class="summary-edit" type="button" data-edit-step="2">Edit</button>
         </div>
 
         <div class="summary-row">
           <div>
-            <span class="summary-label">Add-ons</span>
-            <p class="summary-value" id="summaryAddons">None</p>
+            <span class="summary-label">Package</span>
+            <p class="summary-value package" id="summaryPackage">-</p>
           </div>
           <button class="summary-edit" type="button" data-edit-step="3">Edit</button>
         </div>
 
         <div class="summary-row">
           <div>
-            <span class="summary-label">Event Details</span>
-            <p class="summary-value" id="summaryEventDetails">-</p>
+            <span class="summary-label">Add-ons</span>
+            <p class="summary-value" id="summaryAddons">None</p>
           </div>
           <button class="summary-edit" type="button" data-edit-step="4">Edit</button>
         </div>
@@ -1689,8 +1689,8 @@
 
     function canMoveFromStep(step) {
       if (step === 1) return Boolean(state.selectedDate);
-      if (step === 2) return Boolean(state.selectedPackage);
-      if (step === 4) return detailsValid();
+      if (step === 2) return detailsValid();
+      if (step === 3) return Boolean(state.selectedPackage);
       return true;
     }
 
@@ -1755,15 +1755,15 @@
           ? `Selected: ${state.selectedDate.toLocaleDateString("en-US", { weekday: "short", month: "long", day: "numeric", year: "numeric" })}`
           : "Select your wedding date to continue.";
       } else if (state.currentStep === 2) {
+        statusText.textContent = "Fill in your event and contact details to proceed.";
+      } else if (state.currentStep === 3) {
         statusText.textContent = state.selectedPackage
           ? `Package selected: ${state.selectedPackage}`
           : "Choose a package to continue.";
-      } else if (state.currentStep === 3) {
+      } else if (state.currentStep === 4) {
         statusText.textContent = state.selectedAddons.length > 0
           ? `${state.selectedAddons.length} add-on(s) selected.`
           : "Add-ons are optional. Continue if you are ready.";
-      } else if (state.currentStep === 4) {
-        statusText.textContent = "Fill in your event and contact details to proceed.";
       } else {
         statusText.textContent = "Review your details and submit inquiry.";
       }
@@ -1820,8 +1820,8 @@
           for (let s = state.currentStep; s < target; s += 1) {
             if (!canMoveFromStep(s)) {
               if (s === 1) updateStatus("Please select your wedding date before continuing.");
-              if (s === 2) updateStatus("Please choose a package before continuing.");
-              if (s === 4) updateStatus("Please complete required event and contact details.");
+              if (s === 2) updateStatus("Please complete required event and contact details.");
+              if (s === 3) updateStatus("Please choose a package before continuing.");
               return;
             }
           }
@@ -1834,8 +1834,8 @@
     continueBtn.addEventListener("click", () => {
       if (!canMoveFromStep(state.currentStep)) {
         if (state.currentStep === 1) updateStatus("Please select your wedding date before continuing.");
-        if (state.currentStep === 2) updateStatus("Please choose a package before continuing.");
-        if (state.currentStep === 4) updateStatus("Please complete required event and contact details.");
+        if (state.currentStep === 2) updateStatus("Please complete required event and contact details.");
+        if (state.currentStep === 3) updateStatus("Please choose a package before continuing.");
         return;
       }
 
@@ -1850,9 +1850,15 @@
     });
 
     submitBtn.addEventListener("click", () => {
-      if (!canMoveFromStep(4)) {
+      if (!canMoveFromStep(2)) {
         updateStatus("Please complete required event and contact details.");
-        goToStep(4);
+        goToStep(2);
+        return;
+      }
+
+      if (!canMoveFromStep(3)) {
+        updateStatus("Please choose a package before continuing.");
+        goToStep(3);
         return;
       }
 
