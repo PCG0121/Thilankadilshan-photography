@@ -555,21 +555,29 @@
 
     .card-sub {
       font-size: 1.75rem;
-      font-family: "Cormorant Garamond", Georgia, serif;
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      font-weight: 500;
+      font-variant-numeric: lining-nums tabular-nums;
+      font-feature-settings: "lnum" 1, "tnum" 1;
       color: #384761;
     }
 
     .price {
+      font-family: "Manrope", "Segoe UI", sans-serif;
       color: var(--accent);
       font-weight: 700;
       font-size: clamp(1.35rem, 2vw, 2rem);
       white-space: nowrap;
+      font-variant-numeric: lining-nums tabular-nums;
+      font-feature-settings: "lnum" 1, "tnum" 1;
     }
 
     .addon-title {
-      font-family: "Cormorant Garamond", Georgia, serif;
+      font-family: "Manrope", "Segoe UI", sans-serif;
       font-size: clamp(1.7rem, 2.6vw, 2.2rem);
-      font-weight: 500;
+      font-weight: 600;
+      font-variant-numeric: lining-nums tabular-nums;
+      font-feature-settings: "lnum" 1, "tnum" 1;
     }
 
     .addon-right {
@@ -1288,77 +1296,114 @@
     <section class="panel" data-panel="3">
       <h2 class="panel-title">Select your package</h2>
       <div class="cards-stack">
-        <div class="package-card" tabindex="0" role="button" data-package="gold" data-price="230000" data-label="Gold">
+        <div class="package-card" tabindex="0" role="button" data-package="gold" data-price="200000" data-label="Gold">
           <div class="card-header-flex">
             <div>
               <h3 class="card-title">Gold</h3>
               <p class="card-sub">Wedding only - 10 Hours Coverage</p>
             </div>
-            <span class="price">LKR 230,000</span>
+            <span class="price">LKR 200,000</span>
           </div>
           <details class="package-details">
             <summary class="details-toggle">Click Here to View Details</summary>
             <ul class="package-details-list">
-              <li>10 Hours Coverage</li>
+              <li>Up to 10 Hours Coverage</li>
               <li>Groom & Bride whilst getting ready at the hotel</li>
-              <li>Main photo session at a preferred location</li>
-              <li>15 x 20 / 16x24 / 17x22 Magazine album 20 spreads</li>
-              <li>one 16 x 24 Enlargements</li>
-              <li>100 Thank you cards</li>
-              <li>150 Edited images</li>
-              <li>Three camera coverage</li>
-              <li>Mini Mobile streams</li>
-              <li>All unedited images on USB</li>
+              <li>Main photo session and wedding reception</li>
+              <li>15x20 / 16x24 Magazine Album - 50 Pages</li>
+              <li>Two 16x24 Enlargements</li>
+              <li>200 Edited Images</li>
+              <li>All Unedited Images on USB</li>
             </ul>
           </details>
         </div>
-        <div class="package-card" tabindex="0" role="button" data-package="platinum" data-price="340000"
+        <div class="package-card" tabindex="0" role="button" data-package="platinum" data-price="300000"
           data-label="Platinum">
           <div class="card-header-flex">
             <div>
               <h3 class="card-title">Platinum</h3>
               <p class="card-sub">Pre-Shoot + 10 Hours Coverage</p>
             </div>
-            <span class="price">LKR 340,000</span>
+            <span class="price">LKR 300,000</span>
           </div>
           <details class="package-details">
             <summary class="details-toggle">Click Here to View Details</summary>
             <ul class="package-details-list">
-              <li>Casual Location Pre-Shoot (4 Hours)</li>
-              <li>Groom & Bride Getting Ready</li>
-              <li>Main Photo Session at Preferred Location</li>
-              <li>Magazine Album (15 + 20 Spreads)</li>
-              <li>One 12x18 & Two 16x24 Premium Enlargements</li>
-              <li>100 Personalized Thank You Cards</li>
-              <li>260 Professional Edited Images</li>
-              <li>Three Camera Coverage</li>
-              <li>Mini Mobile Streams & Pre-Shoot Slide Show</li>
-              <li>Complete Unedited Images on USB</li>
+              <li>Preshoot - 4 Hours Coverage</li>
+              <li>Preshoot - Casual photo session at a preferred location</li>
+              <li>Preshoot - 60 Edited Images</li>
+              <li>Preshoot - 12x18 Magazine Album - 20 Pages</li>
+              <li>Wedding - Up to 10 Hours Coverage</li>
+              <li>Wedding - Groom & Bride whilst getting ready at the hotel</li>
+              <li>Wedding - Main photo session and wedding reception</li>
+              <li>Wedding - 15x20 / 16x24 Magazine Album - 50 Pages</li>
+              <li>Wedding - Two 16x24 Enlargements</li>
+              <li>Wedding - 150 Thank You Cards</li>
+              <li>Wedding - 200 Edited Images</li>
+              <li>Wedding - All Unedited Images on USB</li>
             </ul>
           </details>
         </div>
-        <div class="package-card" tabindex="0" role="button" data-package="luxury" data-price="540000"
+        <div class="package-card" tabindex="0" role="button" data-package="luxury" data-price="600000"
           data-label="Luxury">
           <div class="card-header-flex">
             <div>
               <h3 class="card-title">Luxury</h3>
               <p class="card-sub">Pre-Shoot + 10 Hours + Homecoming</p>
             </div>
-            <span class="price">LKR 540,000</span>
+            <span class="price">LKR 600,000</span>
           </div>
           <details class="package-details">
             <summary class="details-toggle">Click Here to View Details</summary>
             <ul class="package-details-list">
-              <li>Pre-Shoot Session (4 Hours)</li>
-              <li>Wedding Day Coverage (10 Hours)</li>
-              <li>Homecoming Coverage (10 Hours)</li>
-              <li>Magazine Albums (15 + 30 + 25 Spreads)</li>
-              <li>One 12x18, Two 16x24, Two 20x30 Enlargements</li>
-              <li>One 16x24 Signature Board</li>
-              <li>200 Personalized Thank You Cards</li>
-              <li>450 Professional Edited Images</li>
-              <li>Three Camera Coverage</li>
-              <li>Complete Unedited Images on USB</li>
+              <li>Preshoot - 4 Hours Coverage</li>
+              <li>Preshoot - Casual photo session at a preferred location</li>
+              <li>Preshoot - Mobile Content Creations</li>
+              <li>Preshoot - 12x18 Magazine Album - 30 Pages</li>
+              <li>Preshoot - One 12x18 Enlargement</li>
+              <li>Preshoot - 60 Edited Images</li>
+              <li>Preshoot - All Unedited Images on USB</li>
+              <li>Wedding - 10 Hours Coverage</li>
+              <li>Wedding - Groom & Bride whilst getting ready at the hotel</li>
+              <li>Wedding - Main photo session and wedding reception</li>
+              <li>Wedding - Mobile Content Creations</li>
+              <li>Wedding - 15x20 / 16x24 Magazine Album - 60 Pages</li>
+              <li>Wedding - Two 20x30 Enlargements</li>
+              <li>Wedding - One 16x24 Signature Board</li>
+              <li>Wedding - 150 Thank You Cards</li>
+              <li>Wedding - 200 Edited Images</li>
+              <li>Wedding - All Unedited Images on USB</li>
+              <li>Homecoming - 10 Hours Coverage</li>
+              <li>Homecoming - Groom & Bride whilst getting ready at the hotel</li>
+              <li>Homecoming - Main photo session and wedding reception</li>
+              <li>Homecoming - Mobile Content Creations</li>
+              <li>Homecoming - 15x20 Magazine Album - 40 Pages</li>
+              <li>Homecoming - Two 16x24 Enlargements</li>
+              <li>Homecoming - 100 Thank You Cards</li>
+              <li>Homecoming - 100 Edited Images</li>
+              <li>Homecoming - All Unedited Images on USB</li>
+            </ul>
+          </details>
+        </div>
+        <div class="package-card" tabindex="0" role="button" data-package="homecoming" data-price="150000"
+          data-label="Homecoming">
+          <div class="card-header-flex">
+            <div>
+              <h3 class="card-title">Homecoming</h3>
+              <p class="card-sub">Homecoming only - 8 Hours Coverage</p>
+            </div>
+            <span class="price">LKR 150,000</span>
+          </div>
+          <details class="package-details">
+            <summary class="details-toggle">Click Here to View Details</summary>
+            <ul class="package-details-list">
+              <li>Up to 8 Hours Coverage</li>
+              <li>Groom & Bride whilst getting ready at the hotel</li>
+              <li>Main photo session and reception</li>
+              <li>12x18 Magazine Album - 30 Pages</li>
+              <li>Two 16x24 Enlargements</li>
+              <li>100 Edited Images</li>
+              <li>All Unedited Images on USB</li>
             </ul>
           </details>
         </div>
@@ -1368,18 +1413,19 @@
     <section class="panel" data-panel="4">
       <h2 class="panel-title">Enhance your experience</h2>
       <div class="cards-stack">
-        <button class="addon-row" type="button" data-addon="pre-shoot" data-price="45000"
-          data-label="Pre-Shoot Session">
-          <h3 class="addon-title">Pre-Shoot Session</h3>
+        <button class="addon-row" type="button" data-addon="thank-you-cards" data-price="15000"
+          data-label="100 Thank You Cards">
+          <h3 class="addon-title">100 Thank You Cards</h3>
           <div class="addon-right">
-            <span class="price">LKR 45,000</span>
+            <span class="price">LKR 15,000</span>
             <span class="check-ui" aria-hidden="true">&#10003;</span>
           </div>
         </button>
-        <button class="addon-row" type="button" data-addon="album" data-price="65000" data-label="Extra Premium Album">
-          <h3 class="addon-title">Extra Premium Album</h3>
+        <button class="addon-row" type="button" data-addon="mobile-content-creations" data-price="30000"
+          data-label="Mobile Content Creations">
+          <h3 class="addon-title">Mobile Content Creations</h3>
           <div class="addon-right">
-            <span class="price">LKR 65,000</span>
+            <span class="price">LKR 30,000</span>
             <span class="check-ui" aria-hidden="true">&#10003;</span>
           </div>
         </button>
