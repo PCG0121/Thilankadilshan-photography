@@ -640,7 +640,7 @@
     }
 
     .explore-link::after {
-      content: "→";
+      content: "â†’";
       position: absolute;
       right: -1.2rem;
       opacity: 0;
@@ -2501,12 +2501,60 @@
 
     .album-head {
       display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.62fr);
-      align-items: end;
+      grid-template-columns: minmax(320px, 0.72fr) minmax(340px, 0.9fr);
+      align-items: center;
       gap: clamp(1.8rem, 5vw, 4rem);
-      margin-bottom: 2.1rem;
+      margin-bottom: 2.25rem;
       position: relative;
       z-index: 1;
+    }
+
+    .album-visual {
+      position: relative;
+      min-height: clamp(320px, 38vw, 470px);
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.13);
+      background: #090807;
+      box-shadow: 0 28px 90px rgba(0,0,0,0.44);
+    }
+
+    .album-visual::before,
+    .album-visual::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .album-visual::before {
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.45)),
+        linear-gradient(135deg, rgba(201,155,82,0.26), transparent 38%);
+    }
+
+    .album-visual::after {
+      inset: 1rem;
+      z-index: 2;
+      border: 1px solid rgba(230,207,166,0.28);
+    }
+
+    .album-visual img {
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      display: block;
+      object-fit: cover;
+      object-position: center 42%;
+      filter: saturate(0.95) contrast(1.08) brightness(0.92);
+      transform: scale(1.02);
+    }
+
+    .album-copy {
+      display: grid;
+      justify-items: start;
+      gap: 1rem;
     }
 
     .album-eyebrow {
@@ -2778,6 +2826,14 @@
     }
 
     @media (max-width: 1080px) {
+      .album-head {
+        grid-template-columns: 1fr;
+      }
+
+      .album-visual {
+        min-height: clamp(280px, 46vw, 430px);
+      }
+
       .album-toolbar {
         grid-template-columns: 1fr;
       }
@@ -2804,6 +2860,10 @@
         grid-template-columns: 1fr;
         gap: 1rem;
         margin-bottom: 1.35rem;
+      }
+
+      .album-visual {
+        display: none;
       }
 
       .album-head h1 {
@@ -2970,9 +3030,14 @@
     <section class="portfolio album-gallery" id="full-gallery">
       <div class="container">
         <div class="album-head">
-          <span class="album-eyebrow">Portfolio</span>
-          <h1>Cinematic Frames Albums</h1>
-          <p>Wedding stories, preshoots, engagements, and destination moments arranged as browseable albums.</p>
+          <figure class="album-visual" aria-hidden="true">
+            <img src="https://res.cloudinary.com/dtj3huhd7/image/upload/v1782540664/DSCF9529_vfndzk.webp" alt="" loading="eager" decoding="async" />
+          </figure>
+          <div class="album-copy">
+            <span class="album-eyebrow">Portfolio</span>
+            <h1>Cinematic Frames Albums</h1>
+            <p>Wedding stories, pre-shoots, engagements, and casual portraits arranged as browseable Cloudinary albums.</p>
+          </div>
         </div>
 
         <div class="album-toolbar" aria-label="Album controls">
@@ -2987,10 +3052,9 @@
             <button class="album-filter" type="button" data-filter="pre">Pre-shoot</button>
             <button class="album-filter" type="button" data-filter="engagement">Engagement</button>
             <button class="album-filter" type="button" data-filter="casual">Casual Shoot</button>
-            <button class="album-filter" type="button" data-filter="destination">Destination</button>
           </div>
 
-          <p class="album-count" id="albumCount">15 albums</p>
+          <p class="album-count" id="albumCount">4 albums</p>
         </div>
 
         <div class="album-grid" id="albumGrid">
@@ -3037,128 +3101,6 @@
               <div><small>5 Frames</small><small>Casual</small></div>
             </div>
           </article>
-
-          <article class="album-card" data-album="Before the Vows" data-category="pre" data-search="before the vows kandy nethmi ashan pre shoot" tabindex="0" role="button" aria-label="Open album: Before the Vows">
-            <figure>
-              <img src="assets/images/optimized/story-galle-1200.jpg" alt="Before the Vows preshoot album cover" loading="lazy" />
-            </figure>
-            <div class="album-card-body">
-              <span>Pre-shoot</span>
-              <h2>Before the Vows</h2>
-              <div><small>14 Frames</small><small>Outdoor</small></div>
-            </div>
-          </article>
-
-          <article class="album-card" data-album="First Dance Reverie" data-category="wedding" data-search="first dance reverie negombo sanduni erik reception wedding" tabindex="0" role="button" aria-label="Open album: First Dance Reverie">
-            <figure>
-              <img src="assets/images/641262210_1408288054085582_3662194477068953645_n.jpg" alt="First Dance Reverie album cover" loading="lazy" />
-            </figure>
-            <div class="album-card-body">
-              <span>Reception</span>
-              <h2>First Dance Reverie</h2>
-              <div><small>21 Frames</small><small>Evening</small></div>
-            </div>
-          </article>
-
-          <article class="album-card" data-album="Heirloom Portraits" data-category="engagement destination" data-search="heirloom portraits ella imesha daniel engagement destination" tabindex="0" role="button" aria-label="Open album: Heirloom Portraits">
-            <figure>
-              <img src="assets/images/639420175_1408288920752162_3455617747218749968_n.jpg" alt="Heirloom Portraits engagement album cover" loading="lazy" />
-            </figure>
-            <div class="album-card-body">
-              <span>Engagement</span>
-              <h2>Heirloom Portraits</h2>
-              <div><small>12 Frames</small><small>Travel</small></div>
-            </div>
-          </article>
-
-          <article class="album-card" data-album="Garden of Light" data-category="wedding destination" data-search="garden of light galle dilini rehan wedding destination" tabindex="0" role="button" aria-label="Open album: Garden of Light">
-            <figure>
-              <img src="assets/images/optimized/story-colombo-1200.jpg" alt="Garden of Light wedding album cover" loading="lazy" />
-            </figure>
-            <div class="album-card-body">
-              <span>Destination</span>
-              <h2>Garden of Light</h2>
-              <div><small>16 Frames</small><small>Garden</small></div>
-            </div>
-          </article>
-
-          <article class="album-card album-card-wide" data-album="Velvet & Vows" data-category="wedding" data-search="velvet vows bentota amaya stefan luxury wedding" tabindex="0" role="button" aria-label="Open album: Velvet & Vows">
-            <figure>
-              <img src="assets/images/637139243_1402427718004949_6666201034993238005_n.jpg" alt="Velvet and Vows luxury wedding album cover" loading="lazy" />
-            </figure>
-            <div class="album-card-body">
-              <span>Luxury Story</span>
-              <h2>Velvet &amp; Vows</h2>
-              <div><small>24 Frames</small><small>Resort</small></div>
-            </div>
-          </article>
-
-          <article class="album-card" data-album="Golden Hour Letters" data-category="pre destination" data-search="golden hour letters nuwara eliya harini joel pre shoot destination" tabindex="0" role="button" aria-label="Open album: Golden Hour Letters">
-            <figure>
-              <img src="assets/images/real_photo_3.jpg" alt="Golden Hour Letters preshoot album cover" loading="lazy" />
-            </figure>
-            <div class="album-card-body">
-              <span>Destination</span>
-              <h2>Golden Hour Letters</h2>
-              <div><small>15 Frames</small><small>Golden Hour</small></div>
-            </div>
-          </article>
-
-          <article class="album-card" data-album="Whispered Promises" data-category="engagement" data-search="whispered promises kurunegala diya shawn engagement" tabindex="0" role="button" aria-label="Open album: Whispered Promises">
-            <figure>
-              <img src="assets/images/609026638_1364917278422660_2833140512891095027_n.jpg" alt="Whispered Promises engagement album cover" loading="lazy" />
-            </figure>
-            <div class="album-card-body">
-              <span>Engagement</span>
-              <h2>Whispered Promises</h2>
-              <div><small>11 Frames</small><small>Portrait</small></div>
-            </div>
-          </article>
-
-          <article class="album-card album-card-wide" data-album="Eternal Vows" data-category="wedding" data-search="eternal vows sri lanka premium collection wedding" tabindex="0" role="button" aria-label="Open album: Eternal Vows">
-            <figure>
-              <img src="assets/images/DSCF0053.jpg" alt="Eternal Vows wedding album cover" loading="lazy" />
-            </figure>
-            <div class="album-card-body">
-              <span>Wedding Day</span>
-              <h2>Eternal Vows</h2>
-              <div><small>19 Frames</small><small>Signature</small></div>
-            </div>
-          </article>
-
-          <article class="album-card" data-album="Whispers of Light" data-category="pre destination" data-search="whispers of light pre shoot location story destination" tabindex="0" role="button" aria-label="Open album: Whispers of Light">
-            <figure>
-              <img src="assets/images/DSCF0058.jpg" alt="Whispers of Light preshoot album cover" loading="lazy" />
-            </figure>
-            <div class="album-card-body">
-              <span>Pre-shoot</span>
-              <h2>Whispers of Light</h2>
-              <div><small>13 Frames</small><small>Editorial</small></div>
-            </div>
-          </article>
-
-          <article class="album-card" data-album="Cinematic Bloom" data-category="wedding" data-search="cinematic bloom wedding day story" tabindex="0" role="button" aria-label="Open album: Cinematic Bloom">
-            <figure>
-              <img src="assets/images/DSCF3071 copy.jpg" alt="Cinematic Bloom wedding album cover" loading="lazy" />
-            </figure>
-            <div class="album-card-body">
-              <span>Wedding Day</span>
-              <h2>Cinematic Bloom</h2>
-              <div><small>17 Frames</small><small>Classic</small></div>
-            </div>
-          </article>
-
-          <article class="album-card" data-album="Golden Drift" data-category="destination" data-search="golden drift destination wedding coverage" tabindex="0" role="button" aria-label="Open album: Golden Drift">
-            <figure>
-              <img src="assets/images/DSCF6858.jpg" alt="Golden Drift destination album cover" loading="lazy" />
-            </figure>
-            <div class="album-card-body">
-              <span>Destination</span>
-              <h2>Golden Drift</h2>
-              <div><small>10 Frames</small><small>Travel</small></div>
-            </div>
-          </article>
-        </div>
 
         <p class="album-empty" id="albumEmpty" hidden>No matching albums found.</p>
       </div>
@@ -3321,86 +3263,6 @@
         'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782543603/DSCF8254_copy_te8dsq.webp',
         'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782543544/image00002_fnlgu2.jpg',
         'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782543606/DSCF8565_copy_txqlal.webp'
-      ],
-      'Before the Vows': [
-        'assets/images/optimized/story-galle-1200.jpg',
-        'assets/images/639420175_1408288920752162_3455617747218749968_n.jpg',
-        'assets/images/real_photo_3.jpg'
-      ],
-      'First Dance Reverie': [
-        'assets/images/641262210_1408288054085582_3662194477068953645_n.jpg',
-        'assets/images/637139243_1402427718004949_6666201034993238005_n.jpg',
-        'assets/images/optimized/story-colombo-1200.jpg'
-      ],
-      'Heirloom Portraits': [
-        'assets/images/639420175_1408288920752162_3455617747218749968_n.jpg',
-        'assets/images/optimized/story-galle-1200.jpg',
-        'assets/images/609026638_1364917278422660_2833140512891095027_n.jpg'
-      ],
-      'Garden of Light': [
-        'assets/images/optimized/story-colombo-1200.jpg',
-        'assets/images/609026638_1364917278422660_2833140512891095027_n.jpg',
-        'assets/images/637139243_1402427718004949_6666201034993238005_n.jpg'
-      ],
-      'Velvet & Vows': [
-        'assets/images/637139243_1402427718004949_6666201034993238005_n.jpg',
-        'assets/images/641262210_1408288054085582_3662194477068953645_n.jpg',
-        'assets/images/optimized/story-kandy-1400.jpg'
-      ],
-      'Golden Hour Letters': [
-        'assets/images/real_photo_3.jpg',
-        'assets/images/optimized/story-galle-1200.jpg',
-        'assets/images/639420175_1408288920752162_3455617747218749968_n.jpg'
-      ],
-      'Whispered Promises': [
-        'assets/images/609026638_1364917278422660_2833140512891095027_n.jpg',
-        'assets/images/optimized/story-colombo-1200.jpg',
-        'assets/images/639420175_1408288920752162_3455617747218749968_n.jpg'
-      ],
-      'Eternal Vows': [
-        'assets/images/DSCF0053.jpg',
-        'assets/images/DSCF0058.jpg',
-        'assets/images/DSCF3071 copy.jpg'
-      ],
-      'Whispers of Light': [
-        'assets/images/DSCF0058.jpg',
-        'assets/images/IMGL6378 copy.jpg',
-        'assets/images/real_photo_3.jpg'
-      ],
-      'Cinematic Bloom': [
-        'assets/images/DSCF3071 copy.jpg',
-        'assets/images/DSCF6858.jpg',
-        'assets/images/DSCF8309 copy.jpg'
-      ],
-      'Golden Drift': [
-        'assets/images/DSCF6858.jpg',
-        'assets/images/16.jpg',
-        'assets/images/image00002.jpeg'
-      ],
-      'Soft Focus': [
-        'assets/images/DSCF8309 copy.jpg',
-        'assets/images/609026638_1364917278422660_2833140512891095027_n.jpg',
-        'assets/images/IMGL9738 copy.jpg'
-      ],
-      'Tender Moments': [
-        'assets/images/image00002.jpeg',
-        'assets/images/DSCF0053.jpg',
-        'assets/images/641262210_1408288054085582_3662194477068953645_n.jpg'
-      ],
-      'Love Unscripted': [
-        'assets/images/IMGL6378 copy.jpg',
-        'assets/images/real_photo_3.jpg',
-        'assets/images/IMGL6090 copy.jpg'
-      ],
-      'Timeless Frame': [
-        'assets/images/IMGL9738 copy.jpg',
-        'assets/images/637139243_1402427718004949_6666201034993238005_n.jpg',
-        'assets/images/DSCF8309 copy.jpg'
-      ],
-      'Pure Elegance': [
-        'assets/images/16.jpg',
-        'assets/images/DSCF0058.jpg',
-        'assets/images/DSCF3071 copy.jpg'
       ]
     };
 
@@ -3585,6 +3447,6 @@
         setTimeout(() => curtain.classList.add('exit'), 100);
       }
     });
-  </script>
+</script>
 </body>
 </html>

@@ -1894,40 +1894,7 @@
           <a class="view-link reveal delay-2" href="cinematic-frames.html">View Full Gallery</a>
         </div>
 
-        <div class="stories" data-stagger>
-          <a class="story" href="cinematic-frames.html" data-stagger-item>
-            <div class="story-media img-reveal" data-reveal-dir="left">
-              <img src="assets/images/optimized/story-kandy-1400.jpg" srcset="assets/images/optimized/story-kandy-800.jpg 800w, assets/images/optimized/story-kandy-1400.jpg 1400w" sizes="(max-width: 980px) 92vw, 56vw" alt="Kandy Grand Wedding" loading="lazy" decoding="async" />
-            </div>
-            <div class="story-copy">
-              <span class="story-index">01</span>
-              <h3>Kandy Grand Wedding</h3>
-              <p>View Story</p>
-            </div>
-          </a>
-
-          <a class="story" href="cinematic-frames.html" data-stagger-item>
-            <div class="story-media img-reveal" data-reveal-dir="right">
-              <img src="assets/images/optimized/story-galle-1200.jpg" srcset="assets/images/optimized/story-galle-700.jpg 700w, assets/images/optimized/story-galle-1200.jpg 1200w" sizes="(max-width: 980px) 92vw, 36vw" alt="Galle Fort Engagement" loading="lazy" decoding="async" />
-            </div>
-            <div class="story-copy">
-              <span class="story-index">02</span>
-              <h3>Galle Fort Engagement</h3>
-              <p>View Story</p>
-            </div>
-          </a>
-
-          <a class="story" href="cinematic-frames.html" data-stagger-item>
-            <div class="story-media img-reveal" data-reveal-dir="left">
-              <img src="assets/images/optimized/story-colombo-1200.jpg" srcset="assets/images/optimized/story-colombo-700.jpg 700w, assets/images/optimized/story-colombo-1200.jpg 1200w" sizes="(max-width: 980px) 92vw, 36vw" alt="Colombo Intimate Elopement" loading="lazy" decoding="async" />
-            </div>
-            <div class="story-copy">
-              <span class="story-index">03</span>
-              <h3>Colombo Intimate Elopement</h3>
-              <p>View Story</p>
-            </div>
-          </a>
-        </div>
+        <div class="stories" id="featuredStories" data-stagger aria-live="polite"></div>
       </div>
     </section>
 
@@ -2002,6 +1969,93 @@
     }
 
     /* ── MOBILE MENU ────────────────────────────────── */
+    // Featured stories are pulled from the Cinematic Frames album cards.
+    const featuredStories = document.getElementById('featuredStories');
+    const fallbackAlbums = [
+      {
+        title: 'Achini & Subash',
+        category: 'Wedding Day',
+        image: 'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782540664/DSCF9529_vfndzk.webp'
+      },
+      {
+        title: 'Amaya & Vinu',
+        category: 'Engagement',
+        image: 'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782541757/IMGL1154_copy_zppw8p.webp'
+      },
+      {
+        title: 'Chamika & Tharaka',
+        category: 'Pre-shoot',
+        image: 'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782542742/IMGL6756_mmlsin.webp'
+      },
+      {
+        title: 'Anna',
+        category: 'Casual Shoot',
+        image: 'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782543601/DSCF8673_copy_luzqat.webp'
+      }
+    ];
+
+    function buildFeaturedStory(album, index) {
+      const link = document.createElement('a');
+      link.className = 'story';
+      link.href = 'cinematic-frames.html#full-gallery';
+      link.setAttribute('data-stagger-item', '');
+
+      const media = document.createElement('div');
+      media.className = 'story-media img-reveal';
+      media.dataset.revealDir = index % 2 === 0 ? 'left' : 'right';
+
+      const image = document.createElement('img');
+      image.src = album.image;
+      image.alt = `${album.title} album cover`;
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      media.appendChild(image);
+
+      const copy = document.createElement('div');
+      copy.className = 'story-copy';
+      copy.innerHTML = `
+        <span class="story-index">${String(index + 1).padStart(2, '0')}</span>
+        <h3>${album.title}</h3>
+        <p>${album.category || 'View Album'}</p>
+      `;
+
+      link.append(media, copy);
+
+      if (!isMobile()) {
+        link.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+        link.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+      }
+
+      return link;
+    }
+
+    function renderFeaturedStories(albums) {
+      if (!featuredStories) return;
+      featuredStories.replaceChildren(...albums.map(buildFeaturedStory));
+    }
+
+    async function loadFeaturedStories() {
+      if (!featuredStories) return;
+
+      try {
+        const response = await fetch('cinematic-frames.html', { cache: 'no-cache' });
+        if (!response.ok) throw new Error('Album page unavailable');
+        const albumHtml = await response.text();
+        const doc = new DOMParser().parseFromString(albumHtml, 'text/html');
+        const albums = Array.from(doc.querySelectorAll('.album-card')).map((card) => ({
+          title: card.dataset.album || card.querySelector('h2')?.textContent?.trim() || 'Album',
+          category: card.querySelector('.album-card-body span')?.textContent?.trim() || 'View Album',
+          image: card.querySelector('img')?.getAttribute('src') || ''
+        })).filter((album) => album.image);
+
+        renderFeaturedStories(albums.length ? albums : fallbackAlbums);
+      } catch (error) {
+        renderFeaturedStories(fallbackAlbums);
+      }
+    }
+
+    loadFeaturedStories();
+
     const menuToggle  = document.querySelector('.mobile-menu-toggle');
     const mobileMenu  = document.getElementById('mobile-menu');
     const topNavInner = document.querySelector('.top-nav-inner');
