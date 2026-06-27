@@ -1969,30 +1969,71 @@
     }
 
     /* ── MOBILE MENU ────────────────────────────────── */
-    // Featured stories are pulled from the Cinematic Frames album cards.
+    // Featured stories are pulled from the Cinematic Frames album data.
     const featuredStories = document.getElementById('featuredStories');
     const fallbackAlbums = [
       {
-        title: 'Achini & Subash',
+        title: 'Chamiee & Eranda',
         category: 'Wedding Day',
-        image: 'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782540664/DSCF9529_vfndzk.webp'
+        image: 'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782561545/IMGL4836_td8mpe.webp'
       },
       {
-        title: 'Amaya & Vinu',
-        category: 'Engagement',
-        image: 'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782541757/IMGL1154_copy_zppw8p.webp'
+        title: 'Gayasahan & Kavindi',
+        category: 'Wedding Day',
+        image: 'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782560258/DSCF3744_nsln1b.webp'
       },
       {
-        title: 'Chamika & Tharaka',
+        title: 'Monarl & Sheanie',
         category: 'Pre-shoot',
-        image: 'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782542742/IMGL6756_mmlsin.webp'
+        image: 'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782561147/DSCF3335_copy_luyqfe.webp'
       },
       {
-        title: 'Anna',
-        category: 'Casual Shoot',
-        image: 'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782543601/DSCF8673_copy_luzqat.webp'
+        title: 'Yasindi & Sanjaya',
+        category: 'Pre-shoot',
+        image: 'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782559773/DSCF9627_copy_ieegx6.webp'
       }
     ];
+
+    function cloudinaryFeatureUrl(src, width = 1100) {
+      if (!src || !src.includes('/image/upload/')) return src || '';
+      return src.replace(/\/image\/upload\/(?:[^/]+\/)?(v\d+\/)/, `/image/upload/f_auto,q_auto:best,w_${width}/$1`);
+    }
+
+    function getCloudinaryVersion(src) {
+      const match = String(src || '').match(/\/v(\d+)\//);
+      return match ? Number(match[1]) : 0;
+    }
+
+    function getAlbumSortValue(album) {
+      const imageVersions = (album.images || []).map(getCloudinaryVersion);
+      return Math.max(getCloudinaryVersion(album.cover), ...imageVersions, 0);
+    }
+
+    function albumHasCategory(album, category) {
+      return String(album.category || '').split(' ').includes(category);
+    }
+
+    function getOrderedAlbums(albumData) {
+      const newestAlbums = [...albumData]
+        .filter((album) => Array.isArray(album.images) && album.images.length > 0)
+        .sort((a, b) => getAlbumSortValue(b) - getAlbumSortValue(a));
+      const latestWeddingAlbums = newestAlbums.filter((album) => albumHasCategory(album, 'wedding')).slice(0, 3);
+      const latestWeddingTitles = new Set(latestWeddingAlbums.map((album) => album.title));
+      const otherCategoryAlbums = newestAlbums.filter((album) => !albumHasCategory(album, 'wedding'));
+      const olderWeddingAlbums = newestAlbums.filter((album) => albumHasCategory(album, 'wedding') && !latestWeddingTitles.has(album.title));
+
+      return [...latestWeddingAlbums, ...otherCategoryAlbums, ...olderWeddingAlbums];
+    }
+
+    function extractAlbumData(albumHtml) {
+      const match = albumHtml.match(/const albumData = \[([\s\S]*?)\n    \];/);
+      if (!match) return [];
+      try {
+        return Function(`"use strict"; return [${match[1]}];`)();
+      } catch (error) {
+        return [];
+      }
+    }
 
     function buildFeaturedStory(album, index) {
       const link = document.createElement('a');
@@ -2005,7 +2046,7 @@
       media.dataset.revealDir = index % 2 === 0 ? 'left' : 'right';
 
       const image = document.createElement('img');
-      image.src = album.image;
+      image.src = cloudinaryFeatureUrl(album.image);
       image.alt = `${album.title} album cover`;
       image.loading = 'lazy';
       image.decoding = 'async';
@@ -2041,12 +2082,14 @@
         const response = await fetch('cinematic-frames.html', { cache: 'no-cache' });
         if (!response.ok) throw new Error('Album page unavailable');
         const albumHtml = await response.text();
-        const doc = new DOMParser().parseFromString(albumHtml, 'text/html');
-        const albums = Array.from(doc.querySelectorAll('.album-card')).map((card) => ({
-          title: card.dataset.album || card.querySelector('h2')?.textContent?.trim() || 'Album',
-          category: card.querySelector('.album-card-body span')?.textContent?.trim() || 'View Album',
-          image: card.querySelector('img')?.getAttribute('src') || ''
-        })).filter((album) => album.image);
+        const albums = getOrderedAlbums(extractAlbumData(albumHtml))
+          .slice(0, 4)
+          .map((album) => ({
+            title: album.title || 'Album',
+            category: album.eyebrow || album.categoryLabel || 'View Album',
+            image: album.cover || album.images?.[0] || ''
+          }))
+          .filter((album) => album.image);
 
         renderFeaturedStories(albums.length ? albums : fallbackAlbums);
       } catch (error) {
