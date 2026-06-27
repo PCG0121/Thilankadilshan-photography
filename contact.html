@@ -4,439 +4,514 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact | Thilanka Dilshan Photography</title>
-  <meta name="description" content="Get in touch with Thilanka Dilshan Photography to discuss your wedding photography needs." />
+  <meta name="description" content="Contact Thilanka Dilshan Photography to discuss wedding photography packages, availability, and bookings." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preload" as="image" href="assets/images/optimized/story-colombo-1200.jpg" />
 
   <style>
     :root {
-      --bg: #fdfcfb;
-      --ink: #171512;
-      --muted: #6f675e;
+      --bg: #050505;
+      --panel: #0d0c0b;
+      --panel-soft: #15120f;
+      --ink: #f4efe7;
+      --muted: rgba(244, 239, 231, 0.64);
+      --muted-strong: rgba(244, 239, 231, 0.78);
       --gold: #c99b52;
       --gold-soft: #e6cfa6;
-      --line: rgba(23, 21, 18, 0.13);
+      --line: rgba(255, 255, 255, 0.11);
+      --line-gold: rgba(201, 155, 82, 0.34);
+      --shadow: 0 24px 72px rgba(0, 0, 0, 0.42);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
+    html { scroll-behavior: smooth; }
     body {
-      font-family: "Manrope", "Segoe UI", sans-serif;
-      background: var(--bg);
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 15% 8%, rgba(201, 155, 82, 0.16), transparent 26rem),
+        radial-gradient(circle at 90% 34%, rgba(230, 207, 166, 0.07), transparent 24rem),
+        linear-gradient(180deg, #050505 0%, #0b0a09 48%, #050505 100%);
       color: var(--ink);
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      line-height: 1.65;
       overflow-x: hidden;
     }
-
-    a { text-decoration: none; color: inherit; }
-
-    .container { width: min(1180px, 92vw); margin-inline: auto; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    button { cursor: pointer; }
+    .container { width: min(1120px, 92vw); margin-inline: auto; }
 
     .top-nav {
       position: fixed;
-      inset: 1.1rem 0 auto;
+      inset: 1rem 0 auto;
       z-index: 50;
     }
-
     .top-nav-inner {
+      position: relative;
       width: min(1120px, 92vw);
       margin: 0 auto;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: #050505;
-      backdrop-filter: blur(16px);
-      border-radius: 999px;
-      padding: 0.7rem 1.1rem;
+      padding: 0.68rem 1rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      background: rgba(5, 5, 5, 0.91);
       color: #fff;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-      transition: all 0.3s ease;
+      box-shadow: 0 16px 42px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(18px);
     }
-
     .brand {
+      color: var(--gold-soft);
       font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.08rem, 1.35vw, 1.32rem);
+      font-weight: 600;
       letter-spacing: 0.03em;
-      font-size: clamp(1.1rem, 1.4vw, 1.35rem);
       white-space: nowrap;
-      color: #c99b52;
-      transition: color 0.3s ease;
     }
-
-    .brand:hover {
-      color: #e6cfa6;
-    }
-
     .nav-links {
       display: flex;
-      gap: 1.2rem;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.9);
+      gap: 1.15rem;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.88rem;
     }
-
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.15rem;
+      transition: color 0.25s ease;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.1rem;
+      width: 0;
+      height: 1px;
+      background: var(--gold-soft);
+      transition: width 0.28s ease;
+    }
     .nav-links a:hover,
     .nav-links a.active { color: var(--gold-soft); }
-
+    .nav-links a:hover::after,
+    .nav-links a.active::after { width: 100%; }
     .nav-action {
-      border: 1px solid rgba(255, 255, 255, 0.45);
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.42);
       border-radius: 999px;
-      padding: 0.45rem 1rem;
-      font-size: 0.8rem;
-      letter-spacing: 0.05em;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      transition: all 0.3s ease;
+      transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
     }
-
-    .nav-action:hover { background: var(--gold); border-color: var(--gold); color: #1a140e; }
-
+    .nav-action:hover {
+      background: var(--gold-soft);
+      border-color: var(--gold-soft);
+      color: #171512;
+    }
     .mobile-menu-toggle {
       display: none;
       width: 42px;
       height: 42px;
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      border-radius: 999px;
-      background: transparent;
       align-items: center;
       justify-content: center;
       flex-direction: column;
       gap: 4px;
-      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      border-radius: 999px;
+      background: transparent;
     }
-
     .mobile-menu-toggle span {
       width: 16px;
       height: 1.7px;
-      background: #fff;
       border-radius: 999px;
-      transition: transform 0.25s ease, opacity 0.25s ease;
+      background: #fff;
+      transition: transform 0.24s ease, opacity 0.24s ease;
     }
-
-    .mobile-menu-toggle.open span:nth-child(1) {
-      transform: translateY(5.7px) rotate(45deg);
-    }
-
-    .mobile-menu-toggle.open span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .mobile-menu-toggle.open span:nth-child(3) {
-      transform: translateY(-5.7px) rotate(-45deg);
-    }
-
+    .mobile-menu-toggle.open span:nth-child(1) { transform: translateY(5.7px) rotate(45deg); }
+    .mobile-menu-toggle.open span:nth-child(2) { opacity: 0; }
+    .mobile-menu-toggle.open span:nth-child(3) { transform: translateY(-5.7px) rotate(-45deg); }
     .mobile-menu {
       display: none;
       position: absolute;
       top: calc(100% + 0.55rem);
       left: 0;
       right: 0;
-      background: linear-gradient(160deg, rgba(18, 17, 15, 0.96), rgba(18, 17, 15, 0.88));
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 20px;
       padding: 1rem;
-      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 20px;
+      background: rgba(15, 14, 13, 0.96);
+      box-shadow: 0 20px 46px rgba(0, 0, 0, 0.26);
       flex-direction: column;
-      gap: 0.35rem;
-      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22);
+      gap: 0.2rem;
     }
-
     .mobile-menu.open { display: flex; }
-
     .mobile-menu a {
-      display: block;
-      font-size: 0.9rem;
-      letter-spacing: 0.04em;
-      padding: 0.65rem 0.35rem;
-      color: rgba(255, 255, 255, 0.94);
+      padding: 0.72rem 0.4rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.92rem;
+    }
+    .mobile-menu a.active { color: var(--gold-soft); }
+    .mobile-menu-book {
+      margin-top: 0.3rem;
+      border: 1px solid rgba(255, 255, 255, 0.38);
+      border-radius: 999px;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
     }
 
-    .mobile-menu a.active { color: var(--gold-soft); }
+    main { padding-top: 7rem; }
 
-    .mobile-menu-book {
-      margin-top: 0.2rem;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      border-radius: 999px;
-      padding: 0.7rem 1rem;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
+    .contact-hero {
+      padding: 3rem 0 2.5rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-row {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: clamp(1.2rem, 4vw, 4rem);
+      align-items: end;
+    }
+    .page-label {
+      color: var(--gold);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
     }
-
-    .hero {
-      padding-top: 8rem;
-      padding-bottom: 3.5rem;
-      text-align: center;
-    }
-
-    .hero h1 {
+    .hero-copy h1 {
+      max-width: 920px;
       font-family: "Cormorant Garamond", serif;
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      line-height: 0.95;
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
+      font-size: clamp(2.8rem, 6vw, 5.8rem);
       font-weight: 600;
+      line-height: 0.96;
+      letter-spacing: 0;
+      text-wrap: balance;
     }
-
-    .hero p {
-      font-size: 1.05rem;
-      color: var(--muted);
+    .hero-copy h1 em {
+      color: var(--gold-soft);
+      font-style: italic;
+      font-weight: 500;
+    }
+    .hero-copy p {
       max-width: 720px;
-      margin-inline: auto;
+      margin-top: 1.1rem;
+      color: var(--muted-strong);
+      font-size: clamp(1rem, 1.25vw, 1.12rem);
+      line-height: 1.85;
     }
 
     .contact-section {
-      padding: 4rem 0;
+      padding: clamp(2.8rem, 6vw, 5.2rem) 0;
     }
-
     .contact-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      grid-template-columns: minmax(0, 0.86fr) minmax(360px, 0.72fr);
+      gap: clamp(1.4rem, 4vw, 3rem);
       align-items: start;
     }
-
-    .contact-info h2 {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      margin-bottom: 2rem;
-      color: var(--ink);
-      font-weight: 600;
-      line-height: 1.1;
-    }
-
-    .info-block {
-      margin-bottom: 2.5rem;
-    }
-
-    .info-block h3 {
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--gold);
-      font-weight: 700;
-      margin-bottom: 0.7rem;
-    }
-
-    .info-block p {
-      font-size: 1.02rem;
-      line-height: 1.7;
-      color: var(--muted);
-    }
-
-    .info-block a {
-      color: var(--ink);
-      transition: color 0.3s ease;
-    }
-
-    .info-block a:hover {
-      color: var(--gold);
-    }
-
+    .contact-panel,
     .contact-form {
-      background: #fff;
-      padding: 2.5rem;
       border: 1px solid var(--line);
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(23, 21, 18, 0.09);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018)),
+        var(--panel);
+      box-shadow: var(--shadow);
     }
-
-    .form-group {
-      margin-bottom: 1.8rem;
+    .contact-panel {
+      display: grid;
+      grid-template-columns: 1fr;
+      overflow: hidden;
     }
-
-    .form-group:last-child {
-      margin-bottom: 0;
+    .contact-image {
+      min-height: 260px;
+      background:
+        linear-gradient(180deg, rgba(5, 5, 5, 0.18), rgba(5, 5, 5, 0.72)),
+        url("assets/images/optimized/story-colombo-1200.jpg") center 42% / cover no-repeat;
     }
-
-    .form-group label {
-      display: block;
-      font-size: 0.9rem;
+    .contact-details {
+      padding: clamp(1.2rem, 3vw, 2rem);
+      display: grid;
+      gap: 1rem;
+    }
+    .contact-details h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
       font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.6rem;
-      color: var(--ink);
+      line-height: 0.98;
+      text-wrap: balance;
     }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 0.9rem 1.1rem;
-      font-size: 1rem;
-      font-family: inherit;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      background: #fafaf8;
-      color: var(--ink);
-      transition: all 0.3s ease;
+    .contact-details h2 em {
+      color: var(--gold-soft);
+      font-style: italic;
+      font-weight: 500;
     }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--gold);
-      background: #fff;
-      box-shadow: 0 0 0 3px rgba(201, 155, 82, 0.1);
-    }
-
-    .form-group textarea {
-      resize: vertical;
-      min-height: 140px;
-    }
-
-    .submit-btn {
-      background: var(--ink);
-      color: #fff;
-      border: none;
-      padding: 1rem 2.2rem;
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      width: 100%;
-    }
-
-    .submit-btn:hover {
-      background: var(--gold);
-      color: var(--ink);
-    }
-
-    .footer {
+    .detail-list {
+      display: grid;
       border-top: 1px solid var(--line);
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.9rem;
-      padding: 2.2rem 0 2.8rem;
-      margin-top: 3rem;
+      margin-top: 0.5rem;
     }
-
-    .footer-content {
+    .detail-item {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .detail-item span {
+      color: var(--gold);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .detail-item p,
+    .detail-item a {
+      color: var(--muted-strong);
+      line-height: 1.7;
+      transition: color 0.25s ease;
+    }
+    .detail-item a:hover { color: var(--gold-soft); }
+    .social-row {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.4rem;
+      gap: 0.75rem;
+      padding-top: 0.4rem;
     }
-
-    .footer-content p {
-      margin: 0;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 1.4rem;
-      justify-content: center;
-    }
-
-    .social-links a {
+    .social-row a {
+      width: 42px;
+      height: 42px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 44px;
-      height: 44px;
-      border: 2px solid var(--muted);
-      border-radius: 50%;
+      border: 1px solid var(--line);
+      border-radius: 999px;
       color: var(--ink);
-      transition: all 0.35s cubic-bezier(0.33, 1, 0.68, 1);
-      position: relative;
+      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
     }
-
-    .social-links a::before {
-      content: "";
-      position: absolute;
-      inset: 0;
+    .social-row a:hover {
       background: var(--gold);
-      border-radius: 50%;
-      opacity: 0;
-      z-index: -1;
-      transition: opacity 0.35s ease;
-    }
-
-    .social-links a:hover {
       border-color: var(--gold);
-      color: #fff;
-      transform: translateY(-3px);
+      color: #11100e;
     }
 
-    .social-links a:hover::before {
-      opacity: 1;
+    .contact-form {
+      padding: clamp(1.2rem, 3vw, 2rem);
+    }
+    .form-head {
+      margin-bottom: 1.4rem;
+    }
+    .form-head h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600;
+      line-height: 1;
+    }
+    .form-head p {
+      margin-top: 0.65rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-group {
+      display: grid;
+      gap: 0.5rem;
+    }
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+    .form-group label {
+      color: var(--gold);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      min-height: 48px;
+      padding: 0.85rem 0.95rem;
+      border: 1px solid var(--line);
+      border-radius: 0;
+      background: rgba(255, 255, 255, 0.045);
+      color: var(--ink);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    }
+    .form-group textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      background: rgba(255, 255, 255, 0.065);
+      box-shadow: 0 0 0 3px rgba(201, 155, 82, 0.11);
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(244, 239, 231, 0.38);
+    }
+    .submit-btn {
+      width: 100%;
+      min-height: 52px;
+      margin-top: 1rem;
+      border: 1px solid var(--gold);
+      background: var(--gold);
+      color: #11100e;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+    .submit-btn:hover {
+      background: var(--gold-soft);
+      border-color: var(--gold-soft);
     }
 
-    .social-links i {
-      font-size: 1.15rem;
+    .footer {
+      padding: 2.6rem 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      background: #050505;
+    }
+    .footer-content {
+      width: min(1120px, 92vw);
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.4rem;
+    }
+    .footer-brand {
+      color: var(--ink);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+    }
+    .footer p {
+      margin-top: 0.2rem;
+      font-size: 0.86rem;
+    }
+    .social-links {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .social-links a {
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink);
+      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+    .social-links a:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #11100e;
     }
 
     @media (max-width: 980px) {
       .contact-grid {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
       }
     }
 
     @media (max-width: 620px) {
       .top-nav { inset: 0.7rem 0 auto; }
-
       .top-nav-inner {
+        width: min(94vw, 100% - 1rem);
         border-radius: 22px;
-        position: relative;
+        padding: 0.6rem 0.75rem;
       }
-
       .brand {
-        max-width: 170px;
+        max-width: 172px;
         white-space: normal;
-        line-height: 1.05;
+        line-height: 1.04;
       }
-
       .nav-links,
       .nav-action { display: none; }
-
       .mobile-menu-toggle { display: flex; }
-
-      .mobile-menu { display: none; }
-      .mobile-menu.open { display: flex; }
-
-      .hero {
-        padding-top: 6.5rem;
-        padding-bottom: 2rem;
+      main { padding-top: 5.35rem; }
+      .container { width: min(100% - 1.2rem, 1120px); }
+      .contact-hero {
+        padding: 2.1rem 0 1.7rem;
       }
-
+      .hero-row {
+        grid-template-columns: 1fr;
+        gap: 0.55rem;
+      }
+      .page-label {
+        font-size: 0.62rem;
+        letter-spacing: 0.15em;
+      }
+      .hero-copy h1 {
+        font-size: clamp(2.25rem, 11vw, 3.25rem);
+      }
+      .hero-copy p {
+        margin-top: 0.8rem;
+        font-size: 0.92rem;
+        line-height: 1.68;
+      }
       .contact-section {
-        padding: 2.5rem 0;
+        padding: 2.25rem 0;
       }
-
+      .contact-grid {
+        gap: 0.9rem;
+      }
+      .contact-image {
+        min-height: 180px;
+      }
+      .contact-details,
       .contact-form {
-        padding: 1.8rem;
+        padding: 0.95rem;
       }
-
+      .contact-details h2,
+      .form-head h2 {
+        font-size: 2rem;
+      }
+      .detail-item {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
+        padding: 0.8rem 0;
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
       .form-group input,
       .form-group textarea {
-        padding: 0.8rem 1rem;
         font-size: 16px;
+        min-height: 46px;
+      }
+      .form-group textarea {
+        min-height: 115px;
+      }
+      .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Scroll Progress Bar -->
-  <div id="scroll-progress" aria-hidden="true"></div>
-
-  <!-- Cinematic Curtain (preloader wipe exit) -->
-  <div id="preloader-curtain" class="preloader-curtain" aria-hidden="true">
-    <div class="curtain-panel"></div>
-    <div class="curtain-panel"></div>
-    <div class="curtain-panel"></div>
-    <div class="curtain-panel"></div>
-    <div class="curtain-panel"></div>
-  </div>
-
-  <!-- Custom Cursor -->
-  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
-
   <header class="top-nav" aria-label="Primary">
     <div class="top-nav-inner">
       <a class="brand" href="index.html">Thilanka Dilshan Photography</a>
@@ -463,76 +538,81 @@
   </header>
 
   <main>
-    <section class="hero" data-section-reveal>
-      <div class="container">
-        <h1 data-line-anim>Get In Touch</h1>
-        <p data-words-right>Have questions about our services or ready to book your wedding? We'd love to hear from you. Reach out and let's start creating your cinematic love story.</p>
+    <section class="contact-hero">
+      <div class="container hero-row">
+        <span class="page-label">Contact</span>
+        <div class="hero-copy">
+          <h1>Let us begin your <em>wedding story.</em></h1>
+          <p>Tell us your date, venue, and vision. We will help you choose the right photography experience for your celebration.</p>
+        </div>
       </div>
     </section>
 
-    <section class="contact-section" data-section-reveal>
+    <section class="contact-section">
       <div class="container contact-grid">
-        <div class="contact-info" data-stagger>
-          <h2 data-line-anim>Let's Connect</h2>
-          
-          <div class="info-block" data-stagger-item>
-            <h3>Email</h3>
-            <p><a href="mailto:hello@thilankadilshan.com">hello@thilankadilshan.com</a></p>
-          </div>
-
-          <div class="info-block" data-stagger-item>
-            <h3>Phone</h3>
-            <p><a href="tel:+94701234567">+94 70 123 4567</a></p>
-          </div>
-
-          <div class="info-block" data-stagger-item>
-            <h3>Location</h3>
-            <p>Colombo, Sri Lanka<br />Available for destination weddings worldwide</p>
-          </div>
-
-          <div class="info-block" data-stagger-item>
-            <h3>Follow Us</h3>
-            <div style="display: flex; gap: 1rem; margin-top: 0.9rem;">
-              <a href="https://www.facebook.com" target="_blank" rel="noopener" style="color: var(--ink); font-size: 1.3rem; transition: color 0.3s ease;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink)'">
+        <aside class="contact-panel" aria-label="Contact details">
+          <div class="contact-image" aria-hidden="true"></div>
+          <div class="contact-details">
+            <h2>Simple, personal, and <em>easy to start.</em></h2>
+            <div class="detail-list">
+              <div class="detail-item">
+                <span>Email</span>
+                <p><a href="mailto:hello@thilankadilshan.com">hello@thilankadilshan.com</a></p>
+              </div>
+              <div class="detail-item">
+                <span>Phone</span>
+                <p><a href="tel:+94701234567">+94 70 123 4567</a></p>
+              </div>
+              <div class="detail-item">
+                <span>Location</span>
+                <p>Colombo, Sri Lanka<br />Available for destination weddings worldwide</p>
+              </div>
+            </div>
+            <div class="social-row" aria-label="Social links">
+              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <i class="fab fa-facebook-f"></i>
               </a>
-              <a href="https://www.instagram.com" target="_blank" rel="noopener" style="color: var(--ink); font-size: 1.3rem; transition: color 0.3s ease;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink)'">
+              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <i class="fab fa-instagram"></i>
               </a>
             </div>
           </div>
-        </div>
+        </aside>
 
-        <form class="contact-form" data-stagger>
-          <div class="form-group" data-stagger-item>
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
+        <form class="contact-form">
+          <div class="form-head">
+            <h2>Send an inquiry</h2>
+            <p>Share a few details and we will get back to you with availability and next steps.</p>
           </div>
 
-          <div class="form-group" data-stagger-item>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" autocomplete="name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" />
+            </div>
+
+            <div class="form-group">
+              <label for="wedding-date">Wedding Date</label>
+              <input type="date" id="wedding-date" name="wedding-date" />
+            </div>
+
+            <div class="form-group full">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required placeholder="Tell us about your vision..."></textarea>
+            </div>
           </div>
 
-          <div class="form-group" data-stagger-item>
-            <label for="phone">Phone</label>
-            <input type="tel" id="phone" name="phone">
-          </div>
-
-          <div class="form-group" data-stagger-item>
-            <label for="wedding-date">Wedding Date</label>
-            <input type="date" id="wedding-date" name="wedding-date">
-          </div>
-
-          <div class="form-group" data-stagger-item>
-            <label for="message">Message</label>
-            <textarea id="message" name="message" required placeholder="Tell us about your vision..."></textarea>
-          </div>
-
-          <button type="submit" class="submit-btn btn-cover-wrap magnetic-btn" data-stagger-item>
-            <div class="btn-cover"></div>
-            <span class="btn-cover-label">Send Message</span>
-          </button>
+          <button type="submit" class="submit-btn">Send Message</button>
         </form>
       </div>
     </section>
@@ -540,7 +620,10 @@
 
   <footer class="footer">
     <div class="footer-content">
-      <p>(c) 2026 Thilanka Dilshan Photography. All rights reserved.</p>
+      <div>
+        <div class="footer-brand">Thilanka Dilshan Photography</div>
+        <p>(c) 2026 Thilanka Dilshan Photography. All rights reserved.</p>
+      </div>
       <div class="social-links">
         <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
           <i class="fab fa-facebook-f"></i>
@@ -551,7 +634,7 @@
       </div>
     </div>
   </footer>
-  <script src="js/animations.js"></script>
+
   <script>
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -562,23 +645,6 @@
         menuToggle.classList.toggle('open', open);
         mobileMenu.classList.toggle('open', open);
         menuToggle.setAttribute('aria-expanded', String(open));
-        
-        if (open) {
-          mobileMenu.classList.remove('animating');
-          const links = mobileMenu.querySelectorAll('.mobile-nav-link');
-          links.forEach(link => {
-            link.style.opacity = '0';
-            link.style.transform = 'translateY(24px)';
-          });
-          requestAnimationFrame(() => {
-            mobileMenu.classList.add('animating');
-            links.forEach((link, i) => {
-              link.style.transitionDelay = `${0.15 + i * 0.07}s`;
-            });
-          });
-        } else {
-          mobileMenu.classList.remove('animating');
-        }
       };
 
       menuToggle.addEventListener('click', () => {
@@ -590,24 +656,13 @@
       });
 
       document.addEventListener('click', (event) => {
-        if (!topNavInner.contains(event.target)) {
-          setMenu(false);
-        }
+        if (!topNavInner.contains(event.target)) setMenu(false);
       });
 
       window.addEventListener('resize', () => {
         if (window.innerWidth > 620) setMenu(false);
       });
     }
-
-    // Curtain exit on load for secondary pages
-    window.addEventListener('load', () => {
-      const curtain = document.getElementById('preloader-curtain');
-      if (curtain) {
-        setTimeout(() => curtain.classList.add('exit'), 100);
-      }
-    });
   </script>
 </body>
 </html>
-

@@ -2480,6 +2480,448 @@
         min-height: 320px;
       }
     }
+
+    /* Portfolio album browser */
+    .album-gallery {
+      padding: clamp(7.8rem, 10vw, 10.5rem) 0 5.4rem;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(201,155,82,0.17), transparent 25rem),
+        radial-gradient(circle at 88% 18%, rgba(255,255,255,0.08), transparent 18rem),
+        #050505;
+      overflow: visible;
+    }
+
+    .album-gallery::before {
+      opacity: 0.34;
+    }
+
+    .album-gallery .container {
+      width: min(1240px, 92vw);
+    }
+
+    .album-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.62fr);
+      align-items: end;
+      gap: clamp(1.8rem, 5vw, 4rem);
+      margin-bottom: 2.1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .album-eyebrow {
+      display: block;
+      margin-bottom: 0.75rem;
+      color: var(--gold-soft);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .album-head h1 {
+      margin: 0;
+      color: #fff7ec;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(3rem, 8vw, 7.1rem);
+      font-weight: 600;
+      letter-spacing: 0;
+      line-height: 0.86;
+      text-wrap: balance;
+    }
+
+    .album-head p {
+      margin: 0 0 0.28rem;
+      color: rgba(255,255,255,0.66);
+      font-size: clamp(0.98rem, 1.35vw, 1.08rem);
+      line-height: 1.8;
+      max-width: 48ch;
+    }
+
+    .album-toolbar {
+      position: sticky;
+      top: 5.95rem;
+      z-index: 12;
+      display: grid;
+      grid-template-columns: minmax(260px, 0.58fr) minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+      padding: 0.75rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(8,8,7,0.82);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 18px 46px rgba(0,0,0,0.28);
+    }
+
+    .album-search {
+      min-width: 0;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      gap: 0.68rem;
+      padding: 0 0.9rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.7);
+    }
+
+    .album-search input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: #fff7ec;
+      font-size: 0.92rem;
+    }
+
+    .album-search input::placeholder {
+      color: rgba(255,255,255,0.46);
+    }
+
+    .album-filters {
+      min-width: 0;
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .album-filters::-webkit-scrollbar {
+      display: none;
+    }
+
+    .album-filter {
+      flex: 0 0 auto;
+      min-height: 44px;
+      padding: 0 1rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.68);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: background 0.28s ease, border-color 0.28s ease, color 0.28s ease;
+    }
+
+    .album-filter.active,
+    .album-filter:hover {
+      border-color: var(--gold);
+      background: var(--gold);
+      color: #090806;
+    }
+
+    .album-count {
+      margin: 0;
+      color: rgba(255,255,255,0.62);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-align: right;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .album-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .album-card {
+      position: relative;
+      min-height: 420px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: #0b0a08;
+      color: #fff7ec;
+      overflow: hidden;
+      cursor: pointer;
+      isolation: isolate;
+      box-shadow: 0 24px 62px rgba(0,0,0,0.32);
+      transition: transform 0.42s ease, border-color 0.42s ease, opacity 0.35s ease;
+    }
+
+    .album-card-featured,
+    .album-card-wide {
+      grid-column: span 2;
+    }
+
+    .album-card-featured {
+      min-height: 560px;
+      grid-row: span 2;
+    }
+
+    .album-card[hidden] {
+      display: none;
+    }
+
+    .album-card::before,
+    .album-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .album-card::before {
+      background:
+        linear-gradient(180deg, rgba(5,5,5,0.03) 20%, rgba(5,5,5,0.9) 100%),
+        linear-gradient(135deg, rgba(201,155,82,0.22), transparent 44%);
+    }
+
+    .album-card::after {
+      inset: 0.78rem;
+      border: 1px solid rgba(201,155,82,0.28);
+      opacity: 0;
+      transform: scale(0.98);
+      transition: opacity 0.36s ease, transform 0.36s ease;
+    }
+
+    .album-card:hover,
+    .album-card:focus-visible {
+      transform: translateY(-5px);
+      border-color: rgba(201,155,82,0.42);
+      outline: none;
+    }
+
+    .album-card:hover::after,
+    .album-card:focus-visible::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .album-card figure {
+      position: absolute;
+      inset: 0;
+      margin: 0;
+    }
+
+    .album-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.92) contrast(1.06) brightness(0.88);
+      transform: scale(1.01);
+      transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+    }
+
+    .album-card:hover img,
+    .album-card:focus-visible img {
+      transform: scale(1.08);
+      filter: saturate(1) contrast(1.1) brightness(0.95);
+    }
+
+    .album-card-body {
+      position: absolute;
+      inset: auto 1.15rem 1.12rem;
+      z-index: 3;
+      display: grid;
+      gap: 0.44rem;
+    }
+
+    .album-card-body span {
+      width: fit-content;
+      padding: 0.42rem 0.58rem;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(0,0,0,0.28);
+      color: var(--gold-soft);
+      font-size: 0.58rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+    }
+
+    .album-card-body h2 {
+      margin: 0;
+      color: #fff7ec;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.8rem, 3vw, 3.2rem);
+      font-style: italic;
+      font-weight: 600;
+      line-height: 0.95;
+      letter-spacing: 0;
+    }
+
+    .album-card-body p {
+      margin: 0;
+      color: rgba(255,255,255,0.78);
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .album-card-body div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 0.42rem;
+    }
+
+    .album-card-body small {
+      color: rgba(255,255,255,0.62);
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .album-empty {
+      margin: 2.5rem 0 0;
+      padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.66);
+      text-align: center;
+    }
+
+    @media (max-width: 1080px) {
+      .album-toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .album-count {
+        text-align: left;
+      }
+
+      .album-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .album-gallery {
+        padding-top: 6.7rem;
+      }
+
+      .album-gallery .container {
+        width: min(100% - 1.35rem, 1240px);
+      }
+
+      .album-head {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 1.35rem;
+      }
+
+      .album-head h1 {
+        font-size: clamp(2.65rem, 15vw, 4.25rem);
+      }
+
+      .album-head p {
+        max-width: 36ch;
+        font-size: 0.94rem;
+      }
+
+      .album-toolbar {
+        top: 5.25rem;
+        padding: 0.58rem;
+        margin-inline: -0.1rem;
+      }
+
+      .album-search,
+      .album-filter {
+        min-height: 42px;
+      }
+
+      .album-filter {
+        padding: 0 0.85rem;
+        font-size: 0.62rem;
+      }
+
+      .album-grid {
+        grid-template-columns: 1fr;
+        gap: 0.85rem;
+      }
+
+      .album-card,
+      .album-card-featured,
+      .album-card-wide {
+        grid-column: auto;
+        grid-row: auto;
+        min-height: min(116vw, 430px);
+      }
+
+      .album-card-body {
+        inset: auto 0.95rem 0.95rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .album-toolbar {
+        top: 5rem;
+      }
+
+      .album-card,
+      .album-card-featured,
+      .album-card-wide {
+        min-height: 360px;
+      }
+
+      .album-card-body h2 {
+        font-size: 1.72rem;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .lightbox {
+        padding: 0;
+        align-items: stretch;
+        justify-content: stretch;
+        background: rgba(0, 0, 0, 0.94);
+      }
+
+      .lightbox-panel {
+        width: 100vw;
+        height: 100dvh;
+        max-height: none;
+        display: grid;
+        grid-template-rows: minmax(0, 1fr) auto;
+        border: 0;
+        border-radius: 0;
+        background: #050505;
+      }
+
+      .lightbox-media {
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        max-height: none;
+        min-height: 0;
+        object-fit: contain;
+        background: #050505;
+      }
+
+      .lightbox-meta {
+        min-height: 58px;
+        padding: 0.85rem 1rem calc(0.85rem + env(safe-area-inset-bottom));
+        background: linear-gradient(180deg, rgba(5, 5, 5, 0.72), #050505);
+        border-top: 1px solid rgba(255, 255, 255, 0.13);
+      }
+
+      .lightbox-title {
+        font-size: 1.2rem;
+      }
+
+      .lightbox-count {
+        font-size: 0.72rem;
+      }
+
+      .lightbox-close {
+        top: calc(0.75rem + env(safe-area-inset-top));
+        right: 0.75rem;
+      }
+
+      .lightbox-prev {
+        left: 0.55rem;
+      }
+
+      .lightbox-next {
+        right: 0.55rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2525,110 +2967,200 @@
   </header>
 
   <main>
-    <section class="portfolio" id="full-gallery">
+    <section class="portfolio album-gallery" id="full-gallery">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Cinematic Frames Collection</h2>
-            <p>Filter by story type and explore the complete cinematic collection.</p>
+        <div class="album-head">
+          <span class="album-eyebrow">Portfolio</span>
+          <h1>Cinematic Frames Albums</h1>
+          <p>Wedding stories, preshoots, engagements, and destination moments arranged as browseable albums.</p>
+        </div>
+
+        <div class="album-toolbar" aria-label="Album controls">
+          <div class="album-search">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <input id="albumSearch" type="search" placeholder="Search albums" autocomplete="off" />
           </div>
+
+          <div class="album-filters" aria-label="Album filters">
+            <button class="album-filter active" type="button" data-filter="all">All</button>
+            <button class="album-filter" type="button" data-filter="wedding">Wedding</button>
+            <button class="album-filter" type="button" data-filter="pre">Pre-shoot</button>
+            <button class="album-filter" type="button" data-filter="engagement">Engagement</button>
+            <button class="album-filter" type="button" data-filter="casual">Casual Shoot</button>
+            <button class="album-filter" type="button" data-filter="destination">Destination</button>
+          </div>
+
+          <p class="album-count" id="albumCount">15 albums</p>
         </div>
 
-        <div class="filters" aria-label="Cinematic Frames filters">
-          <button class="filter-btn active" type="button" data-filter="all">All Stories</button>
-          <button class="filter-btn" type="button" data-filter="wedding">Wedding Day</button>
-          <button class="filter-btn" type="button" data-filter="pre">Pre-Wedding</button>
-          <button class="filter-btn" type="button" data-filter="engagement">Engagement</button>
-          <button class="filter-btn" type="button" data-filter="destination">Destination</button>
+        <div class="album-grid" id="albumGrid">
+          <article class="album-card album-card-featured" data-album="Achini &amp; Subash" data-category="wedding" data-search="achini subash wedding" tabindex="0" role="button" aria-label="Open album: Achini and Subash">
+            <figure>
+              <img src="https://res.cloudinary.com/dtj3huhd7/image/upload/v1782540664/DSCF9529_vfndzk.webp" alt="Achini and Subash wedding album cover" loading="lazy" />
+            </figure>
+            <div class="album-card-body">
+              <span>Wedding Day</span>
+              <h2>Achini &amp; Subash</h2>
+              <div><small>4 Frames</small><small>Wedding</small></div>
+            </div>
+          </article>
+
+          <article class="album-card" data-album="Amaya &amp; Vinu" data-category="engagement" data-search="amaya vinu engagement" tabindex="0" role="button" aria-label="Open album: Amaya and Vinu">
+            <figure>
+              <img src="https://res.cloudinary.com/dtj3huhd7/image/upload/v1782541757/IMGL1154_copy_zppw8p.webp" alt="Amaya and Vinu engagement album cover" loading="lazy" />
+            </figure>
+            <div class="album-card-body">
+              <span>Engagement</span>
+              <h2>Amaya &amp; Vinu</h2>
+              <div><small>4 Frames</small><small>Engagement</small></div>
+            </div>
+          </article>
+
+          <article class="album-card" data-album="Chamika &amp; Tharaka" data-category="pre" data-search="chamika tharaka pre shoot preshoot" tabindex="0" role="button" aria-label="Open album: Chamika and Tharaka">
+            <figure>
+              <img src="https://res.cloudinary.com/dtj3huhd7/image/upload/v1782542742/IMGL6756_mmlsin.webp" alt="Chamika and Tharaka pre-shoot album cover" loading="lazy" />
+            </figure>
+            <div class="album-card-body">
+              <span>Pre-shoot</span>
+              <h2>Chamika &amp; Tharaka</h2>
+              <div><small>6 Frames</small><small>Pre-shoot</small></div>
+            </div>
+          </article>
+
+          <article class="album-card" data-album="Anna" data-category="casual" data-search="anna casual shoot cashul" tabindex="0" role="button" aria-label="Open album: Anna">
+            <figure>
+              <img src="https://res.cloudinary.com/dtj3huhd7/image/upload/v1782543605/DSCF8309_copy_w4ylx4.webp" alt="Anna casual shoot album cover" loading="lazy" />
+            </figure>
+            <div class="album-card-body">
+              <span>Casual Shoot</span>
+              <h2>Anna</h2>
+              <div><small>5 Frames</small><small>Casual</small></div>
+            </div>
+          </article>
+
+          <article class="album-card" data-album="Before the Vows" data-category="pre" data-search="before the vows kandy nethmi ashan pre shoot" tabindex="0" role="button" aria-label="Open album: Before the Vows">
+            <figure>
+              <img src="assets/images/optimized/story-galle-1200.jpg" alt="Before the Vows preshoot album cover" loading="lazy" />
+            </figure>
+            <div class="album-card-body">
+              <span>Pre-shoot</span>
+              <h2>Before the Vows</h2>
+              <div><small>14 Frames</small><small>Outdoor</small></div>
+            </div>
+          </article>
+
+          <article class="album-card" data-album="First Dance Reverie" data-category="wedding" data-search="first dance reverie negombo sanduni erik reception wedding" tabindex="0" role="button" aria-label="Open album: First Dance Reverie">
+            <figure>
+              <img src="assets/images/641262210_1408288054085582_3662194477068953645_n.jpg" alt="First Dance Reverie album cover" loading="lazy" />
+            </figure>
+            <div class="album-card-body">
+              <span>Reception</span>
+              <h2>First Dance Reverie</h2>
+              <div><small>21 Frames</small><small>Evening</small></div>
+            </div>
+          </article>
+
+          <article class="album-card" data-album="Heirloom Portraits" data-category="engagement destination" data-search="heirloom portraits ella imesha daniel engagement destination" tabindex="0" role="button" aria-label="Open album: Heirloom Portraits">
+            <figure>
+              <img src="assets/images/639420175_1408288920752162_3455617747218749968_n.jpg" alt="Heirloom Portraits engagement album cover" loading="lazy" />
+            </figure>
+            <div class="album-card-body">
+              <span>Engagement</span>
+              <h2>Heirloom Portraits</h2>
+              <div><small>12 Frames</small><small>Travel</small></div>
+            </div>
+          </article>
+
+          <article class="album-card" data-album="Garden of Light" data-category="wedding destination" data-search="garden of light galle dilini rehan wedding destination" tabindex="0" role="button" aria-label="Open album: Garden of Light">
+            <figure>
+              <img src="assets/images/optimized/story-colombo-1200.jpg" alt="Garden of Light wedding album cover" loading="lazy" />
+            </figure>
+            <div class="album-card-body">
+              <span>Destination</span>
+              <h2>Garden of Light</h2>
+              <div><small>16 Frames</small><small>Garden</small></div>
+            </div>
+          </article>
+
+          <article class="album-card album-card-wide" data-album="Velvet & Vows" data-category="wedding" data-search="velvet vows bentota amaya stefan luxury wedding" tabindex="0" role="button" aria-label="Open album: Velvet & Vows">
+            <figure>
+              <img src="assets/images/637139243_1402427718004949_6666201034993238005_n.jpg" alt="Velvet and Vows luxury wedding album cover" loading="lazy" />
+            </figure>
+            <div class="album-card-body">
+              <span>Luxury Story</span>
+              <h2>Velvet &amp; Vows</h2>
+              <div><small>24 Frames</small><small>Resort</small></div>
+            </div>
+          </article>
+
+          <article class="album-card" data-album="Golden Hour Letters" data-category="pre destination" data-search="golden hour letters nuwara eliya harini joel pre shoot destination" tabindex="0" role="button" aria-label="Open album: Golden Hour Letters">
+            <figure>
+              <img src="assets/images/real_photo_3.jpg" alt="Golden Hour Letters preshoot album cover" loading="lazy" />
+            </figure>
+            <div class="album-card-body">
+              <span>Destination</span>
+              <h2>Golden Hour Letters</h2>
+              <div><small>15 Frames</small><small>Golden Hour</small></div>
+            </div>
+          </article>
+
+          <article class="album-card" data-album="Whispered Promises" data-category="engagement" data-search="whispered promises kurunegala diya shawn engagement" tabindex="0" role="button" aria-label="Open album: Whispered Promises">
+            <figure>
+              <img src="assets/images/609026638_1364917278422660_2833140512891095027_n.jpg" alt="Whispered Promises engagement album cover" loading="lazy" />
+            </figure>
+            <div class="album-card-body">
+              <span>Engagement</span>
+              <h2>Whispered Promises</h2>
+              <div><small>11 Frames</small><small>Portrait</small></div>
+            </div>
+          </article>
+
+          <article class="album-card album-card-wide" data-album="Eternal Vows" data-category="wedding" data-search="eternal vows sri lanka premium collection wedding" tabindex="0" role="button" aria-label="Open album: Eternal Vows">
+            <figure>
+              <img src="assets/images/DSCF0053.jpg" alt="Eternal Vows wedding album cover" loading="lazy" />
+            </figure>
+            <div class="album-card-body">
+              <span>Wedding Day</span>
+              <h2>Eternal Vows</h2>
+              <div><small>19 Frames</small><small>Signature</small></div>
+            </div>
+          </article>
+
+          <article class="album-card" data-album="Whispers of Light" data-category="pre destination" data-search="whispers of light pre shoot location story destination" tabindex="0" role="button" aria-label="Open album: Whispers of Light">
+            <figure>
+              <img src="assets/images/DSCF0058.jpg" alt="Whispers of Light preshoot album cover" loading="lazy" />
+            </figure>
+            <div class="album-card-body">
+              <span>Pre-shoot</span>
+              <h2>Whispers of Light</h2>
+              <div><small>13 Frames</small><small>Editorial</small></div>
+            </div>
+          </article>
+
+          <article class="album-card" data-album="Cinematic Bloom" data-category="wedding" data-search="cinematic bloom wedding day story" tabindex="0" role="button" aria-label="Open album: Cinematic Bloom">
+            <figure>
+              <img src="assets/images/DSCF3071 copy.jpg" alt="Cinematic Bloom wedding album cover" loading="lazy" />
+            </figure>
+            <div class="album-card-body">
+              <span>Wedding Day</span>
+              <h2>Cinematic Bloom</h2>
+              <div><small>17 Frames</small><small>Classic</small></div>
+            </div>
+          </article>
+
+          <article class="album-card" data-album="Golden Drift" data-category="destination" data-search="golden drift destination wedding coverage" tabindex="0" role="button" aria-label="Open album: Golden Drift">
+            <figure>
+              <img src="assets/images/DSCF6858.jpg" alt="Golden Drift destination album cover" loading="lazy" />
+            </figure>
+            <div class="album-card-body">
+              <span>Destination</span>
+              <h2>Golden Drift</h2>
+              <div><small>10 Frames</small><small>Travel</small></div>
+            </div>
+          </article>
         </div>
 
-        <div class="masonry" id="masonryGrid">
-          <article class="card big" data-category="wedding destination" tabindex="0" role="button" aria-label="Open album: Moonlit Promises">
-            <img src="assets/images/optimized/story-kandy-1400.jpg" alt="Wedding story in Colombo" loading="lazy" />
-            <div class="meta"><small>Colombo - Ayesha & Liam</small><h3>Moonlit Promises</h3></div>
-          </article>
-
-          <article class="card mid" data-category="pre" tabindex="0" role="button" aria-label="Open album: Before the Vows">
-            <img src="assets/images/optimized/story-galle-1200.jpg" alt="Pre-wedding in Kandy" loading="lazy" />
-            <div class="meta"><small>Kandy - Nethmi & Ashan</small><h3>Before the Vows</h3></div>
-          </article>
-
-          <article class="card small" data-category="wedding" tabindex="0" role="button" aria-label="Open album: First Dance Reverie">
-            <img src="assets/images/641262210_1408288054085582_3662194477068953645_n.jpg" alt="First dance reception" loading="lazy" />
-            <div class="meta"><small>Negombo - Sanduni & Erik</small><h3>First Dance Reverie</h3></div>
-          </article>
-
-          <article class="card small" data-category="engagement destination" tabindex="0" role="button" aria-label="Open album: Heirloom Portraits">
-            <img src="assets/images/639420175_1408288920752162_3455617747218749968_n.jpg" alt="Engagement portrait in Ella" loading="lazy" />
-            <div class="meta"><small>Ella - Imesha & Daniel</small><h3>Heirloom Portraits</h3></div>
-          </article>
-
-          <article class="card small" data-category="wedding destination" tabindex="0" role="button" aria-label="Open album: Garden of Light">
-            <img src="assets/images/optimized/story-colombo-1200.jpg" alt="Garden wedding at Galle" loading="lazy" />
-            <div class="meta"><small>Galle - Dilini & Rehan</small><h3>Garden of Light</h3></div>
-          </article>
-
-          <article class="card wide" data-category="wedding" tabindex="0" role="button" aria-label="Open album: Velvet & Vows">
-            <img src="assets/images/637139243_1402427718004949_6666201034993238005_n.jpg" alt="Luxury wedding celebration" loading="lazy" />
-            <div class="meta"><small>Bentota - Amaya & Stefan</small><h3>Velvet & Vows</h3></div>
-          </article>
-
-          <article class="card mid" data-category="pre destination" tabindex="0" role="button" aria-label="Open album: Golden Hour Letters">
-            <img src="assets/images/real_photo_3.jpg" alt="Destination pre-wedding story" loading="lazy" />
-            <div class="meta"><small>Nuwara Eliya - Harini & Joel</small><h3>Golden Hour Letters</h3></div>
-          </article>
-
-          <article class="card small reveal-pending" data-category="engagement" tabindex="0" role="button" aria-label="Open album: Whispered Promises">
-            <img class="img-loading" src="assets/images/609026638_1364917278422660_2833140512891095027_n.jpg" alt="Engagement portrait" loading="lazy" />
-            <div class="meta"><small>Kurunegala - Diya &amp; Shawn</small><h3>Whispered Promises</h3></div>
-          </article>
-
-          <!-- New Images -->
-          <article class="card big reveal-pending" data-category="wedding" tabindex="0" role="button" aria-label="Open album: Eternal Vows">
-            <img class="img-loading" src="assets/images/DSCF0053.jpg" alt="Luxury wedding photography" loading="lazy" />
-            <div class="meta"><small>Sri Lanka - Premium Collection</small><h3>Eternal Vows</h3></div>
-          </article>
-
-          <article class="card mid reveal-pending" data-category="pre destination" tabindex="0" role="button" aria-label="Open album: Whispers of Light">
-            <img class="img-loading" src="assets/images/DSCF0058.jpg" alt="Pre-wedding session" loading="lazy" />
-            <div class="meta"><small>Location Story</small><h3>Whispers of Light</h3></div>
-          </article>
-
-          <article class="card small reveal-pending" data-category="wedding" tabindex="0" role="button" aria-label="Open album: Cinematic Bloom">
-            <img class="img-loading" src="assets/images/DSCF3071 copy.jpg" alt="Cinematic wedding frame" loading="lazy" />
-            <div class="meta"><small>Wedding Day Story</small><h3>Cinematic Bloom</h3></div>
-          </article>
-
-          <article class="card wide reveal-pending" data-category="destination" tabindex="0" role="button" aria-label="Open album: Golden Drift">
-            <img class="img-loading" src="assets/images/DSCF6858.jpg" alt="Destination wedding coverage" loading="lazy" />
-            <div class="meta"><small>Destination Story</small><h3>Golden Drift</h3></div>
-          </article>
-
-          <article class="card mid reveal-pending" data-category="engagement" tabindex="0" role="button" aria-label="Open album: Soft Focus">
-            <img class="img-loading" src="assets/images/DSCF8309 copy.jpg" alt="Engagement session" loading="lazy" />
-            <div class="meta"><small>Engagement Story</small><h3>Soft Focus</h3></div>
-          </article>
-
-          <article class="card small reveal-pending" data-category="wedding" tabindex="0" role="button" aria-label="Open album: Tender Moments">
-            <img class="img-loading" src="assets/images/image00002.jpeg" alt="Wedding moment" loading="lazy" />
-            <div class="meta"><small>Wedding Story</small><h3>Tender Moments</h3></div>
-          </article>
-
-          <article class="card big reveal-pending" data-category="pre" tabindex="0" role="button" aria-label="Open album: Love Unscripted">
-            <img class="img-loading" src="assets/images/IMGL6378 copy.jpg" alt="Pre-shoot session" loading="lazy" />
-            <div class="meta"><small>Pre-Shoot Story</small><h3>Love Unscripted</h3></div>
-          </article>
-
-          <article class="card mid reveal-pending" data-category="wedding destination" tabindex="0" role="button" aria-label="Open album: Timeless Frame">
-            <img class="img-loading" src="assets/images/IMGL9738 copy.jpg" alt="Timeless wedding portrait" loading="lazy" />
-            <div class="meta"><small>Luxury Story</small><h3>Timeless Frame</h3></div>
-          </article>
-
-          <article class="card small reveal-pending" data-category="wedding" tabindex="0" role="button" aria-label="Open album: Pure Elegance">
-            <img class="img-loading" src="assets/images/16.jpg" alt="Elegant wedding photography" loading="lazy" />
-            <div class="meta"><small>Signature Story</small><h3>Pure Elegance</h3></div>
-          </article>
-        </div>
+        <p class="album-empty" id="albumEmpty" hidden>No matching albums found.</p>
       </div>
     </section>
 
@@ -2745,9 +3277,12 @@
       });
     }
 
-    // Gallery filtering and lightbox functionality
-    const filterButtons = Array.from(document.querySelectorAll('.filter-btn'));
-    const cards = Array.from(document.querySelectorAll('.card'));
+    // Album filtering and lightbox functionality
+    const albumFilters = Array.from(document.querySelectorAll('.album-filter'));
+    const albumCards = Array.from(document.querySelectorAll('.album-card'));
+    const albumSearch = document.getElementById('albumSearch');
+    const albumCount = document.getElementById('albumCount');
+    const albumEmpty = document.getElementById('albumEmpty');
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightboxImage');
     const lightboxTitle = document.getElementById('lightboxTitle');
@@ -2760,10 +3295,32 @@
     let activeImageIndex = 0;
 
     const albumSets = {
-      'Moonlit Promises': [
-        'assets/images/optimized/story-kandy-1400.jpg',
-        'assets/images/637139243_1402427718004949_6666201034993238005_n.jpg',
-        'assets/images/609026638_1364917278422660_2833140512891095027_n.jpg'
+      'Achini & Subash': [
+        'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782540663/DSCF9641_otwzak.webp',
+        'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782540664/DSCF9212_og4z9j.webp',
+        'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782540665/DSCF9769_kl7ovi.webp',
+        'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782541137/DSCF9811_rl2m1d.webp'
+      ],
+      'Amaya & Vinu': [
+        'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782541758/DSCF6596_copy_ad97wd.webp',
+        'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782541759/DSCF5400_copy_o6udeg.webp',
+        'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782541759/DSCF6026_copy_bomozf.webp',
+        'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782541756/IMGL0731_copy_tr8fgf.webp'
+      ],
+      'Chamika & Tharaka': [
+        'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782542742/IMGL6756_mmlsin.webp',
+        'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782542743/IMGL7071_copy_ftrgdd.webp',
+        'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782542745/IMGL7103_copy_vmapeq.webp',
+        'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782542745/IMGL7452_copy_jnvn7i.webp',
+        'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782542746/IMGL7473_copy_bvsh4n.webp',
+        'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782542747/IMGL7570_copy_kr6ct3.webp'
+      ],
+      'Anna': [
+        'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782543605/DSCF8309_copy_w4ylx4.webp',
+        'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782543603/DSCF8254_copy_te8dsq.webp',
+        'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782543601/DSCF8673_copy_luzqat.webp',
+        'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782543544/image00002_fnlgu2.jpg',
+        'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782543606/DSCF8565_copy_txqlal.webp'
       ],
       'Before the Vows': [
         'assets/images/optimized/story-galle-1200.jpg',
@@ -2847,14 +3404,39 @@
       ]
     };
 
-    function visibleCards() {
-      return cards.filter((card) => !card.classList.contains('hide'));
+    function getActiveFilter() {
+      const active = albumFilters.find((btn) => btn.classList.contains('active'));
+      return active ? active.dataset.filter : 'all';
+    }
+
+    function updateAlbumResults() {
+      const filter = getActiveFilter();
+      const query = (albumSearch ? albumSearch.value : '').trim().toLowerCase();
+      let visible = 0;
+
+      albumCards.forEach((card) => {
+        const categories = card.dataset.category || '';
+        const searchable = `${card.dataset.search || ''} ${card.dataset.album || ''}`.toLowerCase();
+        const matchesFilter = filter === 'all' || categories.split(' ').includes(filter);
+        const matchesSearch = !query || searchable.includes(query);
+        const shouldShow = matchesFilter && matchesSearch;
+
+        card.hidden = !shouldShow;
+        if (shouldShow) visible += 1;
+      });
+
+      if (albumCount) {
+        albumCount.textContent = `${visible} ${visible === 1 ? 'album' : 'albums'}`;
+      }
+
+      if (albumEmpty) {
+        albumEmpty.hidden = visible !== 0;
+      }
     }
 
     function openAlbum(card, imageIndex = 0) {
       const img = card.querySelector('img');
-      const title = card.querySelector('.meta h3');
-      activeAlbumTitle = title ? title.textContent : 'Album';
+      activeAlbumTitle = card.dataset.album || 'Album';
       activeAlbum = albumSets[activeAlbumTitle] || [img.getAttribute('src')];
       showAlbumImage(imageIndex);
       lightbox.classList.add('open');
@@ -2877,26 +3459,19 @@
       document.body.style.overflow = '';
     }
 
-    // Filter functionality with smooth transitions
-    filterButtons.forEach((btn) => {
+    albumFilters.forEach((btn) => {
       btn.addEventListener('click', () => {
-        filterButtons.forEach((b) => b.classList.remove('active'));
+        albumFilters.forEach((b) => b.classList.remove('active'));
         btn.classList.add('active');
-
-        const filter = btn.dataset.filter;
-        cards.forEach((card) => {
-          const categories = card.dataset.category || '';
-          if (filter === 'all' || categories.includes(filter)) {
-            card.classList.remove('hide');
-          } else {
-            card.classList.add('hide');
-          }
-        });
+        updateAlbumResults();
       });
     });
 
-    // Card and lightbox interactions
-    cards.forEach((card) => {
+    if (albumSearch) {
+      albumSearch.addEventListener('input', updateAlbumResults);
+    }
+
+    albumCards.forEach((card) => {
       card.addEventListener('click', () => {
         openAlbum(card);
       });
@@ -2909,15 +3484,15 @@
       });
     });
 
-    // Lightbox controls
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightboxPrev.addEventListener('click', () => showAlbumImage(activeImageIndex - 1));
-    lightboxNext.addEventListener('click', () => showAlbumImage(activeImageIndex + 1));
-    lightbox.addEventListener('click', (event) => {
-      if (event.target === lightbox) closeLightbox();
-    });
+    if (lightboxClose && lightboxPrev && lightboxNext && lightbox) {
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightboxPrev.addEventListener('click', () => showAlbumImage(activeImageIndex - 1));
+      lightboxNext.addEventListener('click', () => showAlbumImage(activeImageIndex + 1));
+      lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox) closeLightbox();
+      });
+    }
 
-    // Keyboard navigation for lightbox
     document.addEventListener('keydown', (event) => {
       if (!lightbox.classList.contains('open')) return;
       if (event.key === 'Escape') closeLightbox();
@@ -2925,7 +3500,6 @@
       if (event.key === 'ArrowRight') showAlbumImage(activeImageIndex + 1);
     });
 
-    // Scroll-triggered album reveal animation
     const observerOptions = {
       threshold: 0.16,
       rootMargin: '0px 0px -80px 0px'
@@ -2950,22 +3524,26 @@
       card.style.willChange = 'auto';
     };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          revealAlbumCard(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
+    updateAlbumResults();
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      cards.forEach(revealAlbumCard);
-    } else {
-      cards.forEach((card, index) => {
+      albumCards.forEach(revealAlbumCard);
+    } else if ('IntersectionObserver' in window) {
+      const albumObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            revealAlbumCard(entry.target);
+            albumObserver.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      albumCards.forEach((card, index) => {
         prepareAlbumCard(card, index);
-        observer.observe(card);
+        albumObserver.observe(card);
       });
+    } else {
+      albumCards.forEach(revealAlbumCard);
     }
 
     // Smooth scroll behavior enhancement
