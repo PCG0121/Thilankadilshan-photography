@@ -183,16 +183,19 @@
       padding: 1rem;
       border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: 20px;
-      background: rgba(15, 14, 13, 0.96);
+      background: #12110f;
       box-shadow: 0 20px 46px rgba(0, 0, 0, 0.26);
       flex-direction: column;
       gap: 0.2rem;
+      z-index: 30;
     }
     .mobile-menu.open { display: flex; }
     .mobile-menu a {
       padding: 0.72rem 0.4rem;
       color: rgba(255, 255, 255, 0.9);
-      font-size: 0.92rem;
+      font-size: clamp(0.82rem, 3.6vw, 0.92rem);
+      line-height: 1.2;
+      white-space: nowrap;
     }
     .mobile-menu a.active { color: var(--gold-soft); }
     .mobile-menu-book {
@@ -921,11 +924,14 @@
         <p>(c) 2026 Thilanka Dilshan Photography. All rights reserved.</p>
       </div>
       <div class="social-links">
-        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <a href="https://www.facebook.com/ThilankaDilshanOfficialPhotography?mibextid=wwXIfr&amp;rdid=hpK5G9rDRxF2gr1g&amp;share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1G39KAS7bg%2F%3Fmibextid%3DwwXIfr#" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
           <i class="fab fa-facebook-f"></i>
         </a>
-        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <a href="https://www.instagram.com/thilanka_dilshan_photography?igsh=MXU0aG4zNnliNDYyNg%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.tiktok.com/@thilankadilshanphotogra?_r=1&amp;_t=ZS-97dnP1BY3S1" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <i class="fab fa-tiktok"></i>
         </a>
       </div>
     </div>

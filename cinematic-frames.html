@@ -281,7 +281,7 @@
       top: calc(100% + 0.55rem);
       left: 0;
       right: 0;
-      background: linear-gradient(160deg, rgba(18, 17, 15, 0.97), rgba(18, 17, 15, 0.92));
+      background: #12110f;
       border: 1px solid rgba(255, 255, 255, 0.18);
       border-radius: 20px;
       padding: 1rem;
@@ -291,18 +291,21 @@
       box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28);
       backdrop-filter: blur(20px);
       animation: slideDown 0.35s cubic-bezier(0.33, 1, 0.68, 1);
+      z-index: 30;
     }
 
     .mobile-menu.open { display: flex; }
 
     .mobile-menu a {
       display: block;
-      font-size: 0.9rem;
+      font-size: clamp(0.82rem, 3.6vw, 0.92rem);
+      line-height: 1.2;
       letter-spacing: 0.04em;
-      padding: 0.65rem 0.35rem;
+      padding: 0.65rem 0.35rem 0.65rem 0.7rem;
       color: rgba(255, 255, 255, 0.94);
       transition: color 0.3s ease;
       position: relative;
+      white-space: nowrap;
     }
 
     .mobile-menu a::before {
@@ -3072,7 +3075,7 @@
           <div class="album-copy">
             <span class="album-eyebrow">Portfolio</span>
             <h1>Cinematic Frames Albums</h1>
-            <p>Wedding stories, pre-shoots, engagements, and casual portraits arranged as browseable Cloudinary albums.</p>
+            <p>A curated collection of weddings, pre-shoots, engagements, baby shoots, and portraits captured with emotion, elegance, and cinematic detail.</p>
           </div>
         </div>
 
@@ -3087,7 +3090,7 @@
             <button class="album-filter" type="button" data-filter="wedding">Wedding</button>
             <button class="album-filter" type="button" data-filter="pre">Pre-shoot</button>
             <button class="album-filter" type="button" data-filter="engagement">Engagement</button>
-            <button class="album-filter" type="button" data-filter="destination">Destination</button>
+            <button class="album-filter" type="button" data-filter="baby-shoot">Baby Shoot</button>
             <button class="album-filter" type="button" data-filter="casual">Casual Shoot</button>
           </div>
 
@@ -3125,11 +3128,14 @@
     <div class="footer-content">
       <p>(c) 2026 Thilanka Dilshan Photography. All rights reserved.</p>
       <div class="social-links">
-        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <a href="https://www.facebook.com/ThilankaDilshanOfficialPhotography?mibextid=wwXIfr&amp;rdid=hpK5G9rDRxF2gr1g&amp;share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1G39KAS7bg%2F%3Fmibextid%3DwwXIfr#" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
           <i class="fab fa-facebook-f"></i>
         </a>
-        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <a href="https://www.instagram.com/thilanka_dilshan_photography?igsh=MXU0aG4zNnliNDYyNg%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.tiktok.com/@thilankadilshanphotogra?_r=1&amp;_t=ZS-97dnP1BY3S1" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <i class="fab fa-tiktok"></i>
         </a>
       </div>
     </div>
@@ -3270,6 +3276,114 @@
     }
 
     const albumData = [
+      {
+        title: 'Tharushi & Thathsara',
+        eyebrow: 'Engagement',
+        category: 'engagement',
+        categoryLabel: 'Engagement',
+        search: 'tharushi thathsara engagement',
+        cover: 'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782822547/IMGL8696_copy_mrycs1.webp',
+        images: [
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782822547/IMGL8696_copy_mrycs1.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782822546/IMGL9455_copy_xegcmm.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782822546/IMGL8769_copy_zylbxf.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782822547/IMGL9493_copy_qe7epy.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782822547/IMGL8412_copy_eme0qg.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782822548/IMGL8492_copy_gmtzqq.webp'
+        ]
+      },
+      {
+        title: 'Chamini & Dinuka',
+        eyebrow: 'Engagement',
+        category: 'engagement',
+        categoryLabel: 'Engagement',
+        search: 'chamini dinuka engagement',
+        cover: 'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782821330/IMGL6662_copy_erjpnj.webp',
+        images: [
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782821331/IMGL6944_copy_eicepl.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782821330/IMGL6318_copy_acahm9.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782821328/IMGL7006_copy_lmhh1n.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782821328/IMGL6987_copy_xdncfj.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782821330/IMGL6662_copy_erjpnj.webp'
+        ]
+      },
+      {
+        title: 'Rylie',
+        eyebrow: 'Baby Shoot',
+        category: 'baby-shoot',
+        categoryLabel: 'Baby Shoot',
+        search: 'rylie baby baby shoot baby-shoot',
+        cover: 'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782820668/IMGL8353_bjhovn.webp',
+        images: [
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782820666/IMGL8726_vo5zca.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782820666/IMGL8902_bqaxa8.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782820666/IMGL8447_vrqgh0.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782820668/IMGL7996_copy_otdwig.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782820669/IMGL7986_bg14vx.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782820668/IMGL8353_bjhovn.webp'
+        ]
+      },
+      {
+        title: 'Ashana',
+        eyebrow: 'Baby Shoot',
+        category: 'baby-shoot',
+        categoryLabel: 'Baby Shoot',
+        search: 'ashana baby shoot baby-shoot',
+        cover: 'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782820266/IMGL0439_copy_cbcb2o.webp',
+        images: [
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782820267/IMGL0369_copy_qwhwkr.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782820267/IMGL0569_copy_ya0ptp.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782820269/IMGL9578_copy_q0yoy1.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782820269/IMGL9919_copy_idsrum.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782820270/IMGL9746_copy_q8fb1b.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782820266/IMGL0439_copy_cbcb2o.webp'
+        ]
+      },
+      {
+        title: 'Naveen & Shashi',
+        eyebrow: 'Wedding Day',
+        category: 'wedding',
+        categoryLabel: 'Wedding',
+        search: 'naveen shashi wedding wedding day',
+        cover: 'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782818819/DSC07745_fmiaar.webp',
+        images: [
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782818819/DSC07701_kfm35l.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782818819/IMGL6621_emck9a.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782818820/DSCF5847_vbgqvq.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782818820/DSCF6167_copy_ztdn37.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782818821/DSCF5927_yyfuiw.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782818819/DSC07745_fmiaar.webp'
+        ]
+      },
+      {
+        title: 'Inuka & Aya',
+        eyebrow: 'Wedding Day',
+        category: 'wedding',
+        categoryLabel: 'Wedding',
+        search: 'inuka aya wedding wedding day',
+        cover: 'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782818170/0S5A5655_copy_kcwnyj.webp',
+        images: [
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782818180/DSCF7244_c68rmx.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782818171/DSCF6461_q36puj.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782818170/DSCF6629_wmhbwk.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782818170/0S5A5655_copy_kcwnyj.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782818170/DSCF6960_xm8i0h.webp'
+        ]
+      },
+      {
+        title: 'Achini & Subash',
+        eyebrow: 'Wedding Day',
+        category: 'wedding',
+        categoryLabel: 'Wedding',
+        search: 'achini subash wedding wedding day',
+        cover: 'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782817739/DSCF9212_hegzp3.webp',
+        images: [
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782817739/DSCF9769_pggsui.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782817739/DSCF9641_s066b0.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782817738/DSCF9529_mhsyio.webp',
+          'https://res.cloudinary.com/dtj3huhd7/image/upload/v1782817739/DSCF9212_hegzp3.webp'
+        ]
+      },
       {
         title: 'Amaya & Vinu',
         eyebrow: 'Engagement',

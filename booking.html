@@ -238,7 +238,7 @@
       top: calc(100% + 0.55rem);
       left: 0;
       right: 0;
-      background: linear-gradient(160deg, rgba(18, 17, 15, 0.96), rgba(18, 17, 15, 0.88));
+      background: #12110f;
       border: 1px solid rgba(255, 255, 255, 0.16);
       border-radius: 20px;
       padding: 1rem;
@@ -246,6 +246,7 @@
       flex-direction: column;
       gap: 0.35rem;
       box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22);
+      z-index: 30;
     }
 
     .mobile-menu.open {
@@ -254,10 +255,12 @@
 
     .mobile-menu a {
       display: block;
-      font-size: 0.9rem;
+      font-size: clamp(0.82rem, 3.6vw, 0.92rem);
+      line-height: 1.2;
       letter-spacing: 0.04em;
       padding: 0.65rem 0.35rem;
       color: rgba(255, 255, 255, 0.94);
+      white-space: nowrap;
     }
 
     .mobile-menu a.active {
@@ -1576,7 +1579,7 @@
           </div>
         </div>
       </div>
-      <p class="summary-note">A 30% advance payment is required to lock in your date. We will contact you shortly to
+      <p class="summary-note">A fixed advance payment of LKR 40,000 is required to lock in your date. We will contact you shortly to
         finalize details.</p>
     </section>
 
@@ -1594,8 +1597,9 @@
         <span class="success-icon">&#10003;</span>
       </div>
       <h2 class="success-title">Inquiry Received</h2>
-      <p class="success-copy" id="successCopy">Thank you. We have received your booking inquiry. Our team will review
-        availability and contact you within 24 hours.</p>
+      <p class="success-copy" id="successCopy">Thank you for contacting Thilanka Dilshan Photography.<br><br>
+        We have received your inquiry and truly appreciate your interest in our services. Our team will review your booking request and get back to you shortly with the availability and next steps.<br><br>
+        We look forward to being a part of your special day!</p>
       <a class="home-btn" href="index.html">Return to Homepage</a>
     </div>
   </section>
@@ -1658,6 +1662,8 @@
     function formatLkr(amount) {
       return `LKR ${amount.toLocaleString("en-US")}`;
     }
+
+    const fixedAdvanceAmount = 40000;
 
     function sameDate(a, b) {
       return (
@@ -1795,7 +1801,7 @@
     function updateSummary() {
       const addonsTotal = state.selectedAddons.reduce((sum, addon) => sum + addon.price, 0);
       const total = state.selectedPackagePrice + addonsTotal;
-      const advance = Math.round(total * 0.3);
+      const advance = fixedAdvanceAmount;
 
       summaryDate.textContent = state.selectedDate
         ? state.selectedDate.toLocaleDateString("en-US", {
@@ -1960,6 +1966,7 @@
       const addonsTotal = state.selectedAddons.reduce((sum, addon) => sum + addon.price, 0);
       const total = state.selectedPackagePrice + addonsTotal;
       const formattedTotal = formatLkr(total);
+      const formattedAdvance = formatLkr(fixedAdvanceAmount);
 
       const message = `Hello Thilanka Dilshan Photography, I would like to make a booking inquiry.
 
@@ -1968,6 +1975,7 @@
 - Package: ${state.selectedPackage || "-"}
 - Add-ons: ${addonsText}
 - Estimated Total: ${formattedTotal}
+- Advance Required: ${formattedAdvance}
 
 *Event Details:*
 - Service Type: ${state.form.serviceType || "-"}
@@ -1989,7 +1997,9 @@
 
       const waWindow = window.open(whatsappUrl, '_blank');
 
-      successCopy.innerHTML = `Thank you, ${name}. We are redirecting you to WhatsApp to send your booking inquiry for ${dateText}.<br><br>
+      successCopy.innerHTML = `Thank you for contacting Thilanka Dilshan Photography.<br><br>
+      We have received your inquiry and truly appreciate your interest in our services. Our team will review your booking request and get back to you shortly with the availability and next steps.<br><br>
+      We look forward to being a part of your special day!<br><br>
       <span style="display:block; margin-top:15px; font-size:1.1rem;">
         If WhatsApp doesn't open automatically, <br>
         <a href="${whatsappUrl}" target="_blank" style="color: #0b9e46; font-weight: 700; text-decoration: underline;">Click Here to Send WhatsApp Message</a>
