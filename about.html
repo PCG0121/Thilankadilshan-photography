@@ -491,39 +491,6 @@
       line-height: 1.7;
     }
 
-    .timeline-section {
-      padding: clamp(2.8rem, 6vw, 5rem) 0;
-      border-top: 1px solid var(--line);
-    }
-    .timeline {
-      border-top: 1px solid var(--line-strong);
-    }
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 140px 1fr minmax(250px, 380px);
-      gap: 1.4rem;
-      align-items: baseline;
-      padding: 1.35rem 0;
-      border-bottom: 1px solid var(--line);
-    }
-    .timeline-item span {
-      color: var(--gold);
-      font-size: 0.76rem;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-    .timeline-item h3 {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(1.8rem, 3vw, 2.7rem);
-      font-weight: 600;
-      line-height: 1;
-    }
-    .timeline-item p {
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
     .cta {
       padding: clamp(3.8rem, 7vw, 6.4rem) 0;
       background:
@@ -664,12 +631,6 @@
       .promise-grid {
         grid-template-columns: 1fr;
       }
-      .timeline-item {
-        grid-template-columns: 110px 1fr;
-      }
-      .timeline-item p {
-        grid-column: 2;
-      }
     }
 
     @media (max-width: 620px) {
@@ -714,7 +675,6 @@
       }
       .profile-section,
       .promise-section,
-      .timeline-section,
       .cta {
         padding-block: 2.25rem;
       }
@@ -766,8 +726,7 @@
       }
       .fact-row span,
       .note-card,
-      .promise-card p,
-      .timeline-item p {
+      .promise-card p {
         font-size: 0.88rem;
       }
       .promise-head {
@@ -793,17 +752,6 @@
       }
       .promise-card h3 {
         font-size: 1.65rem;
-      }
-      .timeline-item {
-        grid-template-columns: 1fr;
-        gap: 0.35rem;
-        padding: 1rem 0;
-      }
-      .timeline-item p {
-        grid-column: auto;
-      }
-      .timeline-item h3 {
-        font-size: 1.75rem;
       }
       .actions {
         flex-direction: column;
@@ -949,28 +897,6 @@
               <h3>Heart</h3>
               <p>The experience is personal and guided, from first consultation through the final album.</p>
             </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="timeline-section">
-      <div class="container">
-        <div class="timeline">
-          <article class="timeline-item">
-            <span>Step 01</span>
-            <h3>Listen</h3>
-            <p>We begin with your story, your people, your traditions, and the feeling you want your photographs to carry.</p>
-          </article>
-          <article class="timeline-item">
-            <span>Step 02</span>
-            <h3>Document</h3>
-            <p>From intimate ceremonies to grand celebrations, we move with the rhythm of the day and preserve what matters most.</p>
-          </article>
-          <article class="timeline-item">
-            <span>Step 03</span>
-            <h3>Preserve</h3>
-            <p>Your final gallery becomes a visual legacy, ready to be remembered, shared, and cherished for generations.</p>
           </article>
         </div>
       </div>

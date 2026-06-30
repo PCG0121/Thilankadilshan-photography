@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Thilanka Dilshan Photography | Wedding Photographer Sri Lanka</title>
-  <meta name="description" content="Contact Thilanka Dilshan Photography in Colombo, Sri Lanka to discuss wedding photography packages, availability, destination weddings, and bookings." />
+  <meta name="description" content="Contact Thilanka Dilshan Photography in Kurunegala, Sri Lanka to discuss wedding photography packages, availability, destination weddings, and bookings." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Thilanka Dilshan Photography" />
   <meta name="theme-color" content="#050505" />
@@ -16,7 +16,7 @@
   <meta property="og:description" content="Talk to Thilanka Dilshan Photography about wedding packages, availability, and destination wedding coverage." />
   <meta property="og:url" content="https://thilankadilshan.com/contact.html" />
   <meta property="og:image" content="https://thilankadilshan.com/assets/images/optimized/story-colombo-1200.jpg" />
-  <meta property="og:image:alt" content="Contact Thilanka Dilshan Photography in Colombo Sri Lanka" />
+  <meta property="og:image:alt" content="Contact Thilanka Dilshan Photography in Kurunegala Sri Lanka" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Contact Thilanka Dilshan Photography | Wedding Photographer Sri Lanka" />
   <meta name="twitter:description" content="Talk to Thilanka Dilshan Photography about wedding packages, availability, and destination wedding coverage." />
@@ -39,11 +39,11 @@
       "@type": "LocalBusiness",
       "@id": "https://thilankadilshan.com/#business",
       "name": "Thilanka Dilshan Photography",
-      "telephone": "+94715287456",
+      "telephone": "+94706176177",
       "email": "hello@thilankadilshan.com",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Colombo",
+        "addressLocality": "Kurunegala",
         "addressCountry": "LK"
       }
     }
@@ -605,11 +605,11 @@
               </div>
               <div class="detail-item">
                 <span>Phone</span>
-                <p><a href="tel:+94701234567">+94 70 123 4567</a></p>
+                <p><a href="tel:+94706176177">0706176177</a></p>
               </div>
               <div class="detail-item">
                 <span>Location</span>
-                <p>Colombo, Sri Lanka<br />Available for destination weddings worldwide</p>
+                <p>Kurunegala, Sri Lanka<br />Available for destination weddings worldwide</p>
               </div>
             </div>
             <div class="social-row" aria-label="Social links">
@@ -680,6 +680,42 @@
   </footer>
 
   <script>
+    const contactForm = document.querySelector('.contact-form');
+    const contactWhatsappNumber = '94706176177';
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        if (!contactForm.reportValidity()) return;
+
+        const formData = new FormData(contactForm);
+        const name = formData.get('name') || '-';
+        const email = formData.get('email') || '-';
+        const phone = formData.get('phone') || '-';
+        const weddingDate = formData.get('wedding-date') || '-';
+        const messageText = formData.get('message') || '-';
+
+        const message = `Hello Thilanka Dilshan Photography, I would like to send an inquiry.
+
+*Contact Details:*
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Wedding Date: ${weddingDate}
+
+*Message:*
+${messageText}`;
+
+        const whatsappUrl = `https://wa.me/${contactWhatsappNumber}?text=${encodeURIComponent(message)}`;
+        const waWindow = window.open(whatsappUrl, '_blank');
+
+        if (!waWindow || waWindow.closed || typeof waWindow.closed === 'undefined') {
+          window.location.href = whatsappUrl;
+        }
+      });
+    }
+
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
     const topNavInner = document.querySelector('.top-nav-inner');
