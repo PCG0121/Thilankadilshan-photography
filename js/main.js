@@ -647,7 +647,10 @@
       words.forEach((word, i) => {
         const outer = document.createElement('span');
         outer.className = 'hero-word';
-        outer.innerHTML = `<span class="hero-word-inner">${word}</span>`;
+        const inner = document.createElement('span');
+        inner.className = 'hero-word-inner';
+        inner.textContent = word;
+        outer.appendChild(inner);
         frag.appendChild(outer);
         if (i < words.length - 1) frag.appendChild(document.createTextNode(' '));
       });

@@ -4,9 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Book Wedding Photography | Thilanka Dilshan Photography Sri Lanka</title>
+  <title>Book Wedding Photography Kurunegala | Thilanka Dilshan</title>
   <meta name="description"
-    content="Book your wedding photography date with Thilanka Dilshan Photography in Sri Lanka. Choose your package and send a wedding, engagement, or casual shoot inquiry." />
+    content="Book wedding photography in Kurunegala with Thilanka Dilshan Photography. Choose wedding, engagement, pre-shoot or casual shoot packages in Sri Lanka." />
+  <meta name="keywords" content="book wedding photography kurunegala, wedding photography kurunegala, best wedding photography kurunegala, wedding photographer kurunegala, wedding photography packages kurunegala, pre wedding photography kurunegala, engagement photography kurunegala" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Thilanka Dilshan Photography" />
   <meta name="theme-color" content="#050505" />
@@ -14,14 +15,14 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Thilanka Dilshan Photography" />
   <meta property="og:locale" content="en_LK" />
-  <meta property="og:title" content="Book Wedding Photography | Thilanka Dilshan Photography Sri Lanka" />
-  <meta property="og:description" content="Choose your package and send a wedding, engagement, or casual shoot booking inquiry." />
+  <meta property="og:title" content="Book Wedding Photography Kurunegala | Thilanka Dilshan" />
+  <meta property="og:description" content="Choose your Kurunegala wedding photography package and send a wedding, engagement, pre-shoot or casual shoot inquiry." />
   <meta property="og:url" content="https://thilankadilshan.com/booking.html" />
   <meta property="og:image" content="https://thilankadilshan.com/assets/images/optimized/homewedding-1400.jpg" />
   <meta property="og:image:alt" content="Wedding photography booking by Thilanka Dilshan Photography" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Book Wedding Photography | Thilanka Dilshan Photography Sri Lanka" />
-  <meta name="twitter:description" content="Choose your package and send a wedding, engagement, or casual shoot booking inquiry." />
+  <meta name="twitter:title" content="Book Wedding Photography Kurunegala | Thilanka Dilshan" />
+  <meta name="twitter:description" content="Choose your Kurunegala wedding photography package and send a wedding, engagement, pre-shoot or casual shoot inquiry." />
   <meta name="twitter:image" content="https://thilankadilshan.com/assets/images/optimized/homewedding-1400.jpg" />
   <script type="application/ld+json">
   {
@@ -29,8 +30,8 @@
     "@type": "ContactPage",
     "@id": "https://thilankadilshan.com/booking.html#webpage",
     "url": "https://thilankadilshan.com/booking.html",
-    "name": "Book Wedding Photography",
-    "description": "Booking inquiry page for wedding photography, engagement photography, and casual shoots by Thilanka Dilshan Photography.",
+    "name": "Book Wedding Photography Kurunegala",
+    "description": "Booking inquiry page for wedding photography in Kurunegala, engagement photography, pre-shoots, and casual shoots by Thilanka Dilshan Photography.",
     "isPartOf": {
       "@type": "WebSite",
       "@id": "https://thilankadilshan.com/#website",
@@ -41,7 +42,13 @@
       "@type": "LocalBusiness",
       "@id": "https://thilankadilshan.com/#business",
       "name": "Thilanka Dilshan Photography",
-      "telephone": "+94715649738"
+      "telephone": "+94715649738",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Kurunegala",
+        "addressCountry": "LK"
+      },
+      "knowsAbout": ["wedding photography kurunegala", "best wedding photography kurunegala", "wedding photography packages kurunegala"]
     }
   }
   </script>
@@ -1490,11 +1497,11 @@
         </div>
         <div class="field">
           <label for="eventLocation">Location</label>
-          <input id="eventLocation" name="eventLocation" type="text" required />
+          <input id="eventLocation" name="eventLocation" type="text" maxlength="120" required />
         </div>
         <div class="field">
           <label for="venueType">Venue Type</label>
-          <input id="venueType" name="venueType" type="text" placeholder="Hotel, outdoor, home, studio..." required />
+          <input id="venueType" name="venueType" type="text" maxlength="120" placeholder="Hotel, outdoor, home, studio..." required />
         </div>
         <div class="field full">
           <label for="eventTime">Time</label>
@@ -1507,27 +1514,27 @@
         </div>
         <div class="field">
           <label for="name">Your Name</label>
-          <input id="name" name="name" type="text" required />
+          <input id="name" name="name" type="text" maxlength="120" required />
         </div>
         <div class="field">
           <label for="partnerName">Partner's Name</label>
-          <input id="partnerName" name="partnerName" type="text" />
+          <input id="partnerName" name="partnerName" type="text" maxlength="120" />
         </div>
         <div class="field">
           <label for="email">Email Address</label>
-          <input id="email" name="email" type="email" required />
+          <input id="email" name="email" type="email" maxlength="254" required />
         </div>
         <div class="field">
           <label for="phone">Phone Number</label>
-          <input id="phone" name="phone" type="tel" required />
+          <input id="phone" name="phone" type="tel" maxlength="32" required />
         </div>
         <div class="field full">
           <label for="venue">Wedding Venue (if known)</label>
-          <input id="venue" name="venue" type="text" />
+          <input id="venue" name="venue" type="text" maxlength="160" />
         </div>
         <div class="field full">
           <label for="vision">Tell us about your vision</label>
-          <textarea id="vision" name="vision"></textarea>
+          <textarea id="vision" name="vision" maxlength="1000"></textarea>
         </div>
       </form>
     </section>
@@ -1995,14 +2002,18 @@
       const whatsappNumber = "94715649738";
       const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
-      const waWindow = window.open(whatsappUrl, '_blank');
+      const waWindow = window.open('', '_blank');
+      if (waWindow) {
+        waWindow.opener = null;
+        waWindow.location = whatsappUrl;
+      }
 
       successCopy.innerHTML = `Thank you for contacting Thilanka Dilshan Photography.<br><br>
       We have received your inquiry and truly appreciate your interest in our services. Our team will review your booking request and get back to you shortly with the availability and next steps.<br><br>
       We look forward to being a part of your special day!<br><br>
       <span style="display:block; margin-top:15px; font-size:1.1rem;">
         If WhatsApp doesn't open automatically, <br>
-        <a href="${whatsappUrl}" target="_blank" style="color: #0b9e46; font-weight: 700; text-decoration: underline;">Click Here to Send WhatsApp Message</a>
+        <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" style="color: #0b9e46; font-weight: 700; text-decoration: underline;">Click Here to Send WhatsApp Message</a>
       </span>`;
 
       wizardRoot.style.display = "none";

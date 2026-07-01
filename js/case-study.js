@@ -126,7 +126,7 @@
   }
   function setHTML(id, val) {
     const el = document.getElementById(id);
-    if (el) el.innerHTML = val;
+    if (el) el.textContent = val;
   }
   function setImg(id, src, alt) {
     const el = document.getElementById(id);

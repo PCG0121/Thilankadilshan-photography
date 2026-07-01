@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Thilanka Dilshan Photography | Wedding Photographer Sri Lanka</title>
-  <meta name="description" content="Contact Thilanka Dilshan Photography in Kurunegala, Sri Lanka to discuss wedding photography packages, availability, destination weddings, and bookings." />
+  <title>Contact Wedding Photographer Kurunegala | Thilanka Dilshan</title>
+  <meta name="description" content="Contact Thilanka Dilshan Photography for wedding photography in Kurunegala, Sri Lanka. Ask about availability, packages, pre-shoots and destination weddings." />
+  <meta name="keywords" content="contact wedding photographer kurunegala, wedding photography kurunegala, best wedding photography kurunegala, wedding photographer kurunegala, wedding photography packages kurunegala, kurunegala wedding photography booking" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Thilanka Dilshan Photography" />
   <meta name="theme-color" content="#050505" />
@@ -12,14 +13,14 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Thilanka Dilshan Photography" />
   <meta property="og:locale" content="en_LK" />
-  <meta property="og:title" content="Contact Thilanka Dilshan Photography | Wedding Photographer Sri Lanka" />
-  <meta property="og:description" content="Talk to Thilanka Dilshan Photography about wedding packages, availability, and destination wedding coverage." />
+  <meta property="og:title" content="Contact Wedding Photographer Kurunegala | Thilanka Dilshan" />
+  <meta property="og:description" content="Talk to Thilanka Dilshan Photography about Kurunegala wedding photography packages, availability and destination wedding coverage." />
   <meta property="og:url" content="https://thilankadilshan.com/contact.html" />
   <meta property="og:image" content="https://thilankadilshan.com/assets/images/optimized/story-colombo-1200.jpg" />
   <meta property="og:image:alt" content="Contact Thilanka Dilshan Photography in Kurunegala Sri Lanka" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Contact Thilanka Dilshan Photography | Wedding Photographer Sri Lanka" />
-  <meta name="twitter:description" content="Talk to Thilanka Dilshan Photography about wedding packages, availability, and destination wedding coverage." />
+  <meta name="twitter:title" content="Contact Wedding Photographer Kurunegala | Thilanka Dilshan" />
+  <meta name="twitter:description" content="Talk to Thilanka Dilshan Photography about Kurunegala wedding photography packages, availability and destination wedding coverage." />
   <meta name="twitter:image" content="https://thilankadilshan.com/assets/images/optimized/story-colombo-1200.jpg" />
   <script type="application/ld+json">
   {
@@ -27,8 +28,8 @@
     "@type": "ContactPage",
     "@id": "https://thilankadilshan.com/contact.html#webpage",
     "url": "https://thilankadilshan.com/contact.html",
-    "name": "Contact Thilanka Dilshan Photography",
-    "description": "Contact page for wedding photography packages, availability, and bookings.",
+    "name": "Contact Wedding Photographer Kurunegala",
+    "description": "Contact page for wedding photography in Kurunegala, packages, availability, and bookings.",
     "isPartOf": {
       "@type": "WebSite",
       "@id": "https://thilankadilshan.com/#website",
@@ -45,7 +46,8 @@
         "@type": "PostalAddress",
         "addressLocality": "Kurunegala",
         "addressCountry": "LK"
-      }
+      },
+      "knowsAbout": ["wedding photography kurunegala", "best wedding photography kurunegala", "wedding photographer kurunegala"]
     }
   }
   </script>
@@ -780,17 +782,17 @@
           <div class="form-grid">
             <div class="form-group">
               <label for="name">Name</label>
-              <input type="text" id="name" name="name" autocomplete="name" required />
+              <input type="text" id="name" name="name" autocomplete="name" maxlength="120" required />
             </div>
 
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" id="email" name="email" autocomplete="email" required />
+              <input type="email" id="email" name="email" autocomplete="email" maxlength="254" required />
             </div>
 
             <div class="form-group">
               <label for="phone">Phone</label>
-              <input type="tel" id="phone" name="phone" autocomplete="tel" />
+              <input type="tel" id="phone" name="phone" autocomplete="tel" maxlength="32" />
             </div>
 
             <div class="form-group date-picker" id="contactDatePicker">
@@ -823,7 +825,7 @@
 
             <div class="form-group full">
               <label for="message">Message</label>
-              <textarea id="message" name="message" required placeholder="Tell us about your vision..."></textarea>
+              <textarea id="message" name="message" maxlength="1000" required placeholder="Tell us about your vision..."></textarea>
             </div>
           </div>
 
@@ -1028,7 +1030,11 @@ Wedding Date: ${weddingDate}
 ${messageText}`;
 
         const whatsappUrl = `https://wa.me/${contactWhatsappNumber}?text=${encodeURIComponent(message)}`;
-        const waWindow = window.open(whatsappUrl, '_blank');
+        const waWindow = window.open('', '_blank');
+        if (waWindow) {
+          waWindow.opener = null;
+          waWindow.location = whatsappUrl;
+        }
 
         if (!waWindow || waWindow.closed || typeof waWindow.closed === 'undefined') {
           window.location.href = whatsappUrl;
